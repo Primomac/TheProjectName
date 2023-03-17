@@ -10,7 +10,7 @@ public class EnemyChase : MonoBehaviour
     private float distance;
     public float distanceToFollow;
 
-    bool isFollowing;
+    public bool isFollowing;
 
     // Start is called before the first frame update
     void Start()
