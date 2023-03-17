@@ -7,6 +7,7 @@ public class StatSheet : MonoBehaviour
     // Variables
 
     public GameObject character;
+    public GameObject hpBar;
     public bool isEnemy;
     public string characterName;
     public float initiative = 0;
@@ -56,13 +57,5 @@ public class StatSheet : MonoBehaviour
     public void refreshStat(string stat)
     {
 
-    }
-
-    private void OnMouseDown()
-    {
-        if (!isEnemy && BattleManager.Instance.inBattle)
-        {
-            BattleManager.Instance.SelectTarget(this);
-        }
     }
 }

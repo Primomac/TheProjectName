@@ -115,4 +115,9 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Wow your aim sukcs");
         }
     }
+
+    private void OnMouseDown()
+    {
+        SelectTarget(gameObject.GetComponent<StatSheet>());
+    }
 }
