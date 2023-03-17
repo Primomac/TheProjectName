@@ -15,6 +15,12 @@ public class TestForHpBar : MonoBehaviour
 
     public Animation hurtAnim;
     Animator animator;
+
+    //selecter
+    public GameObject selectGameobject;
+    public GameObject selectPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +54,14 @@ public class TestForHpBar : MonoBehaviour
         {
             animator.SetTrigger("Die");
         }
+    }
+
+
+    private void OnMouseDown()
+    {
+        //selects target
+        selectGameobject.transform.position = selectPos.transform.position;
+
+        SelectTarget.target = gameObject;
     }
 }
