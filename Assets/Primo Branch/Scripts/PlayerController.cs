@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Variables
 
     public float moveSpeed;
+    public Vector2 encounterPosition;
 
     public Rigidbody2D rig;
     public BoxCollider2D box;
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = encounterPosition;
+        
         rig = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         ani = GetComponent<Animator>();
@@ -25,7 +28,9 @@ public class PlayerController : MonoBehaviour
     {
         float horiInput = Input.GetAxis("Horizontal");
         float vertInput = Input.GetAxis("Vertical");
-        transform.Translate(new Vector2(moveSpeed * Time.deltaTime * horiInput, moveSpeed * Time.deltaTime * vertInput));   
+        ani.SetFloat("horiInput", horiInput);
+        ani.SetFloat("vertInput", vertInput);
 
+        transform.Translate(new Vector2(moveSpeed * Time.deltaTime * horiInput, moveSpeed * Time.deltaTime * vertInput));   
     }
 }
