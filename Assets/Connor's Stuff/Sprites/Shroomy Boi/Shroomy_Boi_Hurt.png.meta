@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbdb705a5a224bc4daa2de7a37592e00
+guid: 0528da3bbcf42d140bd757ce674c12fb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shroomy_Boi_Idle_0
+      name: Shroomy_Boi_Hurt_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 120
-        height: 120
+        y: 130
+        width: 130
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d951bbc1b0ba9ba41b694366caaea9df
-      internalID: -2032102125
+      spriteID: a58cde9bf7adda943bcd2e3b9120d277
+      internalID: 1346704363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shroomy_Boi_Idle_1
+      name: Shroomy_Boi_Hurt_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 120
-        height: 120
+        width: 130
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43cfd3a06909ba340a75f92cc661d1fe
-      internalID: 1970696526
+      spriteID: c781c00c9f0f13d48a3e1856e4f74496
+      internalID: 2002899595
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Shroomy_Boi_Idle_1: 1970696526
-      Shroomy_Boi_Idle_0: -2032102125
+      Shroomy_Boi_Hurt_1: 2002899595
+      Shroomy_Boi_Hurt_0: 1346704363
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
