@@ -7,6 +7,7 @@ public class StatSheet : MonoBehaviour
     // Variables
 
     public GameObject character;
+    public GameObject hpBar;
     public bool isEnemy;
     public string characterName;
     public float initiative = 0;
@@ -23,6 +24,8 @@ public class StatSheet : MonoBehaviour
     public float focus;     // Critical chance & Max SP
     public float agility;   // Initiative & evasion
 
+    public float maxhp;
+    public float maxsp;
     public float hp;        // Health points. Run out, you die.
     public float sp;        // Spirit points. Used to cast spells.
     public float offense;   // Used to determine physical damage.
@@ -39,8 +42,10 @@ public class StatSheet : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        hp = 60 * (1 + (strength / 100 * level));
-        sp = 30 * (1 + (focus / 100 * level));
+        maxhp = 60 * (1 + (strength / 100 * level));
+        hp = maxhp;
+        maxsp = 30 * (1 + (focus / 100 * level));
+        sp = maxsp;
         offense = 10 + (0.5f * strength * (level / 3));
         magic = 10 + (0.5f * soul * (level / 3));
         armor = 5 + (0.5f * guts * (level / 3));
@@ -56,13 +61,5 @@ public class StatSheet : MonoBehaviour
     public void refreshStat(string stat)
     {
 
-    }
-
-    private void OnMouseDown()
-    {
-        if (!isEnemy && BattleManager.Instance.inBattle)
-        {
-            BattleManager.Instance.SelectTarget(this);
-        }
     }
 }

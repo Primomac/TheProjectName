@@ -44,6 +44,16 @@ public class BattleManager : MonoBehaviour
             baseInit /= initCount;
             foreach(StatSheet combatant in combatants)
             {
+                if (!combatant.isEnemy)
+                {
+                    combatant.hpBar = GameObject.Find("PlayerHP");
+                }
+                else
+                {
+                    combatant.hpBar = GameObject.Find("EnemyHP");
+                }
+                combatant.hpBar.GetComponent<HpBar>().setMaxHealth(combatant.maxhp);
+                combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
                 combatant.initiative += combatant.speed / baseInit * 20;
                 if(combatant.initiative >= 100)
                 {
@@ -90,6 +100,7 @@ public class BattleManager : MonoBehaviour
         if (accCheck > currentCombatant.evasion)
         {
             currentTarget.hp -= currentCombatant.offense * (100 / 100 + currentTarget.armor);
+            currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
             if (currentTarget.hp <= 0)
             {
                 currentTarget.hp = 0;
@@ -114,5 +125,10 @@ public class BattleManager : MonoBehaviour
             // Play miss sound
             Debug.Log("Wow your aim sukcs");
         }
+    }
+
+    private void OnMouseDown()
+    {
+        SelectTarget(gameObject.GetComponent<StatSheet>());
     }
 }
