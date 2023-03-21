@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbdb705a5a224bc4daa2de7a37592e00
+guid: f32e700f2260792468ae998d6f1f8ec9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shroomy_Boi_Idle_0
+      name: Shroomy_Boi_Attacc_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 120
-        width: 120
-        height: 120
+        y: 1200
+        width: 160
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d951bbc1b0ba9ba41b694366caaea9df
-      internalID: -2032102125
+      spriteID: 05bf626f8ae0b9146b3caeed9f2f4f37
+      internalID: -976197393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shroomy_Boi_Idle_1
+      name: Shroomy_Boi_Attacc_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 120
-        height: 120
+        y: 960
+        width: 160
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43cfd3a06909ba340a75f92cc661d1fe
-      internalID: 1970696526
+      spriteID: 165c405019bd67e4484c220d85d1af07
+      internalID: 1373913328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shroomy_Boi_Attacc_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 160
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b055c80d26da55419a7c33b4203052b
+      internalID: -2107004375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shroomy_Boi_Attacc_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 160
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ffc571bb0be134a9154ab5a0e86fdc
+      internalID: 1708108895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shroomy_Boi_Attacc_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 160
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968e8fb1331c7f54c8c809463d8dce9a
+      internalID: -1751277719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shroomy_Boi_Attacc_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79e664149440d6444be804fdde8fe672
+      internalID: 463470875
       vertices: []
       indices: 
       edges: []
@@ -180,8 +264,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Shroomy_Boi_Idle_1: 1970696526
-      Shroomy_Boi_Idle_0: -2032102125
+      Shroomy_Boi_Attacc_1: 1373913328
+      Shroomy_Boi_Attacc_0: -976197393
+      Shroomy_Boi_Attacc_3: 1708108895
+      Shroomy_Boi_Attacc_5: 463470875
+      Shroomy_Boi_Attacc_4: -1751277719
+      Shroomy_Boi_Attacc_2: -2107004375
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
