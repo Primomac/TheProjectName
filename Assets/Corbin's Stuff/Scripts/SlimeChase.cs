@@ -10,8 +10,12 @@ public class SlimeChase : MonoBehaviour
 
     float distance;
     public float distanceToFollow;
+    public float distanceToStop;
 
-    public bool isFollowing;
+    public static bool slimeIsFollowing;
+    Vector2 direction;
+
+    bool followCoroutineActive;
 
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -24,24 +28,30 @@ public class SlimeChase : MonoBehaviour
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction = player.transform.position - transform.position;
-
+        direction = player.transform.position - transform.position;
 
         if (distance < distanceToFollow)
         {
-            StartCoroutine(Jump());
-            isFollowing = true;
+            if(!followCoroutineActive)
+            {
+                followCoroutineActive = true;
+                StartCoroutine(Jump());
+            }
+
+            slimeIsFollowing = true;
         }
-        if(distance > distanceToFollow)
+        if(distance > distanceToStop)
         {
+            slimeIsFollowing = false;
             StopCoroutine(Jump());
-            isFollowing = false;
         }
     }
 
     IEnumerator Jump()
     {
-        rb.AddForce(Vector2.MoveTowards(this.transform.position, player.position, jump), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(jumpTime);
+        rb.AddForce(direction.normalized * 2 * jump, ForceMode2D.Impulse);
+        Debug.Log("jumped");
+        yield return new WaitForSecondsRealtime(jumpTime);
+        followCoroutineActive = false;
     }    
 }

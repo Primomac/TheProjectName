@@ -9,6 +9,7 @@ public class EnemyChase : MonoBehaviour
 
     private float distance;
     public float distanceToFollow;
+    public float distanceToStop;
 
     public bool isFollowing;
 
@@ -30,7 +31,7 @@ public class EnemyChase : MonoBehaviour
             isFollowing = true;
         }
 
-        if(distance > distanceToFollow)
+        if (distance > distanceToStop)
         {
             isFollowing = false;
         }

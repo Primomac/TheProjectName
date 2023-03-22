@@ -13,30 +13,17 @@ public class SlimeMovement : MonoBehaviour
     float timeLeftX;
     float timeLeftY;
 
-    [Header("Double timeToReverse for 2 jumps per cycle, triple for 3, etc.")]
     public float timeToReverse = 2f;
     public float repeatTime = 2f;
+
+    bool xInvokeIsActive;
+    bool yInvokeIsActive;
 
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        bool isFollowing = GetComponent<SlimeChase>().isFollowing;
-
-        if(!isFollowing)
-        {
-            rb = GetComponent<Rigidbody2D>();
-
-            if (isMovingOnX)
-            {
-                InvokeRepeating("JumpX", 0, repeatTime);
-            }
-
-            if (isMovingOnY)
-            {
-                InvokeRepeating("JumpY", 0, repeatTime);
-            }
-        }
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -45,9 +32,7 @@ public class SlimeMovement : MonoBehaviour
         timeLeftX -= Time.deltaTime;
         timeLeftY -= Time.deltaTime;
 
-        bool isFollowing = GetComponent<SlimeChase>().isFollowing;
-
-        if(!isFollowing)
+        if(!SlimeChase.slimeIsFollowing)
         {
             if (timeLeftX <= 0)
             {
@@ -60,16 +45,35 @@ public class SlimeMovement : MonoBehaviour
                 yMovement *= -1;
                 timeLeftY += timeToReverse;
             }
+
+            
+            if (isMovingOnX && !xInvokeIsActive)
+            {
+                xInvokeIsActive = true;
+                StartCoroutine(JumpX());
+            }
+
+            if (isMovingOnY && !yInvokeIsActive)
+            {
+                yInvokeIsActive = true;
+                StartCoroutine(JumpY());
+            }
         }
     }
 
-   void JumpX()
+    IEnumerator JumpX()
     {
+        rb.velocity = Vector2.zero;
         rb.AddForce(Vector2.right * xMovement, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(repeatTime);
+        xInvokeIsActive = false;
     }
 
-    void JumpY()
+    IEnumerator JumpY()
     {
+        rb.velocity = Vector2.zero;
         rb.AddForce(Vector2.up * yMovement, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(repeatTime);
+        yInvokeIsActive = false;
     }
 }
