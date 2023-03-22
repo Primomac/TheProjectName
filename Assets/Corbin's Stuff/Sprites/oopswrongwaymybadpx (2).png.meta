@@ -1,0 +1,1182 @@
+fileFormatVersion: 2
+guid: 3eab913d6ddc21342ae9c5ccf70b74af
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb56b05adadbaf4590f2afab756d467
+      internalID: 709130243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_1
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d9c45d4b76d6f41abd9b391167f3f0
+      internalID: 194716735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_2
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac2c540fb7d27fb448f195e398101834
+      internalID: -173684636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_3
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0fbebb86a3e06248a684aaff52eeea0
+      internalID: -1346283478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_4
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501fa8ed983d45d4c8f726b3901186c7
+      internalID: -1678128675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_5
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a973f5f2f1e4faa4da6213744daa7afd
+      internalID: 763942304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_6
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 7320
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655d4b2bd2d06e74e8e191ca4482209b
+      internalID: 132053953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30bf6e71d60973b43937fb73954f9027
+      internalID: 1986338628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_8
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80462e7e33f2a0e4d842524add0b4cc3
+      internalID: 343602871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_9
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a49cc9cf2fb3443b776137e0e3283d
+      internalID: 1742993303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_10
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d54ff46745c9f44585430beb294c4d8
+      internalID: -1111755314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_11
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d208744d939ae6f468e99e6eddf84f4d
+      internalID: -1280229405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_12
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86d92f217b93294293e4b52fabc813c
+      internalID: 1239643211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_13
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 6100
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b8e13c08432f34680f5a06d5db6ad1
+      internalID: -152822669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f60a48b3e63d2974897bceab82844114
+      internalID: 818300565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_15
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e7f9347e051b544ac64769cc3588e5
+      internalID: -1217398388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_16
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be36f4674a1bb642aaae27b213163c7
+      internalID: 1642885634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_17
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5259f61530f8cb34e9410ebd7ad6295f
+      internalID: 1542544051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_18
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a46b4f4b6a8f65d4cbe7befdb0b670eb
+      internalID: -1856899453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_19
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97d1dfc3f6b0724ca4b7b663f2016b3
+      internalID: -2068658641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_20
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 4880
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3a2ebf1a639e4b439f1d7f3d3e6ea61
+      internalID: 902172094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c12cfb4b46b6041ba4fae27873fff2
+      internalID: -826487099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_22
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33ef246e1454e74fbf1324d45cc69e0
+      internalID: 17868271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_23
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c225651e53f50541a1c716da1c693ed
+      internalID: 1800738151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_24
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 841d253b72115644290fb0933a3588fc
+      internalID: -220088258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_25
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d8f9d9d1a2b1342b578e7cd9b00fd5
+      internalID: -618507068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_26
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9d95e02bb7668499e12b2f22dcc843
+      internalID: 28560251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_27
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 3660
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b4b6c1a3f204a418fb8cfd92d3751a
+      internalID: 868021218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80dbc52afe1303947bc77b09efea54f9
+      internalID: 323169282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_29
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa4d6d1ff458f148a7984ed886e0438
+      internalID: -760161793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_30
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8bf582c8873864f8d8f2ea9ace6364
+      internalID: 1812049126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_31
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9376efcf9669d4780a76abdde9bc3e
+      internalID: -1224852469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_32
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c749b8c4fdaf04c9a1972240fa104b
+      internalID: -1922572241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_33
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61f2fb0eafe8dda4db684bad6b4091df
+      internalID: -5424861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_34
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 2440
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a6012a0f779a0543a74eb7ea20f7ad6
+      internalID: -1448703728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8abb368f106e04cb27acd0166ab10a
+      internalID: 224388180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_36
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2c1e871f4a5c64e9fd11c59502ced8
+      internalID: 524319699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_37
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92bd35c41c33f8743b17b5d7daa9785e
+      internalID: 623324070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_38
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5692d832e421d304e85282fb1035d82b
+      internalID: 2024039112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_39
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba8467f13e2e3249bc56eef7eabf634
+      internalID: -2032448371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_40
+      rect:
+        serializedVersion: 2
+        x: 6400
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587cbe416ef186946af488c049d93265
+      internalID: -515600723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_41
+      rect:
+        serializedVersion: 2
+        x: 7680
+        y: 1220
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb8269e80f4270429d4e396e5b59989
+      internalID: -179912571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385a7492e8281a74594ee13f206315f1
+      internalID: 2082678914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_43
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6589e595059e44444a755bd02dd514d5
+      internalID: 1450314808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_44
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5d6c4f6312a0dd4a93c23dab919e249
+      internalID: -609921597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_45
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1a08088010dc840a231d25f2cef41d
+      internalID: -1558011139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oopswrongwaymybadpx (2)_46
+      rect:
+        serializedVersion: 2
+        x: 5120
+        y: 0
+        width: 1280
+        height: 1220
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc1df2ce91641eb40ba409009bc14a74
+      internalID: -765023548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      oopswrongwaymybadpx (2)_20: 902172094
+      oopswrongwaymybadpx (2)_43: 1450314808
+      oopswrongwaymybadpx (2)_15: -1217398388
+      oopswrongwaymybadpx (2)_34: -1448703728
+      oopswrongwaymybadpx (2)_29: -760161793
+      oopswrongwaymybadpx (2)_26: 28560251
+      oopswrongwaymybadpx (2)_11: -1280229405
+      oopswrongwaymybadpx (2)_24: -220088258
+      oopswrongwaymybadpx (2)_7: 1986338628
+      oopswrongwaymybadpx (2)_46: -765023548
+      oopswrongwaymybadpx (2)_14: 818300565
+      oopswrongwaymybadpx (2)_42: 2082678914
+      oopswrongwaymybadpx (2)_10: -1111755314
+      oopswrongwaymybadpx (2)_21: -826487099
+      oopswrongwaymybadpx (2)_17: 1542544051
+      oopswrongwaymybadpx (2)_2: -173684636
+      oopswrongwaymybadpx (2)_13: -152822669
+      oopswrongwaymybadpx (2)_40: -515600723
+      oopswrongwaymybadpx (2)_30: 1812049126
+      oopswrongwaymybadpx (2)_31: -1224852469
+      oopswrongwaymybadpx (2)_38: 2024039112
+      oopswrongwaymybadpx (2)_32: -1922572241
+      oopswrongwaymybadpx (2)_25: -618507068
+      oopswrongwaymybadpx (2)_37: 623324070
+      oopswrongwaymybadpx (2)_45: -1558011139
+      oopswrongwaymybadpx (2)_4: -1678128675
+      oopswrongwaymybadpx (2)_35: 224388180
+      oopswrongwaymybadpx (2)_0: 709130243
+      oopswrongwaymybadpx (2)_44: -609921597
+      oopswrongwaymybadpx (2)_9: 1742993303
+      oopswrongwaymybadpx (2)_27: 868021218
+      oopswrongwaymybadpx (2)_12: 1239643211
+      oopswrongwaymybadpx (2)_5: 763942304
+      oopswrongwaymybadpx (2)_1: 194716735
+      oopswrongwaymybadpx (2)_47: -1620393513
+      oopswrongwaymybadpx (2)_36: 524319699
+      oopswrongwaymybadpx (2)_41: -179912571
+      oopswrongwaymybadpx (2)_18: -1856899453
+      oopswrongwaymybadpx (2)_6: 132053953
+      oopswrongwaymybadpx (2)_3: -1346283478
+      oopswrongwaymybadpx (2)_8: 343602871
+      oopswrongwaymybadpx (2)_16: 1642885634
+      oopswrongwaymybadpx (2)_39: -2032448371
+      oopswrongwaymybadpx (2)_33: -5424861
+      oopswrongwaymybadpx (2)_28: 323169282
+      oopswrongwaymybadpx (2)_23: 1800738151
+      oopswrongwaymybadpx (2)_48: 788660283
+      oopswrongwaymybadpx (2)_22: 17868271
+      oopswrongwaymybadpx (2)_19: -2068658641
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -46,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
                 if (timeLeftY <= 0)
                 {
                     yMovement *= -1;
-                    timeLeftY = +timeToReverse;
+                    timeLeftY += timeToReverse;
                 }
             }
         }
