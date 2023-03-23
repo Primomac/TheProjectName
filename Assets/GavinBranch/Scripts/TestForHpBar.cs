@@ -64,4 +64,10 @@ public class TestForHpBar : MonoBehaviour
 
         SelectTarget.target = gameObject;
     }
+
+
+
+
+
+    
 }
