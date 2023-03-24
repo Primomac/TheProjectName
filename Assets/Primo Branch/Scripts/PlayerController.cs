@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     public Animator ani;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        //DontDestroyOnLoad(this);
         transform.position = encounterPosition;
         
         rig = GetComponent<Rigidbody2D>();
