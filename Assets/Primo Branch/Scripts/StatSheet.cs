@@ -18,6 +18,7 @@ public class StatSheet : MonoBehaviour
     public float expCap = 100;
     public float expYield = 0;
 
+
     public float strength;  // Effectiveness of weapons & Max HP
     public float dexterity; // Quickens physical skill cooldowns & enhances accuracy
     public float soul;      // Effectiveness of spells & Magic defense
