@@ -799,8 +799,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1316,17 +1316,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Cyclops
+    name: Som thing
     sentences:
     - Why you exist.
     - Why you exist. part 2
     - KILL YOURS-
-    - Counting time
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
 --- !u!1 &1557130955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,11 +1541,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1569291684}
   - component: {fileID: 1569291683}
-  - component: {fileID: 1569291682}
-  - component: {fileID: 1569291685}
   - component: {fileID: 1569291687}
   - component: {fileID: 1569291686}
   - component: {fileID: 1569291688}
+  - component: {fileID: 1569291689}
+  - component: {fileID: 1569291690}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1559,26 +1553,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1569291682
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569291681}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b02cace604d626d44a16c1f56c93408f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &1569291683
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1646,19 +1620,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1569291685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1569291681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaafa16636971b94d91dceed9b07b1ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkspeed: 5
 --- !u!61 &1569291686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1700,7 +1661,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1720,7 +1681,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1
   isTalking: 0
+  player: {fileID: 0}
+  ani: {fileID: 0}
+  playerMoveSpeed: 0
   dialogueBox: {fileID: 589262803}
+--- !u!95 &1569291689
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569291681}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fd8a78d2245556438c0c4c14b305d8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1569291690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569291681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484deb1f9280257449d415dfb5b8003e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  encounterPosition: {x: 0, y: 0}
+  rig: {fileID: 0}
+  box: {fileID: 0}
+  ani: {fileID: 0}
 --- !u!1 &1771062376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef0e7fd63ea0f49bc04be29ba1e87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hunterAnim: {fileID: 1569291682}
+  hunterAnim: {fileID: 0}
 --- !u!4 &2061031344
 Transform:
   m_ObjectHideFlags: 0
@@ -2175,4 +2176,4 @@ MonoBehaviour:
   nameText: {fileID: 704973587}
   dialogueText: {fileID: 2048361092}
   dialogueWriter: {fileID: 632533189}
-  timePerCharacter: 0.025
+  timePerCharacter: 0.0125

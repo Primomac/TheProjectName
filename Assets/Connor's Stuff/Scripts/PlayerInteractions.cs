@@ -9,6 +9,9 @@ public class PlayerInteractions : MonoBehaviour
 
     [HideInInspector]
     public bool isTalking = false;
+    public PlayerController player;
+    public Animator ani;
+    public float playerMoveSpeed;
 
     private DialogueManager dm;
     public Image dialogueBox;
@@ -18,6 +21,10 @@ public class PlayerInteractions : MonoBehaviour
     {
         isTalking = false;
         dm = FindObjectOfType<DialogueManager>();
+
+        ani = gameObject.GetComponent<Animator>();
+        player = gameObject.GetComponent<PlayerController>();
+        playerMoveSpeed = player.moveSpeed;
     }
 
     // Update is called once per frame
@@ -45,13 +52,29 @@ public class PlayerInteractions : MonoBehaviour
             
         }
 
-        if(isTalking && !dialogueBox.gameObject.activeSelf)
+        if(isTalking)
         {
-            dialogueBox.gameObject.SetActive(true);
+            if(!dialogueBox.gameObject.activeSelf)
+            {
+                dialogueBox.gameObject.SetActive(true);
+            }
+            if(player.moveSpeed != 0f)
+            {
+                player.moveSpeed = 0f;
+            }
+            ani.SetFloat("horiInput", 0f);
+            ani.SetFloat("vertInput", 0f);
         }
-        if(!isTalking && dialogueBox.gameObject.activeSelf)
+        if(!isTalking)
         {
-            dialogueBox.gameObject.SetActive(false);
+            if(dialogueBox.gameObject.activeSelf)
+            {
+                dialogueBox.gameObject.SetActive(false);
+            }
+            if(player.moveSpeed != playerMoveSpeed)
+            {
+                player.moveSpeed = playerMoveSpeed;
+            }
         }
     }
 }
