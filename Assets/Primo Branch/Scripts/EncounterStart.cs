@@ -7,8 +7,8 @@ public class EncounterStart : MonoBehaviour
 {
     // Variables
 
-    public Scene battleScene;
-    public Scene encounterScene;
+    public string battleScene;
+    public string encounterScene;
     public Vector2 encounterPosition;
     public List<StatSheet> enemyStats = new List<StatSheet>();
     public AudioClip encounterSound;
@@ -17,7 +17,6 @@ public class EncounterStart : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this);
-        encounterScene = SceneManager.GetActiveScene();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,13 +27,60 @@ public class EncounterStart : MonoBehaviour
             // Cool battle transition
             encounterPosition = collision.transform.position;
             collision.gameObject.GetComponent<PlayerController>().encounterPosition = encounterPosition;
-            SceneManager.LoadScene("" + battleScene);
+            enemyStats.Add(collision.GetComponent<StatSheet>());
+            collision.gameObject.SetActive(false);
+            Debug.Log("Starting newScene()!");
+            newScene();
+        }
+    }
+
+    public void newScene()
+    {
+        SceneManager.LoadScene("" + battleScene);
+        Debug.Log(SceneManager.GetActiveScene().name + " loaded!");
+        if (SceneManager.GetActiveScene().name != battleScene)
+        {
+            Debug.Log("Starting waitForSceneLoad()!");
+            StartCoroutine("waitForSceneLoad");
+        }
+        else
+        {
+            Debug.Log("The current Instance is " + BattleManager.Instance + "!");
+            Debug.Log(SceneManager.GetActiveScene().name + " loaded!");
             foreach (StatSheet enemy in enemyStats)
             {
-                BattleManager.Instance.combatants.Add(enemy);
+                BattleManager.Instance.AddCombatant(enemy);
             }
-            BattleManager.Instance.combatants.Add(collision.gameObject.GetComponent<StatSheet>());
+            //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
             BattleManager.Instance.encounterScene = encounterScene;
+            BattleManager.Instance.tickInitiative = true;
+            BattleManager.Instance.inBattle = true;
+        }
+
+    }
+
+    IEnumerable waitForSceneLoad()
+    {
+        Debug.Log("Waiting until the correct scene is loaded!");
+        while (SceneManager.GetActiveScene().name != battleScene)
+        {
+            yield return new WaitForSeconds(0.1f);
+            //yield return null;
+        }
+
+        if (SceneManager.GetActiveScene().name == battleScene)
+        {
+            Debug.Log("The current Instance is " + BattleManager.Instance + "!");
+            Debug.Log(SceneManager.GetActiveScene().name + " loaded!");
+            foreach (StatSheet enemy in enemyStats)
+            {
+                BattleManager.Instance.AddCombatant(enemy);
+            }
+            //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
+            BattleManager.Instance.encounterScene = encounterScene;
+            BattleManager.Instance.tickInitiative = true;
+            BattleManager.Instance.inBattle = true;
+            StopCoroutine("waitForSceneLoad");
         }
     }
 }
