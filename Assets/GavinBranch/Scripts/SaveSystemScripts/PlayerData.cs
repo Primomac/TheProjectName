@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class PlayerData : MonoBehaviour
+public class PlayerData
 {
-    public GameObject character;
+    //public GameObject character;
     public string characterName;
 
 
@@ -27,7 +27,7 @@ public class PlayerData : MonoBehaviour
 
     public PlayerData (StatSheet player)
     {
-        character = player.character;
+        //character = player.character;
         characterName = player.characterName;
 
         level = player.level;

@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
     public StatSheet stat;
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(GameObject.Find("Player").GetComponent<StatSheet>(),fileName);
+        SaveSystem.SavePlayer(stat,fileName);
     }
 
     public void loadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer(fileName);
 
-        stat.character = data.character;
+        //stat.character = data.character;
         stat.characterName = data.characterName;
 
         stat.level = data.level;
