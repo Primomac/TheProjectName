@@ -64,6 +64,7 @@ public class PlayerInteractions : MonoBehaviour
             }
             ani.SetFloat("horiInput", 0f);
             ani.SetFloat("vertInput", 0f);
+            player.enabled = false;
         }
         if(!isTalking)
         {
@@ -75,6 +76,7 @@ public class PlayerInteractions : MonoBehaviour
             {
                 player.moveSpeed = playerMoveSpeed;
             }
+            player.enabled = true;
         }
     }
 }
