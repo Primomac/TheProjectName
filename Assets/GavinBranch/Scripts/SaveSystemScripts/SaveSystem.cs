@@ -28,7 +28,6 @@ public static class SaveSystem
             PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
 
-
             return data;
         }
         else
