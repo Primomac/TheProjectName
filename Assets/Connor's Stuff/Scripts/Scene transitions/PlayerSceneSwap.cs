@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSceneSwap : MonoBehaviour
 {
+    public LevelLoader levelLoader;
+
+    public int levelIndex;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Scene Trigger"))
         {
-            SceneManager.LoadScene(collision.gameObject.GetComponent<TriggerSceneSwap>().sceneToSwapTo);
+            levelIndex = collision.gameObject.GetComponent<TriggerSceneSwap>().levelIndex;
+            levelLoader.StartCoroutine(levelLoader.LoadLevel(levelIndex));
         }
     }
 }
