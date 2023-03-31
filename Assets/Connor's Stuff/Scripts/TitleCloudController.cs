@@ -14,7 +14,7 @@ public class TitleCloudController : MonoBehaviour
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
         if(transform.position.x < xLimit)
         {
-            transform.position = new Vector3(-xLimit, transform.position.y, 9.5f);
+            transform.position = new Vector3(-xLimit, transform.position.y, 9.75f);
         }
     }
 }

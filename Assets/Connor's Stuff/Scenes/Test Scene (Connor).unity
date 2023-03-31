@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Som thing
+    name: Cyclops
     sentences:
     - Why you exist.
     - Why you exist. part 2
