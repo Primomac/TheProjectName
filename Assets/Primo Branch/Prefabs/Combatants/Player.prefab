@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1305042475
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1300813786, guid: e62f0f6159494764f99e984c622f3eb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 4093723366880080051}
   hpBar: {fileID: 0}
+  initBar: {fileID: 0}
+  spMeter: {fileID: 0}
   isEnemy: 0
   characterName: Player
   initiative: 0
@@ -147,6 +149,8 @@ MonoBehaviour:
   evasion: 0
   crit: 0
   punish: 0
+  skillList:
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
 --- !u!61 &8007599311985120857
 BoxCollider2D:
   m_ObjectHideFlags: 0
