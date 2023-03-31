@@ -11,9 +11,13 @@ public class BattleManager : MonoBehaviour
     // Variables
 
     public static BattleManager Instance;
+    public AudioSource audio;
+    public AudioClip tempAttackFX;
     public int enemyCount;
     public List<StatSheet> combatants = new List<StatSheet>();
+    public GameObject initBar;
     public string encounterScene;
+    public AudioClip battleMusic;
 
     public bool tickInitiative;
     public bool inBattle;
@@ -38,8 +42,24 @@ public class BattleManager : MonoBehaviour
             {
                 AddCombatant(enemy);
             }
+            if (enemyCount == 1)
+            {
+                GameObject.Find("EnemyHP 1").transform.Translate(Vector2.down * 60);
+                GameObject.Find("EnemyHP 2").SetActive(false);
+                GameObject.Find("EnemyHP 3").SetActive(false);
+            }
+            else if (enemyCount == 2)
+            {
+                GameObject.Find("EnemyHP 1").transform.Translate(Vector2.down * 30);
+                GameObject.Find("EnemyHP 2").transform.Translate(Vector2.down * 30);
+                GameObject.Find("EnemyHP 3").SetActive(false);
+            }
             //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
             encounterScene = encounter.encounterScene;
+            battleMusic = encounter.battleMusic;
+            audio.clip = battleMusic;
+            audio.Play(0);
+            audio.loop = true;
             tickInitiative = true;
             Instance.inBattle = true;
             Destroy(encounter.gameObject);
@@ -61,7 +81,8 @@ public class BattleManager : MonoBehaviour
             baseInit /= initCount;
             foreach(StatSheet combatant in combatants)
             {
-                combatant.initiative += combatant.speed / baseInit * 20 * Time.deltaTime;
+                combatant.initiative += combatant.speed / baseInit * 35 * Time.deltaTime;
+                combatant.initBar.GetComponentInChildren<initiativeBar>().updateInitiativeBar(combatant.initiative);
                 if(combatant.initiative >= 100)
                 {
                     tickInitiative = false;
@@ -79,9 +100,11 @@ public class BattleManager : MonoBehaviour
             StatSheet characterStats = character.GetComponent<StatSheet>();
             enemyCount++;
             combatants.Add(characterStats);
-            characterStats.hpBar = GameObject.Find("EnemyHP");
+            characterStats.hpBar = GameObject.Find("EnemyHP " + (enemyCount));
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
+            characterStats.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = characterStats.characterName;
+            characterStats.initBar = Instantiate(initBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 0.5f), transform.rotation);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
         }
         else
@@ -93,8 +116,12 @@ public class BattleManager : MonoBehaviour
             characterStats.hpBar = GameObject.Find("PlayerHP");
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
+            characterStats.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = characterStats.characterName;
+            characterStats.initBar = Instantiate(initBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 0.5f), transform.rotation);
+            characterStats.spMeter = GameObject.Find("SpBar");
+            characterStats.spMeter.GetComponent<SpBar>().SetMaxSp(characterStats.maxSp);
+            characterStats.spMeter.GetComponent<SpBar>().updateSpBar(characterStats.sp);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
-
         }
     }
     
@@ -148,17 +175,18 @@ public class BattleManager : MonoBehaviour
     public void BasicAttack()
     {
         actionMenu.gameObject.SetActive(false);
-        // Play attack sound & animation
+        audio.PlayOneShot(tempAttackFX);
         float accCheck = Random.Range(0, currentCombatant.accuracy + 1);
         if (accCheck > currentCombatant.evasion)
         {
             float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
-            Debug.Log("Dealing " + damageDealt + " damage to " + currentTarget.name + "!");
+            Debug.Log("Dealing " + damageDealt + " damage to " + currentTarget.characterName + "!");
             currentTarget.hp -= Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
             currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
             if (currentTarget.hp <= 0)
             {
                 currentTarget.hp = 0;
+                currentTarget.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
                 RemoveCombatant(currentTarget);
                 int enemyCount = 0;
                 foreach (StatSheet combatant in combatants)
@@ -184,9 +212,139 @@ public class BattleManager : MonoBehaviour
         tickInitiative = true;
     }
 
-    private void OnMouseDown()
+    public IEnumerator DealDamage(float damageMod, string damageType, bool isAOE)
     {
-        SelectTarget(gameObject.GetComponent<StatSheet>());
+        yield return new WaitForSeconds(0);
+        Debug.Log("Attempting to deal x" + damageMod + " " + damageType + " damage to " + currentCombatant + "!");
+        // Deals damage to all enemies
+        if (isAOE)
+        {
+            foreach (StatSheet combatant in combatants)
+            {
+                if (combatant.isEnemy)
+                {
+                    if (damageType == "Physical")
+                    {
+                        float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
+                        Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
+                        combatant.hp -= damageDealt;
+                        combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                    }
+                    else if (damageType == "Magical")
+                    {
+                        float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
+                        Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
+                        combatant.hp -= damageDealt;
+                        combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                    }
+                }
+            }
+        }
+        else
+        // Deals damage to the currently selected target
+        {
+            if (damageType == "Physical")
+            {
+                float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
+                Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
+                currentTarget.hp -= damageDealt;
+                currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+            }
+            else if (damageType == "Magical")
+            {
+                float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
+                Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
+                currentTarget.hp -= damageDealt;
+                currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+            }
+        }
+        // Check for enemy death
+        if (currentTarget.hp <= 0)
+        {
+            currentTarget.hp = 0;
+            currentTarget.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
+            RemoveCombatant(currentTarget);
+            // Check for victory
+            int enemyCount = 0;
+            foreach (StatSheet combatant in combatants)
+            {
+                if (combatant.isEnemy)
+                {
+                    enemyCount++;
+                }
+            }
+            // Return player to overworld (move to another method to allow for victory results later on)
+            if (enemyCount == 0)
+            {
+                inBattle = false;
+                SceneManager.LoadScene("" + encounterScene);
+            }
+        }
+        StopCoroutine(DealDamage(damageMod, damageType, isAOE));
+    }
+
+    public IEnumerator PlayAnimation(string animation, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        currentCombatant.GetComponent<Animator>().SetTrigger(animation);
+        StopCoroutine(PlayAnimation(animation, delayTime));
+    }
+
+    public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        for (int i = 0; i == repeats + 1; i++)
+        {
+            audio.PlayOneShot(sound);
+        }
+        StopCoroutine(PlaySound(sound, repeats, delayTime));
+    }
+
+    public void Restore(string scaleType, string healType, float healMod, StatSheet target)
+    {
+        if (healType == "Health")
+        {
+            if (scaleType == "Magic")
+            {
+                float healthRestored = currentCombatant.magic * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.hp = healthRestored;
+            }
+            else if (scaleType == "HP")
+            {
+                float healthRestored = target.maxHp * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.hp = healthRestored;
+            }
+        }
+        else if (healType == "Spirit")
+        {
+            if (scaleType == "Magic")
+            {
+                float healthRestored = currentCombatant.magic * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.sp = healthRestored;
+            }
+            else if (scaleType == "SP")
+            {
+                float healthRestored = target.maxSp * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.sp = healthRestored;
+            }
+        }
+    }
+
+    public void UseSkill(Skill skill)
+    {
+        Debug.Log("Using " + skill.skillName + "!");
+        for (int i = 0; i < skill.skillSequence.Count; i++)
+        {
+            Debug.Log("Skill Sequence Index: " + i);
+            StartCoroutine(skill.skillSequence[i]);
+            Debug.Log("Invoking " + skill.skillSequence[i]);
+        }
+        currentCombatant.initiative = 0;
+        tickInitiative = true;
     }
 
     Component CopyComponent(Component original, GameObject destination)

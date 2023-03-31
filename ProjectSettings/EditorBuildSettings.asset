@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Primo Branch/Prefabs/Scenes/TestScene.unity
+    path: Assets/Primo Branch/Scenes/TestScene.unity
     guid: aa6dbb88f0a55764188d027a83422c37
   - enabled: 1
-    path: Assets/Primo Branch/Prefabs/Scenes/CombatScene.unity
+    path: Assets/Primo Branch/Scenes/CombatScene.unity
     guid: 070065b3995d5274981372c2b0f37b15
   m_configObjects: {}
