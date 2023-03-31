@@ -5,20 +5,22 @@ using UnityEngine;
 public class StatSheet : MonoBehaviour
 {
     // Variables
-
+    [Header("Meta")]
     public GameObject character;
     public GameObject hpBar;
     public GameObject initBar;
+    public GameObject spMeter;
     public bool isEnemy;
     public string characterName;
     public float initiative = 0;
 
+    [Header("Leveling")]
     public float level = 1;
     public float exp = 0;
     public float expCap = 100;
     public float expYield = 0;
 
-
+    [Header("Primary Stats")]
     public float strength;  // Effectiveness of weapons & Max HP
     public float dexterity; // Quickens physical skill cooldowns & enhances accuracy
     public float soul;      // Effectiveness of spells & Magic defense
@@ -26,6 +28,7 @@ public class StatSheet : MonoBehaviour
     public float focus;     // Critical chance & Max SP
     public float agility;   // Initiative & evasion
 
+    [Header("Battle Stats")]
     public float maxHp;
     public float maxSp;
     public float hp;        // Health points. Run out, you die.
@@ -36,10 +39,14 @@ public class StatSheet : MonoBehaviour
     public float ward;      // Reduces magical damage taken.
     public float speed;     // Determines when you get to take your turn.
 
+    [Header("Chance Stats")]
     public float accuracy;  // Chance to hit or miss the target you attack.
     public float evasion;   // Chance to avoid incoming attacks.
     public float crit;      // Chance to deal bonus damage. Usually 5%.
     public float punish;    // The amount of bonus damage you deal on a crit. Usually +50% of the original damage.
+
+    [Header("Skills")]
+    public List<Skill> skillList = new List<Skill>();
 
     // Update is called once per frame
     void Awake()
@@ -52,7 +59,7 @@ public class StatSheet : MonoBehaviour
         magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
         armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
         ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
-        speed = Mathf.Round(10 * (1 + (agility / 100 * level)));
+        speed = Mathf.Round(10 * (1 + (agility / 10 * level)));
 
         accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
         evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
@@ -60,8 +67,11 @@ public class StatSheet : MonoBehaviour
         punish = Mathf.Round(50 * (1 + (focus / 1000 * level)));
     }
 
-    void Update()
+    private void OnMouseDown()
     {
-        //initBar.GetComponent<initiativeBar>().slider.value = initiative;
+        if (BattleManager.Instance.inBattle)
+        {
+            BattleManager.Instance.SelectTarget(this);
+        }
     }
 }
