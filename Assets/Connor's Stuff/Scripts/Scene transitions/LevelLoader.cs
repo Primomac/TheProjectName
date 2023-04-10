@@ -9,12 +9,12 @@ public class LevelLoader : MonoBehaviour
 
     public float timeToLoadFor = 1f;
 
-    public IEnumerator LoadLevel(int levelIndex)
+    public IEnumerator LoadLevel(string sceneToSwapTo)
     {
-        transitionAnim.SetTrigger("Start");
+        //transitionAnim.SetTrigger("Start");
 
         yield return new WaitForSeconds(timeToLoadFor);
 
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(sceneToSwapTo);
     }
 }

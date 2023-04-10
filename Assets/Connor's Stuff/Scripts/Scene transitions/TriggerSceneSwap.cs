@@ -8,9 +8,4 @@ public class TriggerSceneSwap : MonoBehaviour
     public string sceneToSwapTo;
 
     public int levelIndex;
-
-    private void Start()
-    {
-        levelIndex = SceneManager.GetSceneByName(sceneToSwapTo).buildIndex;
-    }
 }
