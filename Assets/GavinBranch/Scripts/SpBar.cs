@@ -10,7 +10,6 @@ public class SpBar : MonoBehaviour
     public TextMeshProUGUI SpText;
     public float MaxSp;
 
-    public float test;
 
     public void updateSpBar(float Sp)
     {
