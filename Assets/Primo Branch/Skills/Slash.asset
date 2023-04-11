@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Slash
   skillSequence:
-  - PlayAnimation("slash")
-  - PlaySound(currentSkill.sfx[0], 0)
-  - DealDamage(1,  "Physical",  false)
+  - PlayAnimation(slash)
+  - PlaySound(0, 0, .5)
+  - DealDamage(1, Physical, false)
+  - Restore(HP, Health, .05, currentCombatant)
   sfx:
   - {fileID: 8300000, guid: 35ac712f31aa9f84bbe591234eb8073e, type: 3}
