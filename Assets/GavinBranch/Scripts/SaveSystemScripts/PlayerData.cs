@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [System.Serializable]
@@ -23,7 +24,9 @@ public class PlayerData
     public float focus;
     public float agility;
 
-    public float test;
+    [Header("Location")]
+    public float[] position;
+    public int scene;
 
     public PlayerData (StatSheet player)
     {
@@ -40,5 +43,11 @@ public class PlayerData
         guts = player.guts;
         focus = player.focus;
         agility = player.agility;
+
+        position = new float[3];
+        position[0] = player.transform.position.x;
+        position[1] = player.transform.position.y;
+        position[2] = player.transform.position.z;
+        scene = SceneManager.GetActiveScene().buildIndex;
     }
 }

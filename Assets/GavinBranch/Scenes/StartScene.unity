@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 1372936869}
   - component: {fileID: 1372936868}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,15 +737,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3611372920927749635, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
       propertyPath: sceneToLoad
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3611372920927749637, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
       propertyPath: m_Name
       value: Loading
       objectReference: {fileID: 0}
     - target: {fileID: 3611372921050386291, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611372921050386291, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611372921050386291, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
       propertyPath: m_FillClockwise
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611372921050386291, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611372921050386293, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91b5dff5e0bd03f47b65c58f006ea2da, type: 3}

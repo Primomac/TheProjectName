@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+using UnityEngine.SceneManagement;
+
 public class TestForHpBar : MonoBehaviour
 {
     //hp values
@@ -53,6 +56,8 @@ public class TestForHpBar : MonoBehaviour
         if(currentHp <= 0)
         {
             animator.SetTrigger("Die");
+
+            StartCoroutine(delay());
         }
     }
 
@@ -63,5 +68,12 @@ public class TestForHpBar : MonoBehaviour
         selectGameobject.transform.position = selectPos.transform.position;
 
         SelectTarget.target = gameObject;
+    }
+
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(4);
     }
 }
