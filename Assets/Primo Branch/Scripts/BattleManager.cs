@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Unity.Collections;
 using TMPro;
+using System;
 
 public class BattleManager : MonoBehaviour
 {
@@ -157,7 +159,7 @@ public class BattleManager : MonoBehaviour
                     players.Add(target);
                 }
             }
-            currentTarget = players[Random.Range(0, players.Count)];
+            currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
             BasicAttack();
         }
     }
@@ -176,7 +178,7 @@ public class BattleManager : MonoBehaviour
     {
         actionMenu.gameObject.SetActive(false);
         audio.PlayOneShot(tempAttackFX);
-        float accCheck = Random.Range(0, currentCombatant.accuracy + 1);
+        float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
         if (accCheck > currentCombatant.evasion)
         {
             float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
@@ -223,19 +225,19 @@ public class BattleManager : MonoBehaviour
             {
                 if (combatant.isEnemy)
                 {
-                    if (damageType == "Physical")
+                    if (damageType == " Physical")
                     {
                         float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
                         Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
-                        combatant.hp -= damageDealt;
-                        combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        currentTarget.hp -= damageDealt;
+                        currentTarget.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
                     }
-                    else if (damageType == "Magical")
+                    else if (damageType == " Magical")
                     {
                         float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
                         Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
-                        combatant.hp -= damageDealt;
-                        combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        currentTarget.hp -= damageDealt;
+                        currentTarget.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
                     }
                 }
             }
@@ -243,14 +245,14 @@ public class BattleManager : MonoBehaviour
         else
         // Deals damage to the currently selected target
         {
-            if (damageType == "Physical")
+            if (damageType == " Physical")
             {
                 float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
                 Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
                 currentTarget.hp -= damageDealt;
                 currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
             }
-            else if (damageType == "Magical")
+            else if (damageType == " Magical")
             {
                 float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
                 Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
@@ -283,11 +285,11 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(DealDamage(damageMod, damageType, isAOE));
     }
 
-    public IEnumerator PlayAnimation(string animation, float delayTime)
+    public IEnumerator PlayAnimation(string animation)
     {
-        yield return new WaitForSeconds(delayTime);
+        yield return new WaitForSeconds(0);
         currentCombatant.GetComponent<Animator>().SetTrigger(animation);
-        StopCoroutine(PlayAnimation(animation, delayTime));
+        StopCoroutine(PlayAnimation(animation));
     }
 
     public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime)
@@ -300,62 +302,81 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(PlaySound(sound, repeats, delayTime));
     }
 
-    public void Restore(string scaleType, string healType, float healMod, StatSheet target)
+    public IEnumerator Restore(string scaleType, string healType, float healMod, StatSheet target)
     {
-        if (healType == "Health")
+        yield return new WaitForSeconds(0);
+        if (healType == " Health")
         {
+            Debug.Log("Restoring Health!");
             if (scaleType == "Magic")
             {
                 float healthRestored = currentCombatant.magic * healMod;
                 Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
-                target.hp = healthRestored;
+                target.hp += Mathf.Round(healthRestored);
             }
             else if (scaleType == "HP")
             {
                 float healthRestored = target.maxHp * healMod;
                 Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
-                target.hp = healthRestored;
+                target.hp += Mathf.Round(healthRestored);
             }
+            target.hpBar.GetComponent<HpBar>().setHealth(target.hp);
         }
-        else if (healType == "Spirit")
+        else if (healType == " Spirit")
         {
+            Debug.Log("Restoring Spirit!");
             if (scaleType == "Magic")
             {
                 float healthRestored = currentCombatant.magic * healMod;
                 Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
-                target.sp = healthRestored;
+                target.sp += Mathf.Round(healthRestored);
             }
             else if (scaleType == "SP")
             {
                 float healthRestored = target.maxSp * healMod;
                 Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
-                target.sp = healthRestored;
+                target.sp += Mathf.Round(healthRestored);
             }
+            target.spMeter.GetComponent<SpBar>().updateSpBar(target.hp);
         }
+        StopCoroutine(Restore(scaleType, healType, healMod, target));
     }
 
     public void UseSkill(Skill skill)
     {
+        actionMenu.gameObject.SetActive(false);
         Debug.Log("Using " + skill.skillName + "!");
         for (int i = 0; i < skill.skillSequence.Count; i++)
         {
             Debug.Log("Skill Sequence Index: " + i);
-            StartCoroutine(skill.skillSequence[i]);
+            string[] args = skill.skillSequence[i].Split('(', ',', ')');
+            string coroutineName = args[0];
+            MethodInfo coroutineMethod = typeof(BattleManager).GetMethod(coroutineName);
+            if (args[0].Equals("PlaySound"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { skill.sfx[int.Parse(args[1])], int.Parse(args[2]), float.Parse(args[3]) }));
+            }
+            else if (args[0].Equals("PlayAnimation"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1] }));
+            }
+            else if (args[0].Equals("DealDamage"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { float.Parse(args[1]), args[2], bool.Parse(args[3]) }));
+                Debug.Log("Dealing " + args[2] + " damage!");
+            }
+            else if (args[0].Equals("Restore"))
+            {
+                StatSheet input = currentCombatant;
+                if (!args[4].Equals(" currentCombatant"))
+                {
+                    input = currentTarget;
+                }
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1], args[2], float.Parse(args[3]), input }));
+            }
             Debug.Log("Invoking " + skill.skillSequence[i]);
         }
         currentCombatant.initiative = 0;
         tickInitiative = true;
-    }
-
-    Component CopyComponent(Component original, GameObject destination)
-    {
-        System.Type type = original.GetType();
-        Component copy = destination.AddComponent(type);
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
-        {
-            field.SetValue(copy, field.GetValue(original));
-        }
-        return copy;
     }
 }

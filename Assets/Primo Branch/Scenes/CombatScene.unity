@@ -3754,11 +3754,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1540671575}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: BasicAttack
-        m_Mode: 1
+        m_MethodName: UseSkill
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Skill, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
