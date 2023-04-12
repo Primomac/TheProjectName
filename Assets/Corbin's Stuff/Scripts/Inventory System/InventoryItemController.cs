@@ -8,21 +8,20 @@ public class InventoryItemController : MonoBehaviour
 
     public void AddItem(Item newItem)
     {
+
         item = newItem;
     }
-}
 
-
-
-//Old, decided on a selling mechanic rather than dropping items, but may change back to item dropping in the future.
-
-    /*public void DropItem()
+    public void RemoveItem()
     {
-        GameObject player;
-        player = GameObject.Find("Player");
-
-        Instantiate(gameObject, player.transform.position, transform.rotation);
-        Destroy(gameObject);
         InventoryManager.instance.Remove(item);
     }
-    */
+
+    public void SellItem()
+    {
+        Debug.Log(item.sellValue);
+        CoinsController.coinAmount += item.sellValue;
+        InventoryManager.instance.Remove(item);
+        Destroy(gameObject);
+    }
+}
