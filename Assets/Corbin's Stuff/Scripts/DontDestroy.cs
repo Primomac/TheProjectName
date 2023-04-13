@@ -13,5 +13,7 @@ public class DontDestroy : MonoBehaviour
         DontDestroyOnLoad(GameObject.Find("EventSystem"));
         DontDestroyOnLoad(GameObject.Find("Player"));
         DontDestroyOnLoad(gameObject);
+
+        //lmao
     }
 }

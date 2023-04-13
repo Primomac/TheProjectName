@@ -19,7 +19,6 @@ public class InventoryItemController : MonoBehaviour
 
     public void SellItem()
     {
-        Debug.Log(item.sellValue);
         CoinsController.coinAmount += item.sellValue;
         InventoryManager.instance.Remove(item);
         Destroy(gameObject);
