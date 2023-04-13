@@ -50,7 +50,7 @@ public class InventoryManager : MonoBehaviour
         Items.Add(item);
     }
 
-    public void RemoveTheItem(Item item)
+    public void Remove(Item item)
     {
         Items.Remove(item);
     }
