@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    public bool inventoryIsClosed = true;
+    bool inventoryIsClosed = true;
     public GameObject inventory;
 
     public Toggle enableSell;
@@ -112,4 +111,3 @@ public class InventoryManager : MonoBehaviour
         }
     }
 }
-
