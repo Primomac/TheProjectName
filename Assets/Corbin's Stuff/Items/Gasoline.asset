@@ -17,3 +17,4 @@ MonoBehaviour:
   value: 2
   icon: {fileID: 21300000, guid: fcb584cc94b7ef943a5635024cade3f1, type: 3}
   sellValue: 18
+  itemType: 2
