@@ -14,14 +14,14 @@ public class InventoryItemController : MonoBehaviour
 
     public void RemoveItem()
     {
-        InventoryManager.instance.Remove(item);
+        InventoryManager.instance.RemoveTheItem(item);
     }
 
     public void SellItem()
     {
         Debug.Log(item.sellValue);
         CoinsController.coinAmount += item.sellValue;
-        InventoryManager.instance.Remove(item);
+        InventoryManager.instance.RemoveTheItem(item);
         Destroy(gameObject);
     }
 }

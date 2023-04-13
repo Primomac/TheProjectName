@@ -14,11 +14,6 @@ public class TestPlayer : MonoBehaviour
 
 
     // Start is called before the first frame update
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
