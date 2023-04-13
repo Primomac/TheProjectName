@@ -5,7 +5,8 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     public Item item;
-
+    
+    bool isInTrigger;
     void Pickup()
     {
         InventoryManager.instance.Add(item);
@@ -14,7 +15,23 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.F))
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            isInTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            isInTrigger = false;
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F) && isInTrigger)
         {
             Pickup();
         }
