@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
 
     public Toggle enableSell;
 
-   InventoryItemController[] inventoryItemsArray;
+    InventoryItemController[] inventoryItemsArray;
     private void Awake()
     {
         instance = this;
