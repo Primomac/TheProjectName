@@ -12,15 +12,31 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    //public Toggle enableDrop;
+    bool inventoryIsClosed = true;
+    public GameObject inventory;
 
-    public InventoryItemController[] inventoryItems;
+    public Toggle enableSell;
+
+    InventoryItemController[] inventoryItemsArray;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(GameObject.Find("Inventory UI"));
-        DontDestroyOnLoad(GameObject.Find("EventSystem"));
         instance = this;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E) && inventoryIsClosed)
+        {
+            inventoryIsClosed = false;
+            inventory.SetActive(true);
+            ListItems();
+        }
+        else if(Input.GetKeyDown(KeyCode.E))
+        {
+            inventoryIsClosed = true;
+            inventory.SetActive(false);
+            Clean();
+        }
     }
 
     private void Start()
@@ -40,53 +56,58 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        Clean();
 
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
-            //var dropButton = obj.transform.Find("DropButton").GetComponent<Button>();
+            var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            /*if (enableDrop.isOn)
-                dropButton.gameObject.SetActive(true);*/
+            if (enableSell.isOn)
+                sellButton.gameObject.SetActive(true);
         }
 
         SetInventoryItems();
     }
 
-    /*public void EnableItemsDrop()
+    public void EnableItemsSell()
     { 
-        if(enableDrop.isOn)
+        if(enableSell.isOn)
         {
             foreach (Transform item in ItemContent)
             {
-                item.Find("DropButton").gameObject.SetActive(true);
+                item.Find("SellButton").gameObject.SetActive(true);
             }
         }
         else
         {
             foreach (Transform item in ItemContent)
             {
-                item.Find("DropButton").gameObject.SetActive(false);
+                item.Find("SellButton").gameObject.SetActive(false);
             }
         }
-    }*/
+    }
 
     public void SetInventoryItems()
     {
-        inventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+        inventoryItemsArray = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {
-            inventoryItems[i].AddItem(Items[i]);
+            inventoryItemsArray[i].AddItem(Items[i]);
+        }
+    }
+
+    void Clean()
+    {
+        foreach (Transform item in ItemContent)
+        {
+            Destroy(item.gameObject);
         }
     }
 }

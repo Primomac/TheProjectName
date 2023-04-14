@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private void Start()
+    {
+        addEXP();
+    }
+
+
     public string fileName;
     public StatSheet stat;
     public void SavePlayer()
@@ -35,5 +41,13 @@ public class GameManager : MonoBehaviour
         position.z = data.position[2];
 
         stat.transform.position = position;
+
+        CoinsController.coinAmount = data.coins;
+    }
+
+    public void addEXP()
+    {
+        //stat.level = stat.level + XpGain.levelsGained;
+        //stat.exp = stat.exp + XpGain.Xpleft;
     }
 }

@@ -9,4 +9,15 @@ public class Item : ScriptableObject
     public string itemName;
     public int value;
     public Sprite icon;
+    public int sellValue;
+    public ItemType itemType;
+    public bool equipable;
+
+    public enum ItemType
+    {
+        Weapon,
+        Jinx,
+        Collectible,
+        Armor
+    }
 }
