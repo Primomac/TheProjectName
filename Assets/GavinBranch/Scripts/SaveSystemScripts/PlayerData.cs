@@ -28,7 +28,10 @@ public class PlayerData
     public float[] position;
     public int scene;
 
+    [Header("Coins")]
     public float coins;
+
+    public Item item;
 
     public PlayerData (StatSheet player)
     {
