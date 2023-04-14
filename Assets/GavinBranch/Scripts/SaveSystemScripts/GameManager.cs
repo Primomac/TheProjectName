@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void addEXP()
     {
-        stat.level = stat.level + XpGain.levelsGained;
-        stat.exp = stat.exp + XpGain.Xpleft;
+        //stat.level = stat.level + XpGain.levelsGained;
+        //stat.exp = stat.exp + XpGain.Xpleft;
     }
 }
