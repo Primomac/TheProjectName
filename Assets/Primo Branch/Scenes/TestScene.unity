@@ -315,7 +315,7 @@ MonoBehaviour:
   isEnemy: 0
   characterName: Player
   initiative: 0
-  level: 5
+  level: 3
   exp: 0
   expCap: 100
   expYield: 0
@@ -527,6 +527,7 @@ MonoBehaviour:
   encounterScene: TestScene
   encounterPosition: {x: 0, y: 0}
   enemyStats:
+  - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
   - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
   encounterSound: {fileID: 8300000, guid: f3a5d8256e106764fbbc190d1eb82e5b, type: 3}
   battleMusic: {fileID: 8300000, guid: 589feef43b08b184397870b89c0ab3dc, type: 3}
@@ -1146,7 +1147,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.0031446815, y: 0.0031446815, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0

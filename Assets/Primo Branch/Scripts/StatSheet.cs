@@ -51,6 +51,11 @@ public class StatSheet : MonoBehaviour
     // Update is called once per frame
     void Awake()
     {
+        for (int i = 1; i < level; i++)
+        {
+            expCap += Mathf.Round(expCap * 0.45f);
+        }
+
         maxHp = Mathf.Round(60 * (1 + (strength / 100 * level)));
         hp = maxHp;
         maxSp = Mathf.Round(30 * (1 + (focus / 100 * level)));
@@ -73,5 +78,67 @@ public class StatSheet : MonoBehaviour
         {
             BattleManager.Instance.SelectTarget(this);
         }
+    }
+
+    public void UpdateStats(StatSheet stats)
+    {
+        stats.level = level;
+        stats.exp = exp;
+        stats.expCap = expCap;
+
+        // Level up!
+
+        if (stats.exp > stats.expCap)
+        {
+            stats.level++;
+            stats.exp -= expCap;
+            stats.expCap += Mathf.Round(stats.expCap * 0.45f);
+            for (int i = 0; i == 3; i++)
+            {
+                int bonusStat = Random.Range(1, 6);
+                if (bonusStat == 1)
+                {
+                    stats.strength++;
+                }
+                else if (bonusStat == 2)
+                {
+                    stats.dexterity++;
+                }
+                else if (bonusStat == 3)
+                {
+                    stats.soul++;
+                }
+                else if (bonusStat == 4)
+                {
+                    stats.focus++;
+                }
+                else
+                {
+                    stats.agility++;
+                }
+            }
+        }
+
+        stats.strength = strength;
+        stats.dexterity = dexterity;
+        stats.soul = soul;
+        stats.guts = guts;
+        stats.focus = focus;
+        stats.agility = agility;
+
+        stats.maxHp = Mathf.Round(60 * (1 + (stats.strength / 100 * stats.level)));
+        stats.hp = maxHp;
+        stats.maxSp = Mathf.Round(30 * (1 + (stats.focus / 100 * stats.level)));
+        stats.sp = maxSp;
+        stats.offense = Mathf.Round(10 + (0.5f * stats.strength * (stats.level / 3)));
+        stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
+        stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
+        stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
+        stats.speed = Mathf.Round(10 * (1 + (stats.agility / 10 * stats.level)));
+
+        stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
+        stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
+        stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
+        stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
     }
 }
