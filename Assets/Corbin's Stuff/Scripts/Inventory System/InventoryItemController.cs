@@ -32,17 +32,17 @@ public class InventoryItemController : MonoBehaviour
         {
             InventoryManager.instance.Remove(item);
             EquipManager.equipInstance.Add(item);
+            transform.SetParent(GameObject.Find("EquipContent").transform);
             isEquipped = true;
+            Debug.Log("Item Equipped");
         }
-    }
-
-    public void UnequipItem()
-    {
-        if(item.equipable == true && isEquipped)
+        else if (item.equipable == true)
         {
             EquipManager.equipInstance.Remove(item);
             InventoryManager.instance.Add(item);
+            transform.SetParent(GameObject.Find("InventoryContent").transform);
             isEquipped = false;
+            Debug.Log("Item Unequiped");
         }
     }
 }
