@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Slash
+  m_Name: Potion
   m_EditorClassIdentifier: 
-  skillName: Slash
-  spCost: 0
+  skillName: Potion
+  spCost: 10
   skillSequence:
-  - PlayAnimation(slash)
-  - PlaySound(0, 0, 0.03)
-  - DealDamage(1, Physical, false)
-  sfx:
-  - {fileID: 8300000, guid: 35ac712f31aa9f84bbe591234eb8073e, type: 3}
+  - Restore(HP, Health, .5, currentCombatant)
+  sfx: []
   effects: []
