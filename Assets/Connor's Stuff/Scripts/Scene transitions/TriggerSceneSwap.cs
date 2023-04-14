@@ -9,8 +9,13 @@ public class TriggerSceneSwap : MonoBehaviour
 
     public int levelIndex;
 
+    public AnimationClip transitionAnim;
+    public string transitionAnimName;
+
+    public Sprite sceneTransitionSprite;
+
     private void Start()
     {
-        levelIndex = SceneManager.GetSceneByName(sceneToSwapTo).buildIndex;
+        transitionAnimName = transitionAnim.name;
     }
 }

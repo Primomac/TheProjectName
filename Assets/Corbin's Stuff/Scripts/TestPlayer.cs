@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestPlayer : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class TestPlayer : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         rb.gravityScale = 0.0f;
+
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            SceneManager.LoadScene("meow");
+        }
+
     }
 
     private void FixedUpdate()

@@ -9,6 +9,7 @@ public class PlayerInteractions : MonoBehaviour
 
     [HideInInspector]
     public bool isTalking = false;
+    public bool isTransitioning;
     public PlayerController player;
     public Animator ani;
     public float playerMoveSpeed;
@@ -52,9 +53,9 @@ public class PlayerInteractions : MonoBehaviour
             
         }
 
-        if(isTalking)
+        if(isTransitioning)
         {
-            if(!dialogueBox.gameObject.activeSelf)
+            if(!dialogueBox.gameObject.activeSelf && isTalking)
             {
                 dialogueBox.gameObject.SetActive(true);
             }
@@ -72,7 +73,7 @@ public class PlayerInteractions : MonoBehaviour
             {
                 dialogueBox.gameObject.SetActive(false);
             }
-            if(player.moveSpeed != playerMoveSpeed)
+            if(player.moveSpeed != playerMoveSpeed && !isTransitioning)
             {
                 player.moveSpeed = playerMoveSpeed;
             }

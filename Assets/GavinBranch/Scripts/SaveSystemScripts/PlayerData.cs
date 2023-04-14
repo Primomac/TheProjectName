@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 [System.Serializable]
@@ -23,11 +24,20 @@ public class PlayerData
     public float focus;
     public float agility;
 
-    public float test;
+    [Header("Location")]
+    public float[] position;
+    public int scene;
+
+    [Header("Coins")]
+    public float coins;
+
+    public Item item;
 
     public PlayerData (StatSheet player)
     {
-        //character = player.character;
+
+        coins = CoinsController.coinAmount;
+
         characterName = player.characterName;
 
         level = player.level;
@@ -40,5 +50,11 @@ public class PlayerData
         guts = player.guts;
         focus = player.focus;
         agility = player.agility;
+
+        position = new float[3];
+        position[0] = player.transform.position.x;
+        position[1] = player.transform.position.y;
+        position[2] = player.transform.position.z;
+        scene = SceneManager.GetActiveScene().buildIndex;
     }
 }

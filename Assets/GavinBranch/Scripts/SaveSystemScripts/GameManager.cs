@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private void Start()
+    {
+        addEXP();
+    }
+
+
     public string fileName;
     public StatSheet stat;
     public void SavePlayer()
@@ -29,5 +35,19 @@ public class GameManager : MonoBehaviour
         stat.focus = data.focus;
         stat.agility = data.agility;
 
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+
+        stat.transform.position = position;
+
+        CoinsController.coinAmount = data.coins;
+    }
+
+    public void addEXP()
+    {
+        //stat.level = stat.level + XpGain.levelsGained;
+        //stat.exp = stat.exp + XpGain.Xpleft;
     }
 }

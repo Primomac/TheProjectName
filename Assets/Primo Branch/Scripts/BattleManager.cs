@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Unity.Collections;
 using TMPro;
+using System;
 
 public class BattleManager : MonoBehaviour
 {
     // Variables
 
     public static BattleManager Instance;
+    public AudioSource audio;
+    public AudioClip no;
     public int enemyCount;
     public List<StatSheet> combatants = new List<StatSheet>();
+    public GameObject initBar;
+    public GameObject statStorage;
     public string encounterScene;
+    public AudioClip battleMusic;
 
     public bool tickInitiative;
     public bool inBattle;
@@ -23,7 +30,7 @@ public class BattleManager : MonoBehaviour
     public GameObject targetIcon;
     public GameObject currentTargetIcon;
 
-    // Start is called before the first frame update
+    // Awake is called when the object is loaded for the first time
     void Awake()
     {
         Instance = this;
@@ -38,8 +45,23 @@ public class BattleManager : MonoBehaviour
             {
                 AddCombatant(enemy);
             }
-            //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
+            if (enemyCount == 1)
+            {
+                GameObject.Find("EnemyHP 1").transform.Translate(Vector2.down * 60);
+                GameObject.Find("EnemyHP 2").SetActive(false);
+                GameObject.Find("EnemyHP 3").SetActive(false);
+            }
+            else if (enemyCount == 2)
+            {
+                GameObject.Find("EnemyHP 1").transform.Translate(Vector2.down * 30);
+                GameObject.Find("EnemyHP 2").transform.Translate(Vector2.down * 30);
+                GameObject.Find("EnemyHP 3").SetActive(false);
+            }
             encounterScene = encounter.encounterScene;
+            battleMusic = encounter.battleMusic;
+            audio.clip = battleMusic;
+            audio.Play(0);
+            audio.loop = true;
             tickInitiative = true;
             Instance.inBattle = true;
             Destroy(encounter.gameObject);
@@ -61,13 +83,70 @@ public class BattleManager : MonoBehaviour
             baseInit /= initCount;
             foreach(StatSheet combatant in combatants)
             {
-                combatant.initiative += combatant.speed / baseInit * 20 * Time.deltaTime;
+                combatant.initiative += combatant.speed / baseInit * 35 * Time.deltaTime;
+                combatant.initBar.GetComponentInChildren<initiativeBar>().updateInitiativeBar(combatant.initiative);
                 if(combatant.initiative >= 100)
                 {
                     tickInitiative = false;
                     StartTurn(combatant);
                 }
             }
+        }
+
+        List<int> PeopleToKill = new List<int>();
+        foreach(StatSheet combatant in combatants)
+        {
+            // People die when they are killed
+            if (combatant.hp <= 0)
+            {
+                combatant.hp = 0;
+                combatant.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
+                //RemoveCombatant(combatant);
+
+                PeopleToKill.Add(combatants.IndexOf(combatant));
+
+                foreach (StatSheet player in combatants)
+                {
+                    if (!player.isEnemy)
+                    {
+                        player.exp += combatant.expYield;
+                    }
+                }
+            }
+            // Check for victory/defeat
+            int enemyCount = 0;
+            bool playerLives = false;
+            foreach (StatSheet enemy in combatants)
+            {
+                if (enemy.isEnemy)
+                {
+                    enemyCount++;
+                }
+                else
+                {
+                    playerLives = true;
+                }
+            }
+            // Return player to overworld (move to another method to allow for victory results later on)
+            if (!playerLives)
+            {
+                Debug.Log("YOU DIED");
+                Application.Quit();
+            }
+            else if (enemyCount == 0)
+            {
+                inBattle = false;
+                GameObject storage = Instantiate(statStorage, transform.position, transform.rotation);
+                storage.GetComponent<Storage>().currentStats = combatants[0];
+                Debug.Log("Current EXP gainer is " + combatants[0]);
+                Debug.Log("Current EXP (BattleManager) is " + storage.GetComponent<Storage>().currentStats.exp);
+                SceneManager.LoadScene("" + encounterScene);
+            }
+        }
+        foreach (int enemy in PeopleToKill)
+        {
+            Destroy(combatants[enemy].initBar);
+            RemoveCombatant(combatants[enemy]);
         }
     }
 
@@ -79,25 +158,33 @@ public class BattleManager : MonoBehaviour
             StatSheet characterStats = character.GetComponent<StatSheet>();
             enemyCount++;
             combatants.Add(characterStats);
-            characterStats.hpBar = GameObject.Find("EnemyHP");
+            characterStats.hpBar = GameObject.Find("EnemyHP " + (enemyCount));
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
+            characterStats.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = characterStats.characterName;
+            characterStats.initBar = Instantiate(initBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 0.5f), transform.rotation);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
         }
         else
         {
             GameObject character = Instantiate(combatant.character, GameObject.Find("Player Spawn").transform.position, transform.rotation);
-            //character.AddComponent<StatSheet>(combatant)
             StatSheet characterStats = character.GetComponent<StatSheet>();
+            combatant.UpdateStats(characterStats);
             combatants.Add(characterStats);
+            Debug.Log("Player's level is " + combatant.level + ", which should be equivalent to " + characterStats.level);
             characterStats.hpBar = GameObject.Find("PlayerHP");
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
+            characterStats.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = characterStats.characterName;
+            characterStats.initBar = Instantiate(initBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 0.5f), transform.rotation);
+            characterStats.spMeter = GameObject.Find("SpBar");
+            characterStats.spMeter.GetComponent<SpBar>().SetMaxSp(characterStats.maxSp);
+            characterStats.spMeter.GetComponent<SpBar>().updateSpBar(characterStats.sp);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
-
+            Debug.Log(characterStats.name + "'s SP bar is " + characterStats.spMeter.name + "!");
         }
     }
-    
+
     public void RemoveCombatant(StatSheet combatant)
     {
         combatants.Remove(combatant);
@@ -130,8 +217,8 @@ public class BattleManager : MonoBehaviour
                     players.Add(target);
                 }
             }
-            currentTarget = players[Random.Range(0, players.Count)];
-            BasicAttack();
+            currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
+            UseSkill(currentTarget.skillList[UnityEngine.Random.Range(0, currentTarget.skillList.Count)]);  
         }
     }
 
@@ -148,17 +235,18 @@ public class BattleManager : MonoBehaviour
     public void BasicAttack()
     {
         actionMenu.gameObject.SetActive(false);
-        // Play attack sound & animation
-        float accCheck = Random.Range(0, currentCombatant.accuracy + 1);
+        audio.PlayOneShot(no);
+        float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
         if (accCheck > currentCombatant.evasion)
         {
             float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
-            Debug.Log("Dealing " + damageDealt + " damage to " + currentTarget.name + "!");
+            Debug.Log("Dealing " + damageDealt + " damage to " + currentTarget.characterName + "!");
             currentTarget.hp -= Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
             currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
             if (currentTarget.hp <= 0)
             {
                 currentTarget.hp = 0;
+                currentTarget.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
                 RemoveCombatant(currentTarget);
                 int enemyCount = 0;
                 foreach (StatSheet combatant in combatants)
@@ -184,20 +272,190 @@ public class BattleManager : MonoBehaviour
         tickInitiative = true;
     }
 
-    private void OnMouseDown()
+    public IEnumerator DealDamage(float damageMod, string damageType, bool isAOE)
     {
-        SelectTarget(gameObject.GetComponent<StatSheet>());
+        yield return new WaitForSeconds(0);
+        Debug.Log("Attempting to deal x" + damageMod + " " + damageType + " damage to " + currentCombatant + "!");
+        // Deals damage to all enemies
+        if (isAOE)
+        {
+            foreach (StatSheet combatant in combatants)
+            {
+                if (combatant.isEnemy)
+                {
+                    float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
+                    if (accCheck > currentTarget.evasion)
+                    {
+                        if (damageType == " Physical")
+                        {
+                            float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + combatant.armor)) * damageMod);
+                            Debug.Log("Dealing " + damageDealt + " Physical damage to " + combatant.characterName + "!");
+                            combatant.hp -= damageDealt;
+                            combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        }
+                        else if (damageType == " Magical")
+                        {
+                            float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + combatant.ward)) * damageMod);
+                            Debug.Log("Dealing " + damageDealt + " Magical damage to " + combatant.characterName + "!");
+                            combatant.hp -= damageDealt;
+                            combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        }
+                    }
+                    else
+                    {
+                        // Play miss sound
+                        Debug.Log("Wow your aim sukcs");
+                    }
+                }
+            }
+        }
+        else
+        // Deals damage to the currently selected target
+        {
+            float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
+            if (accCheck > currentTarget.evasion)
+            {
+                if (damageType == " Physical")
+                {
+                    float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
+                    Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
+                    currentTarget.hp -= damageDealt;
+                    currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+                }
+                else if (damageType == " Magical")
+                {
+                    float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
+                    Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
+                    currentTarget.hp -= damageDealt;
+                    currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+                }
+            }
+            else
+            {
+                // Play miss sound
+                Debug.Log("Wow your aim sukcs");
+            }
+        }
+        StopCoroutine(DealDamage(damageMod, damageType, isAOE));
     }
 
-    Component CopyComponent(Component original, GameObject destination)
+    public IEnumerator PlayAnimation(string animation)
     {
-        System.Type type = original.GetType();
-        Component copy = destination.AddComponent(type);
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
+        yield return new WaitForSeconds(0);
+        currentCombatant.GetComponent<Animator>().SetTrigger(animation);
+        StopCoroutine(PlayAnimation(animation));
+    }
+
+    public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Debug.Log("Sound is " + sound.name + "!");
+        for (int i = 0; i == repeats + 1; i++)
         {
-            field.SetValue(copy, field.GetValue(original));
+            audio.PlayOneShot(sound);
         }
-        return copy;
+        StopCoroutine(PlaySound(sound, repeats, delayTime));
+    }
+
+    public IEnumerator PlayEffect(GameObject effect, bool onSelf, float length)
+    {
+        StatSheet target;
+        if (onSelf) { target = currentCombatant; } else { target = currentTarget; }
+        GameObject effectInst = Instantiate(effect, target.transform.position, transform.rotation);
+        yield return new WaitForSeconds(length);
+        Destroy(effectInst);
+    }
+
+    public IEnumerator Restore(string scaleType, string healType, float healMod, StatSheet target)
+    {
+        yield return new WaitForSeconds(0);
+        if (healType == " Health")
+        {
+            Debug.Log("Restoring Health!");
+            if (scaleType == "Magic")
+            {
+                float healthRestored = currentCombatant.magic * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.hp += Mathf.Round(healthRestored);
+            }
+            else if (scaleType == "HP")
+            {
+                float healthRestored = target.maxHp * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.hp += Mathf.Round(healthRestored);
+            }
+            target.hpBar.GetComponent<HpBar>().setHealth(target.hp);
+        }
+        else if (healType == " Spirit")
+        {
+            Debug.Log("Restoring Spirit!");
+            if (scaleType == "Magic")
+            {
+                float healthRestored = currentCombatant.magic * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.sp += Mathf.Round(healthRestored);
+            }
+            else if (scaleType == "SP")
+            {
+                float healthRestored = target.maxSp * healMod;
+                Debug.Log(currentCombatant.name + " is restoring " + target.name + "'s HP by " + healthRestored + " based on " + scaleType + "!");
+                target.sp += Mathf.Round(healthRestored);
+            }
+            target.spMeter.GetComponent<SpBar>().updateSpBar(target.hp);
+        }
+        StopCoroutine(Restore(scaleType, healType, healMod, target));
+    }
+
+    public void UseSkill(Skill skill)
+    {
+        // Check to see if SP cost is met
+        if (skill.spCost > currentCombatant.sp)
+        {
+            audio.PlayOneShot(no);
+            return;
+        }
+        currentCombatant.sp -= skill.spCost;
+        if (!currentCombatant.isEnemy)
+        {
+            currentCombatant.spMeter.GetComponent<SpBar>().updateSpBar(currentCombatant.sp);
+        }
+        actionMenu.gameObject.SetActive(false);
+        Debug.Log("Using " + skill.skillName + "!");
+        for (int i = 0; i < skill.skillSequence.Count; i++)
+        {
+            Debug.Log("Skill Sequence Index: " + i);
+            string[] args = skill.skillSequence[i].Split('(', ',', ')');
+            string coroutineName = args[0];
+            MethodInfo coroutineMethod = typeof(BattleManager).GetMethod(coroutineName);
+            if (args[0].Equals("PlaySound"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { skill.sfx[int.Parse(args[1])], int.Parse(args[2]), float.Parse(args[3]) }));
+            }
+            else if (args[0].Equals("PlayAnimation"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1] }));
+            }
+            else if (args[0].Equals("PlayEffect"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { skill.effects[int.Parse(args[1])], bool.Parse(args[2]), float.Parse(args[3]) }));
+            }
+            else if (args[0].Equals("DealDamage"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { float.Parse(args[1]), args[2], bool.Parse(args[3]) }));
+                Debug.Log("Dealing " + args[2] + " damage!");
+            }
+            else if (args[0].Equals("Restore"))
+            {
+                StatSheet input = currentCombatant;
+                if (!args[4].Equals(" currentCombatant"))
+                {
+                    input = currentTarget;
+                }
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1], args[2], float.Parse(args[3]), input }));
+            }
+            Debug.Log("Invoking " + skill.skillSequence[i]);
+        }
+        currentCombatant.initiative = 0;
+        tickInitiative = true;
     }
 }

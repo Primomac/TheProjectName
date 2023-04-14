@@ -12,6 +12,7 @@ public class EncounterStart : MonoBehaviour
     public Vector2 encounterPosition;
     public List<StatSheet> enemyStats = new List<StatSheet>();
     public AudioClip encounterSound;
+    public AudioClip battleMusic;
     
     // Start is called before the first frame update
     void Awake()
@@ -53,8 +54,8 @@ public class EncounterStart : MonoBehaviour
             }
             //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
             BattleManager.Instance.encounterScene = encounterScene;
-            BattleManager.Instance.tickInitiative = true;
-            BattleManager.Instance.inBattle = true;
+            //BattleManager.Instance.tickInitiative = true;
+            //BattleManager.Instance.inBattle = true;
         }
 
     }
@@ -78,6 +79,7 @@ public class EncounterStart : MonoBehaviour
             }
             //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
             BattleManager.Instance.encounterScene = encounterScene;
+            BattleManager.Instance.battleMusic = battleMusic;
             BattleManager.Instance.tickInitiative = true;
             BattleManager.Instance.inBattle = true;
             StopCoroutine("waitForSceneLoad");
