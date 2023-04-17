@@ -22,6 +22,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         isTalking = false;
         dm = FindObjectOfType<DialogueManager>();
+        dialogueBox = GameObject.Find("Dialogue Box").GetComponent<Image>();
 
         ani = gameObject.GetComponent<Animator>();
         player = gameObject.GetComponent<PlayerController>();
