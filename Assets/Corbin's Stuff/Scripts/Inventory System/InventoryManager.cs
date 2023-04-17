@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -13,13 +12,12 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    public bool inventoryIsClosed = true;
+    bool inventoryIsClosed = true;
     public GameObject inventory;
 
     public Toggle enableSell;
 
-    public InventoryItemController[] inventoryItems;
-   //public List<InventoryItemController> inventoryItems = new List<InventoryItemController>();
+    InventoryItemController[] inventoryItemsArray;
     private void Awake()
     {
         instance = this;
@@ -37,6 +35,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryIsClosed = true;
             inventory.SetActive(false);
+            Clean();
         }
     }
 
@@ -57,10 +56,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        Clean();
 
         foreach (var item in Items)
         {
@@ -99,22 +95,19 @@ public class InventoryManager : MonoBehaviour
 
     public void SetInventoryItems()
     {
-        inventoryItems = ItemContent.GetComponentsInChildren<InventoryItemController>();
+        inventoryItemsArray = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
         for (int i = 0; i < Items.Count; i++)
         {
-            inventoryItems[i].AddItem(Items[i]);
-        }
-
-
-        for (int i = 0; i < Items.Count; i++)
-        {
-            if (inventoryItems[i] == null)
-            {
-                inventoryItems[i].RemoveItem();
-            }
+            inventoryItemsArray[i].AddItem(Items[i]);
         }
     }
 
+    void Clean()
+    {
+        foreach (Transform item in ItemContent)
+        {
+            Destroy(item.gameObject);
+        }
+    }
 }
-
