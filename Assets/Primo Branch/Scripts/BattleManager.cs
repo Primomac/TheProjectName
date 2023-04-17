@@ -24,9 +24,11 @@ public class BattleManager : MonoBehaviour
 
     public bool tickInitiative;
     public bool inBattle;
+    public bool menuDown;
+    public GameObject currentMenu;
     public StatSheet currentCombatant;
     public StatSheet currentTarget;
-    public Image actionMenu;
+    public GameObject actionMenu;
     public GameObject targetIcon;
     public GameObject currentTargetIcon;
 
@@ -34,7 +36,6 @@ public class BattleManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        actionMenu.gameObject.SetActive(false);
         Debug.Log("The name of this Scene is " + SceneManager.GetActiveScene().name + "!");
         if (GameObject.FindGameObjectWithTag("Enemy"))
         {
@@ -150,7 +151,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void AddCombatant(StatSheet combatant)
+    public void AddCombatant(StatSheet combatant) // Adds a combatant to the battle scene
     {
         if (combatant.isEnemy)
         {
@@ -185,18 +186,18 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void RemoveCombatant(StatSheet combatant)
+    public void RemoveCombatant(StatSheet combatant) // Removes a combatant from the battle scene
     {
         combatants.Remove(combatant);
         Destroy(combatant.gameObject);
     }
 
-    public void StartTurn(StatSheet combatant)
+    public void StartTurn(StatSheet combatant) // Occurs whenever a target's initiative reaches 100
     {
         currentCombatant = combatant;
         if (!combatant.isEnemy)
         {
-            actionMenu.gameObject.SetActive(true);
+            MenuSwap(actionMenu);
             List<StatSheet> enemies = new List<StatSheet>();
             foreach (StatSheet target in combatants)
             {
@@ -222,7 +223,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void SelectTarget(StatSheet target)
+    public void SelectTarget(StatSheet target) // Changes the target of the next skill
     {
         if (currentTargetIcon != null)
         {
@@ -232,47 +233,64 @@ public class BattleManager : MonoBehaviour
         currentTarget = target;
     }
 
-    public void BasicAttack()
+    public void MenuSwap(GameObject menu) // Swaps the current turn menu to a different one
     {
-        actionMenu.gameObject.SetActive(false);
-        audio.PlayOneShot(no);
-        float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
-        if (accCheck > currentCombatant.evasion)
+        Debug.Log("Starting Coroutine and changing menu to " + menu);
+        StartCoroutine(ActualMenuSwap(menu));
+    }
+
+    public IEnumerator ActualMenuSwap(GameObject menu) // Actually swaps the current turn menu to a different one
+    {
+        yield return new WaitForSeconds(0);
+        Debug.Log("Menu swapping to " + menu);
+        if (!menuDown && currentMenu != null)
         {
-            float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
-            Debug.Log("Dealing " + damageDealt + " damage to " + currentTarget.characterName + "!");
-            currentTarget.hp -= Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)));
-            currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
-            if (currentTarget.hp <= 0)
+            Debug.Log("Moving " + currentMenu);
+            while (currentMenu.transform.position.y > -54)
             {
-                currentTarget.hp = 0;
-                currentTarget.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
-                RemoveCombatant(currentTarget);
-                int enemyCount = 0;
-                foreach (StatSheet combatant in combatants)
-                {
-                    if (combatant.isEnemy)
-                    {
-                        enemyCount++;
-                    }
-                }
-                if (enemyCount == 0)
-                {
-                    inBattle = false;
-                    SceneManager.LoadScene("" + encounterScene);
-                }
+                currentMenu.transform.Translate(Vector2.down * Time.deltaTime * 432);
+                yield return new WaitForEndOfFrame();
+            }
+            if (currentMenu.transform.position.y <= -54)
+            {
+                currentMenu.transform.position = new Vector2(384, -54);
+                menuDown = true;
             }
         }
         else
         {
-            // Play miss sound
-            Debug.Log("Wow your aim sukcs");
+            menuDown = true;
         }
-        currentCombatant.initiative = 0;
-        tickInitiative = true;
+        if (menuDown)
+        {
+            Debug.Log("CurrentMenu has been shifted down or does not exist!");
+            if (menu != null)
+            {
+                Debug.Log("Moving " + menu + "from " + menu.transform.position.y);
+                while (menu.transform.position.y < 54)
+                {
+                    menu.transform.Translate(Vector2.up * Time.deltaTime * 432);
+                    yield return new WaitForEndOfFrame();
+                }
+                if (menu.transform.position.y >= 54)
+                {
+                    menu.transform.position = new Vector2(384, 54);
+                    currentMenu = menu;
+                    menuDown = false;
+                    Debug.Log("Menu movement has finished!");
+                    StopCoroutine(ActualMenuSwap(menu));
+                }
+            }
+            else
+            {
+                menuDown = false;
+                Debug.Log("Menu does not exist!");
+                StopCoroutine(ActualMenuSwap(menu));
+            }
+        }
     }
 
-    public IEnumerator DealDamage(float damageMod, string damageType, bool isAOE)
+    public IEnumerator DealDamage(float damageMod, string damageType, bool isAOE) // Deals damage to the currently selected target (or all targets)
     {
         yield return new WaitForSeconds(0);
         Debug.Log("Attempting to deal x" + damageMod + " " + damageType + " damage to " + currentCombatant + "!");
@@ -339,14 +357,14 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(DealDamage(damageMod, damageType, isAOE));
     }
 
-    public IEnumerator PlayAnimation(string animation)
+    public IEnumerator PlayAnimation(string animation) // Plays an animation from the current skill user
     {
         yield return new WaitForSeconds(0);
         currentCombatant.GetComponent<Animator>().SetTrigger(animation);
         StopCoroutine(PlayAnimation(animation));
     }
 
-    public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime)
+    public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime) // Plays a sound
     {
         yield return new WaitForSeconds(delayTime);
         Debug.Log("Sound is " + sound.name + "!");
@@ -357,7 +375,7 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(PlaySound(sound, repeats, delayTime));
     }
 
-    public IEnumerator PlayEffect(GameObject effect, bool onSelf, float length)
+    public IEnumerator PlayEffect(GameObject effect, bool onSelf, float length) // Plays an animation over the target
     {
         StatSheet target;
         if (onSelf) { target = currentCombatant; } else { target = currentTarget; }
@@ -366,7 +384,7 @@ public class BattleManager : MonoBehaviour
         Destroy(effectInst);
     }
 
-    public IEnumerator Restore(string scaleType, string healType, float healMod, StatSheet target)
+    public IEnumerator Restore(string scaleType, string healType, float healMod, StatSheet target) // Restores HP or SP to a combatant
     {
         yield return new WaitForSeconds(0);
         if (healType == " Health")
@@ -406,7 +424,7 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(Restore(scaleType, healType, healMod, target));
     }
 
-    public void UseSkill(Skill skill)
+    public void UseSkill(Skill skill) // Uses a skill and performs its methods in order
     {
         // Check to see if SP cost is met
         if (skill.spCost > currentCombatant.sp)
@@ -419,7 +437,7 @@ public class BattleManager : MonoBehaviour
         {
             currentCombatant.spMeter.GetComponent<SpBar>().updateSpBar(currentCombatant.sp);
         }
-        actionMenu.gameObject.SetActive(false);
+        MenuSwap(null);
         Debug.Log("Using " + skill.skillName + "!");
         for (int i = 0; i < skill.skillSequence.Count; i++)
         {

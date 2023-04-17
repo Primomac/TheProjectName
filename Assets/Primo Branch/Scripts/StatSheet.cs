@@ -33,7 +33,7 @@ public class StatSheet : MonoBehaviour
     public float maxHp;
     public float maxSp;
     public float hp;        // Health points. Run out, you die.
-    public float sp;        // Spirit points. Used to cast spells.
+    public float sp;        // Spirit points. Used to perform stronger skills.
     public float offense;   // Used to determine physical damage.
     public float magic;     // Used to determine magical damage & healing.
     public float armor;     // Reduces physical damage taken.
@@ -65,7 +65,7 @@ public class StatSheet : MonoBehaviour
         magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
         armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
         ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
-        speed = Mathf.Round(10 * (1 + (agility / 10 * level)));
+        speed = Mathf.Round(10 * (1 + (agility / 100 * level)));
 
         accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
         evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
