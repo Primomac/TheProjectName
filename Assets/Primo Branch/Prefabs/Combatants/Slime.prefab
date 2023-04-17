@@ -122,13 +122,14 @@ MonoBehaviour:
   character: {fileID: 7504242894714914815}
   hpBar: {fileID: 0}
   initBar: {fileID: 0}
+  spMeter: {fileID: 0}
   isEnemy: 1
   characterName: Slime
   initiative: 0
   level: 1
   exp: 0
   expCap: 100
-  expYield: 0
+  expYield: 190
   strength: 5
   dexterity: 5
   soul: 5
@@ -148,6 +149,8 @@ MonoBehaviour:
   evasion: 0
   crit: 0
   punish: 0
+  skillList:
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
 --- !u!61 &4596780715917975829
 BoxCollider2D:
   m_ObjectHideFlags: 0

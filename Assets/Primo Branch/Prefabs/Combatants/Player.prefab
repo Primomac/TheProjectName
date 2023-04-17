@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 976936572640602134}
   - component: {fileID: 8500177449487725950}
   - component: {fileID: 8103713510854889537}
-  - component: {fileID: 5735380764938576802}
+  - component: {fileID: -5209633759811409593}
   - component: {fileID: 8007599311985120857}
   m_Layer: 0
   m_Name: Player
@@ -107,7 +107,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5735380764938576802
+--- !u!114 &-5209633759811409593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   soul: 13
   guts: 20
   focus: 15
-  agility: 12
+  agility: 15
   maxHp: 0
   maxSp: 0
   hp: 0

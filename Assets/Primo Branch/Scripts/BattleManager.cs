@@ -14,10 +14,11 @@ public class BattleManager : MonoBehaviour
 
     public static BattleManager Instance;
     public AudioSource audio;
-    public AudioClip tempAttackFX;
+    public AudioClip no;
     public int enemyCount;
     public List<StatSheet> combatants = new List<StatSheet>();
     public GameObject initBar;
+    public GameObject statStorage;
     public string encounterScene;
     public AudioClip battleMusic;
 
@@ -29,7 +30,7 @@ public class BattleManager : MonoBehaviour
     public GameObject targetIcon;
     public GameObject currentTargetIcon;
 
-    // Start is called before the first frame update
+    // Awake is called when the object is loaded for the first time
     void Awake()
     {
         Instance = this;
@@ -56,7 +57,6 @@ public class BattleManager : MonoBehaviour
                 GameObject.Find("EnemyHP 2").transform.Translate(Vector2.down * 30);
                 GameObject.Find("EnemyHP 3").SetActive(false);
             }
-            //BattleManager.Instance.AddCombatant(collision.gameObject.GetComponent<StatSheet>());
             encounterScene = encounter.encounterScene;
             battleMusic = encounter.battleMusic;
             audio.clip = battleMusic;
@@ -92,6 +92,62 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+
+        List<int> PeopleToKill = new List<int>();
+        foreach(StatSheet combatant in combatants)
+        {
+            // People die when they are killed
+            if (combatant.hp <= 0)
+            {
+                combatant.hp = 0;
+                combatant.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
+                //RemoveCombatant(combatant);
+
+                PeopleToKill.Add(combatants.IndexOf(combatant));
+
+                foreach (StatSheet player in combatants)
+                {
+                    if (!player.isEnemy)
+                    {
+                        player.exp += combatant.expYield;
+                    }
+                }
+            }
+            // Check for victory/defeat
+            int enemyCount = 0;
+            bool playerLives = false;
+            foreach (StatSheet enemy in combatants)
+            {
+                if (enemy.isEnemy)
+                {
+                    enemyCount++;
+                }
+                else
+                {
+                    playerLives = true;
+                }
+            }
+            // Return player to overworld (move to another method to allow for victory results later on)
+            if (!playerLives)
+            {
+                Debug.Log("YOU DIED");
+                Application.Quit();
+            }
+            else if (enemyCount == 0)
+            {
+                inBattle = false;
+                GameObject storage = Instantiate(statStorage, transform.position, transform.rotation);
+                storage.GetComponent<Storage>().currentStats = combatants[0];
+                Debug.Log("Current EXP gainer is " + combatants[0]);
+                Debug.Log("Current EXP (BattleManager) is " + storage.GetComponent<Storage>().currentStats.exp);
+                SceneManager.LoadScene("" + encounterScene);
+            }
+        }
+        foreach (int enemy in PeopleToKill)
+        {
+            Destroy(combatants[enemy].initBar);
+            RemoveCombatant(combatants[enemy]);
+        }
     }
 
     public void AddCombatant(StatSheet combatant)
@@ -112,9 +168,10 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameObject character = Instantiate(combatant.character, GameObject.Find("Player Spawn").transform.position, transform.rotation);
-            //character.AddComponent<StatSheet>(combatant)
             StatSheet characterStats = character.GetComponent<StatSheet>();
+            combatant.UpdateStats(characterStats);
             combatants.Add(characterStats);
+            Debug.Log("Player's level is " + combatant.level + ", which should be equivalent to " + characterStats.level);
             characterStats.hpBar = GameObject.Find("PlayerHP");
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
@@ -124,9 +181,10 @@ public class BattleManager : MonoBehaviour
             characterStats.spMeter.GetComponent<SpBar>().SetMaxSp(characterStats.maxSp);
             characterStats.spMeter.GetComponent<SpBar>().updateSpBar(characterStats.sp);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
+            Debug.Log(characterStats.name + "'s SP bar is " + characterStats.spMeter.name + "!");
         }
     }
-    
+
     public void RemoveCombatant(StatSheet combatant)
     {
         combatants.Remove(combatant);
@@ -160,7 +218,7 @@ public class BattleManager : MonoBehaviour
                 }
             }
             currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
-            BasicAttack();
+            UseSkill(currentTarget.skillList[UnityEngine.Random.Range(0, currentTarget.skillList.Count)]);  
         }
     }
 
@@ -177,7 +235,7 @@ public class BattleManager : MonoBehaviour
     public void BasicAttack()
     {
         actionMenu.gameObject.SetActive(false);
-        audio.PlayOneShot(tempAttackFX);
+        audio.PlayOneShot(no);
         float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
         if (accCheck > currentCombatant.evasion)
         {
@@ -225,19 +283,28 @@ public class BattleManager : MonoBehaviour
             {
                 if (combatant.isEnemy)
                 {
-                    if (damageType == " Physical")
+                    float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
+                    if (accCheck > currentTarget.evasion)
                     {
-                        float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
-                        Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
-                        currentTarget.hp -= damageDealt;
-                        currentTarget.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        if (damageType == " Physical")
+                        {
+                            float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + combatant.armor)) * damageMod);
+                            Debug.Log("Dealing " + damageDealt + " Physical damage to " + combatant.characterName + "!");
+                            combatant.hp -= damageDealt;
+                            combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        }
+                        else if (damageType == " Magical")
+                        {
+                            float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + combatant.ward)) * damageMod);
+                            Debug.Log("Dealing " + damageDealt + " Magical damage to " + combatant.characterName + "!");
+                            combatant.hp -= damageDealt;
+                            combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        }
                     }
-                    else if (damageType == " Magical")
+                    else
                     {
-                        float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
-                        Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
-                        currentTarget.hp -= damageDealt;
-                        currentTarget.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                        // Play miss sound
+                        Debug.Log("Wow your aim sukcs");
                     }
                 }
             }
@@ -245,41 +312,28 @@ public class BattleManager : MonoBehaviour
         else
         // Deals damage to the currently selected target
         {
-            if (damageType == " Physical")
+            float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
+            if (accCheck > currentTarget.evasion)
             {
-                float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
-                Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
-                currentTarget.hp -= damageDealt;
-                currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
-            }
-            else if (damageType == " Magical")
-            {
-                float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
-                Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
-                currentTarget.hp -= damageDealt;
-                currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
-            }
-        }
-        // Check for enemy death
-        if (currentTarget.hp <= 0)
-        {
-            currentTarget.hp = 0;
-            currentTarget.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = "**DEAD**";
-            RemoveCombatant(currentTarget);
-            // Check for victory
-            int enemyCount = 0;
-            foreach (StatSheet combatant in combatants)
-            {
-                if (combatant.isEnemy)
+                if (damageType == " Physical")
                 {
-                    enemyCount++;
+                    float damageDealt = Mathf.Round(currentCombatant.offense * (100 / (100 + currentTarget.armor)) * damageMod);
+                    Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
+                    currentTarget.hp -= damageDealt;
+                    currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+                }
+                else if (damageType == " Magical")
+                {
+                    float damageDealt = Mathf.Round(currentCombatant.magic * (100 / (100 + currentTarget.ward)) * damageMod);
+                    Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
+                    currentTarget.hp -= damageDealt;
+                    currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
                 }
             }
-            // Return player to overworld (move to another method to allow for victory results later on)
-            if (enemyCount == 0)
+            else
             {
-                inBattle = false;
-                SceneManager.LoadScene("" + encounterScene);
+                // Play miss sound
+                Debug.Log("Wow your aim sukcs");
             }
         }
         StopCoroutine(DealDamage(damageMod, damageType, isAOE));
@@ -295,11 +349,21 @@ public class BattleManager : MonoBehaviour
     public IEnumerator PlaySound(AudioClip sound, int repeats, float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        Debug.Log("Sound is " + sound.name + "!");
         for (int i = 0; i == repeats + 1; i++)
         {
             audio.PlayOneShot(sound);
         }
         StopCoroutine(PlaySound(sound, repeats, delayTime));
+    }
+
+    public IEnumerator PlayEffect(GameObject effect, bool onSelf, float length)
+    {
+        StatSheet target;
+        if (onSelf) { target = currentCombatant; } else { target = currentTarget; }
+        GameObject effectInst = Instantiate(effect, target.transform.position, transform.rotation);
+        yield return new WaitForSeconds(length);
+        Destroy(effectInst);
     }
 
     public IEnumerator Restore(string scaleType, string healType, float healMod, StatSheet target)
@@ -344,6 +408,17 @@ public class BattleManager : MonoBehaviour
 
     public void UseSkill(Skill skill)
     {
+        // Check to see if SP cost is met
+        if (skill.spCost > currentCombatant.sp)
+        {
+            audio.PlayOneShot(no);
+            return;
+        }
+        currentCombatant.sp -= skill.spCost;
+        if (!currentCombatant.isEnemy)
+        {
+            currentCombatant.spMeter.GetComponent<SpBar>().updateSpBar(currentCombatant.sp);
+        }
         actionMenu.gameObject.SetActive(false);
         Debug.Log("Using " + skill.skillName + "!");
         for (int i = 0; i < skill.skillSequence.Count; i++)
@@ -359,6 +434,10 @@ public class BattleManager : MonoBehaviour
             else if (args[0].Equals("PlayAnimation"))
             {
                 StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1] }));
+            }
+            else if (args[0].Equals("PlayEffect"))
+            {
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { skill.effects[int.Parse(args[1])], bool.Parse(args[2]), float.Parse(args[3]) }));
             }
             else if (args[0].Equals("DealDamage"))
             {
