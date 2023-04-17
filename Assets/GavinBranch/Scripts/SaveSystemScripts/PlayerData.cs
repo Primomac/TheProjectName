@@ -28,9 +28,16 @@ public class PlayerData
     public float[] position;
     public int scene;
 
+    [Header("Coins")]
+    public float coins;
+
+    public Item item;
+
     public PlayerData (StatSheet player)
     {
-        //character = player.character;
+
+        coins = CoinsController.coinAmount;
+
         characterName = player.characterName;
 
         level = player.level;
