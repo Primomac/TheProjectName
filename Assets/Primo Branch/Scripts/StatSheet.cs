@@ -19,6 +19,7 @@ public class StatSheet : MonoBehaviour
     public float exp = 0;
     public float expCap = 100;
     public float expYield = 0;
+    public float coinYield = 0;
 
     [Header("Primary Stats")]
     public float strength;  // Effectiveness of weapons & Max HP
