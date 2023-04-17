@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b54074872f0f8c4bbb3975391df02c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSceneName: Test Scene (Connor)
+  startingSceneName: TestScene
 --- !u!1 &1922504902
 GameObject:
   m_ObjectHideFlags: 0
