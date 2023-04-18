@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Slash
   spCost: 0
+  skillDescription: Deals x1 Physical damage to a single target.
   skillSequence:
   - PlayAnimation(slash)
   - PlaySound(0, 0, 0.03)
