@@ -9,7 +9,14 @@ public class AudioLoopTest : MonoBehaviour
 
     private void Start()
     {
-        audioSource.PlayOneShot(musicIntro);
-        audioSource.PlayScheduled(AudioSettings.dspTime + musicIntro.length);
+        if(musicIntro != null)
+        {
+            audioSource.PlayOneShot(musicIntro);
+            audioSource.PlayScheduled(AudioSettings.dspTime + musicIntro.length);
+        }
+        else
+            audioSource.PlayScheduled(AudioSettings.dspTime + 0);
+
+
     }
 }
