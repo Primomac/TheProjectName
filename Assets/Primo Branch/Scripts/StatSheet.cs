@@ -65,7 +65,7 @@ public class StatSheet : MonoBehaviour
         magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
         armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
         ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
-        speed = Mathf.Round(10 * (1 + (agility / 100 * level)));
+        speed = Mathf.Round(10 + (1 * (agility / 10 * level)));
 
         accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
         evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
@@ -135,11 +135,17 @@ public class StatSheet : MonoBehaviour
         stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
         stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
         stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
-        stats.speed = Mathf.Round(10 * (1 + (stats.agility / 10 * stats.level)));
+        stats.speed = Mathf.Round(10 + (1 * (stats.agility / 10 * stats.level)));
 
         stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
         stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
         stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
         stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
+        
+        stats.skillList.Clear();
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            stats.skillList.Add(skillList[i]);
+        }
     }
 }

@@ -26,6 +26,7 @@ public class BattleManager : MonoBehaviour
     public bool inBattle;
     public bool menuDown;
     public GameObject currentMenu;
+    public GameObject skillButton;
     public StatSheet currentCombatant;
     public StatSheet currentTarget;
     public GameObject actionMenu;
@@ -197,6 +198,7 @@ public class BattleManager : MonoBehaviour
         currentCombatant = combatant;
         if (!combatant.isEnemy)
         {
+            ReadySkills(combatant);
             MenuSwap(actionMenu);
             List<StatSheet> enemies = new List<StatSheet>();
             foreach (StatSheet target in combatants)
@@ -219,7 +221,7 @@ public class BattleManager : MonoBehaviour
                 }
             }
             currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
-            UseSkill(currentTarget.skillList[UnityEngine.Random.Range(0, currentTarget.skillList.Count)]);  
+            UseSkill(combatant.skillList[UnityEngine.Random.Range(0, combatant.skillList.Count)]);  
         }
     }
 
@@ -287,6 +289,23 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Menu does not exist!");
                 StopCoroutine(ActualMenuSwap(menu));
             }
+        }
+    }
+
+    public void ReadySkills(StatSheet character)
+    {
+        GameObject skillMenu = GameObject.Find("Skill Menu");
+        int skillCount = 1;
+        foreach (Skill skill in character.skillList)
+        {
+            GameObject button = Instantiate(skillButton, GameObject.Find("Skill Spawn " + skillCount).transform.position, transform.rotation);
+            //button.transform.parent = GameObject.Find("Skill Spawn " + skillCount).transform;
+            button.transform.SetParent(GameObject.Find("Skill Spawn " + skillCount).transform);
+            button.transform.Find("Skill Name").GetComponent<TextMeshProUGUI>().text = skill.skillName;
+            button.transform.Find("Skill Cost").GetComponent<TextMeshProUGUI>().text = "" + skill.spCost;
+            button.transform.Find("Skill Description").GetComponent<TextMeshProUGUI>().text = skill.skillDescription;
+            button.GetComponent<Button>().onClick.AddListener(delegate { UseSkill(skill); });
+            skillCount++;
         }
     }
 
@@ -368,8 +387,9 @@ public class BattleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         Debug.Log("Sound is " + sound.name + "!");
-        for (int i = 0; i == repeats + 1; i++)
+        for (int i = 0; i < repeats + 1; i++)
         {
+            Debug.Log("Playing sound!");
             audio.PlayOneShot(sound);
         }
         StopCoroutine(PlaySound(sound, repeats, delayTime));
@@ -436,8 +456,8 @@ public class BattleManager : MonoBehaviour
         if (!currentCombatant.isEnemy)
         {
             currentCombatant.spMeter.GetComponent<SpBar>().updateSpBar(currentCombatant.sp);
+            MenuSwap(null);
         }
-        MenuSwap(null);
         Debug.Log("Using " + skill.skillName + "!");
         for (int i = 0; i < skill.skillSequence.Count; i++)
         {

@@ -319,6 +319,7 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 0
+  coinYield: 0
   strength: 15
   dexterity: 15
   soul: 13
@@ -340,6 +341,7 @@ MonoBehaviour:
   punish: 0
   skillList:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 40ecffe495e861c46966d6cb7c5f60e1, type: 2}
 --- !u!1 &443004617
 GameObject:
   m_ObjectHideFlags: 0

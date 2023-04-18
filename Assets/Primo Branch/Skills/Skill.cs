@@ -10,6 +10,7 @@ public class Skill : ScriptableObject
 
     public string skillName;
     public float spCost;
+    public string skillDescription;
     public List<string> skillSequence = new List<string>();
     public List<AudioClip> sfx = new List<AudioClip>();
     public List<GameObject> effects = new List<GameObject>();
