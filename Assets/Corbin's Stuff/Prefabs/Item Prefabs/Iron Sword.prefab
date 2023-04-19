@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5875488668957660558}
   - component: {fileID: 5875488668957660557}
   - component: {fileID: 5875488668957660556}
-  - component: {fileID: 5875488668957660555}
   m_Layer: 0
   m_Name: Iron Sword
   m_TagString: Untagged
@@ -162,15 +161,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: a862a68ea87ce0647a13492eeaf5e15b, type: 2}
---- !u!114 &5875488668957660555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5875488668957660554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c65392d630f3241a7bfa8467ee5699, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
