@@ -12,15 +12,9 @@ public class EquipManager : MonoBehaviour
 
     public GameObject equipMenu;
 
-    InventoryItemController[] equipItems;
-
     private void Awake()
     {
         equipInstance = this;
-    }
-    void Start()
-    {
-        Time.timeScale = 1;
     }
 
     public void Add(Item item)

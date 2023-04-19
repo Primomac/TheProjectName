@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    bool inventoryIsClosed = true;
+    public bool inventoryIsClosed = true;
     public GameObject inventory;
 
     public Toggle enableSell;
@@ -25,17 +25,19 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && inventoryIsClosed)
+        if(Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
         {
             inventoryIsClosed = false;
             inventory.SetActive(true);
             ListItems();
+            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
         }
-        else if(Input.GetKeyDown(KeyCode.E))
+        else if(Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
         {
             inventoryIsClosed = true;
             inventory.SetActive(false);
             Clean();
+            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
         }
     }
 
@@ -64,12 +66,20 @@ public class InventoryManager : MonoBehaviour
             var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
+            var equipButton = obj.transform.Find("EquipButton").GetComponent<Button>();
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if (enableSell.isOn)
+            if (item.equipable && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+            {
+                equipButton.gameObject.SetActive(true);
+            }
+
+            if (GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
+            {
                 sellButton.gameObject.SetActive(true);
+            }
         }
 
         SetInventoryItems();
@@ -77,7 +87,7 @@ public class InventoryManager : MonoBehaviour
 
     public void EnableItemsSell()
     { 
-        if(enableSell.isOn)
+        if (enableSell.isOn)
         {
             foreach (Transform item in ItemContent)
             {
@@ -103,7 +113,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void Clean()
+    public void Clean()
     {
         foreach (Transform item in ItemContent)
         {
