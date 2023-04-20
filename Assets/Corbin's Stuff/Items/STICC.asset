@@ -17,3 +17,5 @@ MonoBehaviour:
   value: 4
   icon: {fileID: 21300000, guid: f35a6f8aef8db694fb2f58bdc39f393d, type: 3}
   sellValue: 7
+  itemType: 0
+  equipable: 1

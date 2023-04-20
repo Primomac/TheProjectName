@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,86 +7,85 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    public List<Item> Items = new List<Item>();
+    public List<Item> items = new List<Item>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
 
-    public bool inventoryIsClosed = true;
+    bool inventoryIsClosed = true;
     public GameObject inventory;
 
     public Toggle enableSell;
 
     InventoryItemController[] inventoryItemsArray;
+
+    ItemManager itemManager; // reference to ItemManager script
+
     private void Awake()
     {
         instance = this;
+        itemManager = GetComponent<ItemManager>(); // get the reference to the ItemManager script
+
+        Debug.Log(items);
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+        SaveItemsToItemManager();
+        if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed)
         {
             inventoryIsClosed = false;
             inventory.SetActive(true);
             ListItems();
-            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
         }
-        else if(Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
+        else if (Input.GetKeyDown(KeyCode.E))
         {
             inventoryIsClosed = true;
             inventory.SetActive(false);
             Clean();
-            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
         }
     }
 
     private void Start()
     {
         Time.timeScale = 1;
+        LoadItemsFromItemManager();
     }
 
     public void Add(Item item)
     {
-        Items.Add(item);
+        items.Add(item);
     }
 
     public void Remove(Item item)
     {
-        Items.Remove(item);
+        items.Remove(item);
     }
 
     public void ListItems()
     {
         Clean();
 
-        foreach (var item in Items)
+        // Use the items list from the ItemManager script
+        foreach (var item in itemManager.items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var sellButton = obj.transform.Find("SellButton").GetComponent<Button>();
-            var equipButton = obj.transform.Find("EquipButton").GetComponent<Button>();
 
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if (item.equipable && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
-            {
-                equipButton.gameObject.SetActive(true);
-            }
-
-            if (GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
-            {
+            if (enableSell.isOn)
                 sellButton.gameObject.SetActive(true);
-            }
         }
 
         SetInventoryItems();
     }
 
     public void EnableItemsSell()
-    { 
+    {
         if (enableSell.isOn)
         {
             foreach (Transform item in ItemContent)
@@ -107,17 +106,39 @@ public class InventoryManager : MonoBehaviour
     {
         inventoryItemsArray = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
-        for (int i = 0; i < Items.Count; i++)
+        for (int i = 0; i < itemManager.items.Count; i++)
         {
-            inventoryItemsArray[i].AddItem(Items[i]);
+            inventoryItemsArray[i].AddItem(itemManager.items[i]);
         }
     }
 
-    public void Clean()
+    void Clean()
     {
         foreach (Transform item in ItemContent)
         {
             Destroy(item.gameObject);
         }
     }
+
+    void LoadItemsFromItemManager()
+    {
+        ItemManager itemManager = FindObjectOfType<ItemManager>();
+        if (itemManager != null)
+        {
+            items.AddRange(itemManager.items);
+        }
+    }
+
+    void SaveItemsToItemManager()
+    {
+        if (itemManager != null)
+        {
+            itemManager.items = items;
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        //itemManager.AddItems(items);
+    }
 }
+*/
