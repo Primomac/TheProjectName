@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2266318839595963630}
   - component: {fileID: 4596780715917975829}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Scorpebab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1305042475
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1482158092, guid: d66def30312e53c438d65dce8a2210e9, type: 3}
+  m_Sprite: {fileID: -2062865601, guid: 9247a3bbbb29bc141844a61ef3e24a08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 7504242894714914815}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d93c2363e83c7304ab2c7b09f5ccc9fa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 082533d91d4f7b94eb3401dc2b9d1ef8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -124,13 +124,13 @@ MonoBehaviour:
   initBar: {fileID: 0}
   spMeter: {fileID: 0}
   isEnemy: 1
-  characterName: Slime
+  characterName: Scorpebab
   initiative: 0
-  level: 1
+  level: 5
   exp: 0
   expCap: 100
-  expYield: 19000
-  coinYield: 2
+  expYield: 190
+  coinYield: 50
   strength: 5
   dexterity: 5
   soul: 5
@@ -169,7 +169,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.1}
+    oldSize: {x: 1.8, y: 1.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

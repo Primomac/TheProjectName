@@ -87,45 +87,54 @@ public class StatSheet : MonoBehaviour
         stats.exp = exp;
         stats.expCap = expCap;
 
-        // Level up!
-
-        if (stats.exp > stats.expCap)
-        {
-            stats.level++;
-            stats.exp -= expCap;
-            stats.expCap += Mathf.Round(stats.expCap * 0.45f);
-            for (int i = 0; i == 3; i++)
-            {
-                int bonusStat = Random.Range(1, 6);
-                if (bonusStat == 1)
-                {
-                    stats.strength++;
-                }
-                else if (bonusStat == 2)
-                {
-                    stats.dexterity++;
-                }
-                else if (bonusStat == 3)
-                {
-                    stats.soul++;
-                }
-                else if (bonusStat == 4)
-                {
-                    stats.focus++;
-                }
-                else
-                {
-                    stats.agility++;
-                }
-            }
-        }
-
         stats.strength = strength;
         stats.dexterity = dexterity;
         stats.soul = soul;
         stats.guts = guts;
         stats.focus = focus;
         stats.agility = agility;
+
+        // Level up!
+
+        if (stats.exp > stats.expCap)
+        {
+            for (float xp = stats.exp; xp > stats.expCap; xp -= stats.expCap)
+            {
+                Debug.Log("Leveling up!");
+                stats.level++;
+                for (int i = 0; i < 3; i++)
+                {
+                    int bonusStat = Random.Range(1, 6);
+                    if (bonusStat == 1)
+                    {
+                        stats.strength++;
+                        Debug.Log("Bonus stat is Strength!");
+                    }
+                    else if (bonusStat == 2)
+                    {
+                        stats.dexterity++;
+                        Debug.Log("Bonus stat is Dexterity!");
+                    }
+                    else if (bonusStat == 3)
+                    {
+                        stats.soul++;
+                        Debug.Log("Bonus stat is Soul!");
+                    }
+                    else if (bonusStat == 4)
+                    {
+                        stats.focus++;
+                        Debug.Log("Bonus stat is Focus!");
+                    }
+                    else
+                    {
+                        stats.agility++;
+                        Debug.Log("Bonus stat is Agility!");
+                    }
+                }
+                stats.exp -= stats.expCap;
+                stats.expCap += Mathf.Round(stats.expCap * 0.45f);
+            }
+        }
 
         stats.maxHp = Mathf.Round(60 * (1 + (stats.strength / 100 * stats.level)));
         stats.hp = maxHp;
