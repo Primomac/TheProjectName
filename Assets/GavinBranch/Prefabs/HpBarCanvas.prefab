@@ -211,6 +211,7 @@ MonoBehaviour:
     m_Mode: 1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  TextOnHpBar: {fileID: 0}
 --- !u!1 &8175676040593025767
 GameObject:
   m_ObjectHideFlags: 0
