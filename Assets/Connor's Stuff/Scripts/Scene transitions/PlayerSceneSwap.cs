@@ -12,13 +12,17 @@ public class PlayerSceneSwap : MonoBehaviour
     public string sceneAnimToPlay;
     public Sprite sceneTransitionImage;
 
+    private void Start()
+    {
+        levelLoader = GameObject.Find("Level Loader").GetComponent<LevelLoader>();
+
+        sceneTransitionAnim = GameObject.Find("SceneTransition").GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Scene Trigger"))
         {
-            sceneTransitionAnim = GameObject.Find("SceneTransition").GetComponent<Animator>();
-            levelLoader = GameObject.Find("Level Loader").GetComponent<LevelLoader>();
-
             sceneToSwapTo = collision.gameObject.GetComponent<TriggerSceneSwap>().sceneToSwapTo;
             
             if(collision.gameObject.GetComponent<TriggerSceneSwap>().sceneTransitionSprite != null)
@@ -29,6 +33,16 @@ public class PlayerSceneSwap : MonoBehaviour
             sceneAnimToPlay = collision.gameObject.GetComponent<TriggerSceneSwap>().transitionAnimName;
 
             levelLoader.StartCoroutine(levelLoader.LoadLevel(sceneToSwapTo));
+            
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            levelLoader = GameObject.Find("Level Loader").GetComponent<LevelLoader>();
+            levelLoader.StartCoroutine(levelLoader.ResetTransitionImagePosition());
         }
     }
 }

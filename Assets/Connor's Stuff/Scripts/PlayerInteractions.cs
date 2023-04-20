@@ -7,7 +7,6 @@ public class PlayerInteractions : MonoBehaviour
 {
     public float interactRange = 1f;
 
-    [HideInInspector]
     public bool isTalking = false;
     public bool isTransitioning;
     public PlayerController player;
@@ -16,6 +15,9 @@ public class PlayerInteractions : MonoBehaviour
 
     private DialogueManager dm;
     public Image dialogueBox;
+    public Canvas canvas;
+
+    public Canvas canvasPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +26,30 @@ public class PlayerInteractions : MonoBehaviour
         dm = FindObjectOfType<DialogueManager>();
         dialogueBox = GameObject.Find("Dialogue Box").GetComponent<Image>();
 
-        ani = gameObject.GetComponent<Animator>();
-        player = gameObject.GetComponent<PlayerController>();
+        if (player == null)
+            player = gameObject.GetComponent<PlayerController>();
+
+        if(canvas == null)
+        {
+            canvas = Instantiate(canvasPrefab);
+        }
+
         playerMoveSpeed = player.moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+
+        if (ani == null)
+            ani = gameObject.GetComponent<Animator>();
+
+        if (player == null)
+            player = gameObject.GetComponent<PlayerController>();
+
+
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);
             foreach(Collider2D collider in colliderArray)
@@ -56,10 +73,6 @@ public class PlayerInteractions : MonoBehaviour
 
         if(isTransitioning)
         {
-            if(!dialogueBox.gameObject.activeSelf && isTalking)
-            {
-                dialogueBox.gameObject.SetActive(true);
-            }
             if(player.moveSpeed != 0f)
             {
                 player.moveSpeed = 0f;
@@ -70,15 +83,26 @@ public class PlayerInteractions : MonoBehaviour
         }
         if(!isTalking)
         {
-            if(dialogueBox.gameObject.activeSelf)
+            if(dialogueBox != null)
             {
-                dialogueBox.gameObject.SetActive(false);
+                if (dialogueBox.enabled)
+                {
+                    dialogueBox.enabled = false;
+                }
             }
             if(player.moveSpeed != playerMoveSpeed && !isTransitioning)
             {
                 player.moveSpeed = playerMoveSpeed;
             }
             player.enabled = true;
+        }
+        else
+        {
+            if (!dialogueBox.enabled)
+            {
+                dialogueBox.enabled = true;
+            }
+            player.enabled = false;
         }
     }
 }

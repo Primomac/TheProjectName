@@ -8,6 +8,6 @@ public class NPCInteractable : MonoBehaviour
 
     public void InitiateDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue); ;
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
 }

@@ -126,16 +126,17 @@ MonoBehaviour:
   isEnemy: 1
   characterName: Scorpebab
   initiative: 0
-  level: 2
+  level: 1
   exp: 0
   expCap: 100
   expYield: 50
-  strength: 8
-  dexterity: 6
-  soul: 6
-  guts: 4
-  focus: 7
-  agility: 12
+  coinYield: 0
+  strength: 1
+  dexterity: 1
+  soul: 1
+  guts: 1
+  focus: 1
+  agility: 1
   maxHp: 0
   maxSp: 0
   hp: 0

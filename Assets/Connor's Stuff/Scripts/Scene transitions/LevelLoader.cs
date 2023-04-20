@@ -21,10 +21,9 @@ public class LevelLoader : MonoBehaviour
             player = GameObject.Find("Player").GetComponent<PlayerInteractions>();
             playerSceneController = GameObject.Find("Player").GetComponent<PlayerSceneSwap>();
         }
-
+        transitionAnim = GameObject.Find("SceneTransition").GetComponent<Animator>();
         sceneTransitionImage = GameObject.Find("SceneTransition").GetComponent<Image>();
-
-        Invoke("ResetTransitionImagePosition", 0.75f);
+        StartCoroutine(ResetTransitionImagePosition());
     }
 
     public IEnumerator LoadLevel(string sceneToSwapTo)
@@ -48,8 +47,9 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(sceneToSwapTo);
     }
 
-    public void ResetTransitionImagePosition()
+    public IEnumerator ResetTransitionImagePosition()
     {
-        sceneTransitionImage.transform.position = new Vector2(960, -1398);
+        yield return new WaitForSeconds(0.52f);
+        sceneTransitionImage.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -1398);
     }
 }
