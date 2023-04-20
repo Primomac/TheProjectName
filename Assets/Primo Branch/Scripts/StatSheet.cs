@@ -19,6 +19,7 @@ public class StatSheet : MonoBehaviour
     public float exp = 0;
     public float expCap = 100;
     public float expYield = 0;
+    public float coinYield = 0;
 
     [Header("Primary Stats")]
     public float strength;  // Effectiveness of weapons & Max HP
@@ -32,7 +33,7 @@ public class StatSheet : MonoBehaviour
     public float maxHp;
     public float maxSp;
     public float hp;        // Health points. Run out, you die.
-    public float sp;        // Spirit points. Used to cast spells.
+    public float sp;        // Spirit points. Used to perform stronger skills.
     public float offense;   // Used to determine physical damage.
     public float magic;     // Used to determine magical damage & healing.
     public float armor;     // Reduces physical damage taken.
@@ -64,7 +65,7 @@ public class StatSheet : MonoBehaviour
         magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
         armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
         ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
-        speed = Mathf.Round(10 * (1 + (agility / 10 * level)));
+        speed = Mathf.Round(10 + (1 * (agility / 10 * level)));
 
         accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
         evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
@@ -86,45 +87,54 @@ public class StatSheet : MonoBehaviour
         stats.exp = exp;
         stats.expCap = expCap;
 
-        // Level up!
-
-        if (stats.exp > stats.expCap)
-        {
-            stats.level++;
-            stats.exp -= expCap;
-            stats.expCap += Mathf.Round(stats.expCap * 0.45f);
-            for (int i = 0; i == 3; i++)
-            {
-                int bonusStat = Random.Range(1, 6);
-                if (bonusStat == 1)
-                {
-                    stats.strength++;
-                }
-                else if (bonusStat == 2)
-                {
-                    stats.dexterity++;
-                }
-                else if (bonusStat == 3)
-                {
-                    stats.soul++;
-                }
-                else if (bonusStat == 4)
-                {
-                    stats.focus++;
-                }
-                else
-                {
-                    stats.agility++;
-                }
-            }
-        }
-
         stats.strength = strength;
         stats.dexterity = dexterity;
         stats.soul = soul;
         stats.guts = guts;
         stats.focus = focus;
         stats.agility = agility;
+
+        // Level up!
+
+        if (stats.exp > stats.expCap)
+        {
+            for (float xp = stats.exp; xp > stats.expCap; xp -= stats.expCap)
+            {
+                Debug.Log("Leveling up!");
+                stats.level++;
+                for (int i = 0; i < 3; i++)
+                {
+                    int bonusStat = Random.Range(1, 6);
+                    if (bonusStat == 1)
+                    {
+                        stats.strength++;
+                        Debug.Log("Bonus stat is Strength!");
+                    }
+                    else if (bonusStat == 2)
+                    {
+                        stats.dexterity++;
+                        Debug.Log("Bonus stat is Dexterity!");
+                    }
+                    else if (bonusStat == 3)
+                    {
+                        stats.soul++;
+                        Debug.Log("Bonus stat is Soul!");
+                    }
+                    else if (bonusStat == 4)
+                    {
+                        stats.focus++;
+                        Debug.Log("Bonus stat is Focus!");
+                    }
+                    else
+                    {
+                        stats.agility++;
+                        Debug.Log("Bonus stat is Agility!");
+                    }
+                }
+                stats.exp -= stats.expCap;
+                stats.expCap += Mathf.Round(stats.expCap * 0.45f);
+            }
+        }
 
         stats.maxHp = Mathf.Round(60 * (1 + (stats.strength / 100 * stats.level)));
         stats.hp = maxHp;
@@ -134,11 +144,17 @@ public class StatSheet : MonoBehaviour
         stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
         stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
         stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
-        stats.speed = Mathf.Round(10 * (1 + (stats.agility / 10 * stats.level)));
+        stats.speed = Mathf.Round(10 + (1 * (stats.agility / 10 * stats.level)));
 
         stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
         stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
         stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
         stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
+        
+        stats.skillList.Clear();
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            stats.skillList.Add(skillList[i]);
+        }
     }
 }

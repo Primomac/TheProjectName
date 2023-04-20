@@ -371,31 +371,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 103431277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: loadPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FindEnemySprites, Assembly-CSharp
-        m_MethodName: findEnemySprites
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &103431277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,13 +843,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SavePlayer
+      - m_Target: {fileID: 1209376260}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1398,6 +1374,7 @@ GameObject:
   - component: {fileID: 712949946}
   - component: {fileID: 712949947}
   - component: {fileID: 712949948}
+  - component: {fileID: 712949949}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1564,6 +1541,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2262c031362e2904eb1b139f786ec300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &712949949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712949940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe59faa810ed2143bad4ab15d61c3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  hpBar: {fileID: 0}
+  initBar: {fileID: 0}
+  spMeter: {fileID: 0}
+  isEnemy: 0
+  characterName: 
+  initiative: 0
+  level: 1
+  exp: 0
+  expCap: 100
+  expYield: 0
+  coinYield: 0
+  strength: 0
+  dexterity: 0
+  soul: 0
+  guts: 0
+  focus: 0
+  agility: 0
+  maxHp: 0
+  maxSp: 0
+  hp: 0
+  sp: 0
+  offense: 0
+  magic: 0
+  armor: 0
+  ward: 0
+  speed: 0
+  accuracy: 0
+  evasion: 0
+  crit: 0
+  punish: 0
+  skillList: []
 --- !u!1 &804809195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,6 +2002,7 @@ GameObject:
   - component: {fileID: 1209376262}
   - component: {fileID: 1209376261}
   - component: {fileID: 1209376263}
+  - component: {fileID: 1209376264}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -2032,6 +2054,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2262c031362e2904eb1b139f786ec300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1209376264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209376260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690522025ac637941a1b3dde78c8a00e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  instance: {fileID: 1209376264}
 --- !u!1 &1306770868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,6 +2898,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633658849}
   m_CullTransparentMesh: 1
+--- !u!1 &1695207656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1695207659}
+  - component: {fileID: 1695207658}
+  - component: {fileID: 1695207657}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1695207657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695207656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf8a3167eba65044b5aae7023489b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1695207658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695207656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2d60350a4d2c44791ef1255902a03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: /Player.Fun
+  AutoSave: 
+  stat: {fileID: 712949949}
+--- !u!4 &1695207659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695207656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 583.0378, y: 218.35979, z: 2.3324614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1757482793
 GameObject:
   m_ObjectHideFlags: 0

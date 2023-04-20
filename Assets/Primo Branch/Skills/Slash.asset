@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Slash
   spCost: 0
+  skillDescription: Deals x1 Physical DMG to a single target.
+  skillBackground: {r: 1, g: 0, b: 0, a: 1}
   skillSequence:
   - PlayAnimation(slash)
   - PlaySound(0, 0, 0.03)

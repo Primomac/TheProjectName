@@ -129,7 +129,8 @@ MonoBehaviour:
   level: 1
   exp: 0
   expCap: 100
-  expYield: 190
+  expYield: 19000
+  coinYield: 2
   strength: 5
   dexterity: 5
   soul: 5

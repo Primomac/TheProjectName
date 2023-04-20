@@ -6,6 +6,7 @@ public class FindEnemySprites : MonoBehaviour
 {
     public static List<Sprite> enemySprite = new List<Sprite>();
     public static List<float> XpYeild = new List<float>();
+    public static List<float> coinYeild = new List<float>();
  
     public void findEnemySprites()
     {
@@ -16,6 +17,7 @@ public class FindEnemySprites : MonoBehaviour
         {
             enemySprite.Add(enemy.gameObject.GetComponent<SpriteRenderer>().sprite);
             XpYeild.Add(enemy.gameObject.GetComponent<StatSheet>().expYield);
+            coinYeild.Add(enemy.gameObject.GetComponent<StatSheet>().coinYield);
         }
     }
 }

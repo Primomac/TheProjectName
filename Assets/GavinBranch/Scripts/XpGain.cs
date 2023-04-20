@@ -15,7 +15,7 @@ public class XpGain : MonoBehaviour
 
     public static int levelsGained;
     public static int Xpleft;
-    public static int XpCap;
+    public static float XpCap;
 
 
 
@@ -32,6 +32,13 @@ public class XpGain : MonoBehaviour
         slider.value = Xpleft;
         Xpleft = 0;
         IncreaseXP();
+
+
+        //add coins
+        for (int i = 0; i < AmountOfEnemysKilled; i++)
+        {
+            CoinsController.coinAmount = CoinsController.coinAmount + (int)FindEnemySprites.coinYeild[i];
+        }
     }
 
     // Update is called once per frame

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Potion
   spCost: 10
+  skillDescription: Restore own HP equal to 50% of your HP.
+  skillBackground: {r: 0.15467203, g: 1, b: 0, a: 1}
   skillSequence:
-  - Restore(HP, Health, .5, currentCombatant)
+  - Restore(HP, Health, 0.5, currentCombatant)
   sfx: []
   effects: []
