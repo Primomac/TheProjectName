@@ -24,7 +24,10 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Starting conversation with " + dialogue.name);
-        sentences.Clear();
+
+        if(sentences != null)
+            sentences.Clear();
+        
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
