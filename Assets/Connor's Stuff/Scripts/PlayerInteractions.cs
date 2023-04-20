@@ -29,11 +29,6 @@ public class PlayerInteractions : MonoBehaviour
         if (player == null)
             player = gameObject.GetComponent<PlayerController>();
 
-        if(canvas == null)
-        {
-            canvas = Instantiate(canvasPrefab);
-        }
-
         playerMoveSpeed = player.moveSpeed;
     }
 
