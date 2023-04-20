@@ -1101,6 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: /Player.Fun
+  AutoSave: /AutoSave
   stat: {fileID: 1502530102}
 --- !u!4 &648033944
 Transform:
@@ -1170,6 +1171,7 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 12
+  coinYield: 1
   strength: 0
   dexterity: 0
   soul: 0
@@ -1298,6 +1300,7 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 1
+  coinYield: 4
   strength: 0
   dexterity: 0
   soul: 0
@@ -2474,6 +2477,7 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 0
+  coinYield: 0
   strength: 0
   dexterity: 0
   soul: 0
@@ -3220,6 +3224,7 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 100
+  coinYield: 10
   strength: 0
   dexterity: 0
   soul: 0
@@ -3760,7 +3765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3773,14 +3778,22 @@ PrefabInstance:
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 648033943}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: addCoins
       objectReference: {fileID: 0}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: AutoSavePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TestForCoins, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
@@ -3792,6 +3805,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730767777718938164, guid: 334081365a0d78440843256171e86b94, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
