@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Potion
+  m_Name: Bomb
   m_EditorClassIdentifier: 
-  skillName: Potion
-  spCost: 10
-  skillDescription: Restore own HP equal to 50% of your HP.
-  skillBackground: {r: 0.15467203, g: 1, b: 0, a: 1}
+  skillName: Bomb
+  spCost: 25
+  skillDescription: Deals x3 Physical DMG to all enemies.
+  skillBackground: {r: 1, g: 0.60828614, b: 0, a: 1}
   skillSequence:
-  - Restore(HP, Health, 0.5, currentCombatant)
-  sfx: []
+  - PlaySound(0, 0, 0)
+  - DealDamage(3, Physical, true)
+  sfx:
+  - {fileID: 8300000, guid: 3d4074f66ec329f4f9271c3ae015fcb2, type: 3}
   effects: []

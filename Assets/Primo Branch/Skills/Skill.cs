@@ -11,6 +11,7 @@ public class Skill : ScriptableObject
     public string skillName;
     public float spCost;
     public string skillDescription;
+    public Color skillBackground = new Color(0, 0, 0, 255);
     public List<string> skillSequence = new List<string>();
     public List<AudioClip> sfx = new List<AudioClip>();
     public List<GameObject> effects = new List<GameObject>();

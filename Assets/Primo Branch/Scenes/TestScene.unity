@@ -342,6 +342,8 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
   - {fileID: 11400000, guid: 40ecffe495e861c46966d6cb7c5f60e1, type: 2}
+  - {fileID: 11400000, guid: 876b62a7fe22a41479153cc4ae2f8b15, type: 2}
+  - {fileID: 11400000, guid: 7ea36b55ac05cfc40a2a3cd3c89f3704, type: 2}
 --- !u!1 &443004617
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +531,7 @@ MonoBehaviour:
   encounterScene: TestScene
   encounterPosition: {x: 0, y: 0}
   enemyStats:
+  - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
   - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
   - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
   encounterSound: {fileID: 8300000, guid: f3a5d8256e106764fbbc190d1eb82e5b, type: 3}

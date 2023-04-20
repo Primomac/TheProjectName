@@ -29,7 +29,7 @@ public class PlayerData
     public int scene;
 
     [Header("Coins")]
-    public float coins;
+    public int coins;
 
 
     public PlayerData (StatSheet player)
