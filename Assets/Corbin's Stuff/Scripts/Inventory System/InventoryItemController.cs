@@ -10,18 +10,13 @@ public class InventoryItemController : MonoBehaviour
     public bool isEquipped;
     public bool isInShop;
 
-    private void Awake()
+    private void Start()
     {
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
-        var sellValue = item.sellValue;
-        var shopValue = item.shopValue;
 
-
-        //WHY WONT THIS WORK EHG:HYW$:p8yt4wty4w;8yty48;84pyt
-        Debug.Log(sellValue);
-        //sellText.text = item.sellValue.ToString();
-        //buyText.text = item.shopValue.ToString();
+        sellText.text = item.sellValue.ToString();
+        buyText.text = item.shopValue.ToString();
     }
 
     private void Update()
