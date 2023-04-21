@@ -30,6 +30,16 @@ public class EncounterStart : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().encounterPosition = encounterPosition;
             enemyStats.Add(collision.GetComponent<StatSheet>());
             collision.gameObject.SetActive(false);
+            if (GameObject.FindGameObjectWithTag("Enemy"))
+            {
+                List<GameObject> encounters = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+                encounters.Remove(gameObject);
+                for (int i = 0; i < encounters.Count; i++)
+                {
+                    Debug.Log("Destroying " + encounters[i].name);
+                    Destroy(encounters[i]);
+                }
+            }
             Debug.Log("Starting newScene()!");
             newScene();
         }
