@@ -31,6 +31,7 @@ public class PlayerData
     [Header("Coins")]
     public int coins;
 
+    public int numbOfEnemyKilled;
 
     public PlayerData (StatSheet player)
     {
@@ -55,6 +56,8 @@ public class PlayerData
         position[1] = player.transform.position.y;
         position[2] = player.transform.position.z;
         scene = SceneManager.GetActiveScene().buildIndex;
+
+        numbOfEnemyKilled = XpGain.NumberOfEnemiesKilled;
 
     }
 }

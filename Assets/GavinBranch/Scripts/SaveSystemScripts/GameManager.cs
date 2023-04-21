@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
         stat.transform.position = position;
 
         CoinsController.coinAmount = data.coins;
+        XpGain.NumberOfEnemiesKilled = data.numbOfEnemyKilled;
+
+        XpGain.Xpleft = (int)data.exp;
+        XpGain.XpCap = data.expCap;
     }
 
 
