@@ -16,6 +16,7 @@ public class XpGain : MonoBehaviour
     public static int levelsGained;
     public static int Xpleft;
     public static float XpCap = 100;
+    public static int NumberOfEnemiesKilled;
 
     public StatSheet player;
 
@@ -28,18 +29,15 @@ public class XpGain : MonoBehaviour
         for (int i =0; i < AmountOfEnemysKilled; i++)
         {
             xpGained = xpGained + (int)FindEnemySprites.XpYeild[i];
+
+            //add coins
+            CoinsController.coinAmount = CoinsController.coinAmount + (int)FindEnemySprites.coinYeild[i];
+
+            NumberOfEnemiesKilled++;
         }
         slider.value = Xpleft;
         Xpleft = 0;
         IncreaseXP();
-
-
-        //add coins
-        for (int i = 0; i < AmountOfEnemysKilled; i++)
-        {
-            CoinsController.coinAmount = CoinsController.coinAmount + (int)FindEnemySprites.coinYeild[i];
-            Debug.Log(CoinsController.coinAmount);
-        }
     }
 
     // Update is called once per frame
