@@ -126,7 +126,7 @@ MonoBehaviour:
   isEnemy: 1
   characterName: Slime
   initiative: 0
-  level: 1
+  level: 3
   exp: 0
   expCap: 100
   expYield: 19000
@@ -136,7 +136,7 @@ MonoBehaviour:
   soul: 5
   guts: 5
   focus: 5
-  agility: 8
+  agility: 15
   maxHp: 0
   maxSp: 0
   hp: 0
