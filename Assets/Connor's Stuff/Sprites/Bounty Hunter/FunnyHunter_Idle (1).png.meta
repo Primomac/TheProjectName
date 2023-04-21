@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c21b837cbb9bfc146a136bdf3da5f6a9
+guid: 4cf016682e2ad6e48aa47a174c4b0b81
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FunnyHunter_Walk_Down_0
+      name: FunnyHunter_Idle (1)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 110
-        width: 60
-        height: 110
+        y: 140
+        width: 80
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 504d58a1fc489c943ba942a9b8c14846
-      internalID: -1769128630
+      spriteID: 794277c5ca90f2c4f9d8b17229e0fe89
+      internalID: -1943174554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FunnyHunter_Walk_Down_1
+      name: FunnyHunter_Idle (1)_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 110
+        width: 80
+        height: 140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45599bcf4c64ba14b9cad4c06a92a83f
-      internalID: 200999289
+      spriteID: 1b0978e207d753d47991de63792f1dec
+      internalID: 1604435505
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FunnyHunter_Walk_Down_0: -1769128630
-      FunnyHunter_Walk_Down_1: 200999289
+      FunnyHunter_Idle (1)_1: 1604435505
+      FunnyHunter_Idle (1)_0: -1943174554
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
