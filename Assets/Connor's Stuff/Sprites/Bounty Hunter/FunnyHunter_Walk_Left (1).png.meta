@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e62f0f6159494764f99e984c622f3eb4
+guid: 262520fe95389ff4f98e6fec2b32b284
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -128,43 +128,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FunnyHunter_Idle_0
+      name: FunnyHunter_Walk_Left (1)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 121
-        width: 60
-        height: 119
+        y: 130
+        width: 90
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8248b7c3d70fe544386ed437c64217f3
-      internalID: -1300813786
+      spriteID: fe9253b9ddba0ea42a328097ed5e65a9
+      internalID: 2067676714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FunnyHunter_Idle_1
+      name: FunnyHunter_Walk_Left (1)_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 60
-        height: 120
+        width: 90
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 1}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1005cfc15420f4a46839049125787e5a
-      internalID: 950121604
+      spriteID: d98cf916a2ffd6741820d20d5abc1b0c
+      internalID: -865879525
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FunnyHunter_Idle_1: 950121604
-      FunnyHunter_Idle_0: -1300813786
+      FunnyHunter_Walk_Left (1)_0: 2067676714
+      FunnyHunter_Walk_Left (1)_1: -865879525
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

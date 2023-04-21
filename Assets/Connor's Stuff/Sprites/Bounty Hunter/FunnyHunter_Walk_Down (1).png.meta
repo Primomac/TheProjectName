@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9c43d9668b2a1541b442e75937970c8
+guid: ab686e72944be4946978eeb4a43356cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FunnyHunter_Walk_Left_0
+      name: FunnyHunter_Walk_Down (1)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 110
-        width: 70
-        height: 110
+        y: 130
+        width: 80
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddba0d0668efb0942892d0760953eb65
-      internalID: -497715859
+      spriteID: d1f666065254ed840a9a53cb937d02a0
+      internalID: -1037965275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FunnyHunter_Walk_Left_1
+      name: FunnyHunter_Walk_Down (1)_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 70
-        height: 110
+        width: 80
+        height: 130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c132c069321c183489d0889787d86c48
-      internalID: 485103783
+      spriteID: 9ed9b509461bbe244b50f63e0f7428a4
+      internalID: -1484059707
       vertices: []
       indices: 
       edges: []
@@ -180,8 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FunnyHunter_Walk_Left_0: -497715859
-      FunnyHunter_Walk_Left_1: 485103783
+      FunnyHunter_Walk_Down (1)_0: -1037965275
+      FunnyHunter_Walk_Down (1)_1: -1484059707
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
