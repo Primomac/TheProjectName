@@ -15,9 +15,9 @@ public class XpGain : MonoBehaviour
 
     public static int levelsGained;
     public static int Xpleft;
-    public static float XpCap;
+    public static float XpCap = 100;
 
-
+    public StatSheet player;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,7 @@ public class XpGain : MonoBehaviour
         for (int i = 0; i < AmountOfEnemysKilled; i++)
         {
             CoinsController.coinAmount = CoinsController.coinAmount + (int)FindEnemySprites.coinYeild[i];
+            Debug.Log(CoinsController.coinAmount);
         }
     }
 
@@ -58,16 +59,18 @@ public class XpGain : MonoBehaviour
                 slider.value = 0;
 
                 levelsGained++;
-                slider.maxValue = XpCap;
+                slider.maxValue += Mathf.Round(slider.maxValue * 0.45f);
+                
             }
 
             StartCoroutine(Delay());
         }
+        XpCap = slider.maxValue;
         Xpleft = (int)slider.value;
     }
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.01f);
         IncreaseXP();
     }
     public void ResetXp()
