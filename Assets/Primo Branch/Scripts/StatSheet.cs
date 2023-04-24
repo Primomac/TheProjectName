@@ -20,11 +20,12 @@ public class StatSheet : MonoBehaviour
     public float expCap = 100;
     public float expYield = 0;
     public float coinYield = 0;
+    public float statPoints = 0;
 
     [Header("Primary Stats")]
-    public float strength;  // Effectiveness of weapons & Max HP
-    public float dexterity; // Quickens physical skill cooldowns & enhances accuracy
-    public float soul;      // Effectiveness of spells & Magic defense
+    public float strength;  // Max HP
+    public float dexterity; // Accuracy
+    public float soul;      // Magic defense
     public float guts;      // Physical defense, & Critical damage
     public float focus;     // Critical chance & Max SP
     public float agility;   // Initiative & evasion
@@ -86,6 +87,7 @@ public class StatSheet : MonoBehaviour
         stats.level = level;
         stats.exp = exp;
         stats.expCap = expCap;
+        stats.statPoints = statPoints;
 
         stats.strength = strength;
         stats.dexterity = dexterity;
@@ -102,6 +104,7 @@ public class StatSheet : MonoBehaviour
             {
                 Debug.Log("Leveling up!");
                 stats.level++;
+                stats.statPoints += 3;
                 for (int i = 0; i < 3; i++)
                 {
                     int bonusStat = Random.Range(1, 6);
