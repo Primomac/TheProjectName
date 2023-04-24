@@ -21851,7 +21851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleScene: CombatScene
-  encounterScene: TestScene
+  encounterScene: ForestLevel_1
   encounterPosition: {x: 0, y: 0}
   enemyStats:
   - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
@@ -22416,7 +22416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleScene: CombatScene
-  encounterScene: TestScene
+  encounterScene: ForestLevel_1
   encounterPosition: {x: 0, y: 0}
   enemyStats:
   - {fileID: 2266318839595963630, guid: 64888113f2d8d1140a976a8e76c92c2d, type: 3}
@@ -25617,7 +25617,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cff7f038ab31f794b9e8f5e6924c5f75, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e00f1060b6381d6479adb97fdb82f46d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -26168,6 +26168,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9017266821136535984, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
+      propertyPath: battleScene
+      value: CombatScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017266821136535984, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
+      propertyPath: encounterScene
+      value: ForestLevel_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9017266821136535984, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
+      propertyPath: enemyStats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9017266821136535989, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
       propertyPath: player
       value: 

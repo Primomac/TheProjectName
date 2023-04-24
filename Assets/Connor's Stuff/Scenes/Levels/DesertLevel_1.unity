@@ -966,6 +966,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 9017266821136535984, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
+      propertyPath: battleMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 8603a469e19c98d4c832d0a085ac1b4d, type: 3}
+    - target: {fileID: 9017266821136535984, guid: 84010e3a0ea0c1041801599503bb884c, type: 3}
       propertyPath: battleScene
       value: Desert_CombatScene
       objectReference: {fileID: 0}
@@ -24660,7 +24664,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.5449734, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -24671,7 +24675,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.48, y: 0.5}
+  m_Size: {x: 57.287083, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &927024466
 MonoBehaviour:
