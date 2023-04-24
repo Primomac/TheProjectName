@@ -26086,6 +26086,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
+      propertyPath: skillList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
+      propertyPath: skillList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 40ecffe495e861c46966d6cb7c5f60e1, type: 2}
+    - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
+      propertyPath: skillList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 876b62a7fe22a41479153cc4ae2f8b15, type: 2}
+    - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
+      propertyPath: skillList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ea36b55ac05cfc40a2a3cd3c89f3704, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
 --- !u!1001 &7973403761115456943
