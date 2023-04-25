@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2786800538968985609}
   m_Layer: 0
   m_Name: Bear
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   character: {fileID: 8161598674553435875}
   hpBar: {fileID: 0}
   initBar: {fileID: 0}
+  spMeter: {fileID: 0}
   isEnemy: 1
   characterName: Bear
   initiative: 0
@@ -129,6 +130,8 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 0
+  coinYield: 0
+  statPoints: 0
   strength: 10
   dexterity: 10
   soul: 10
@@ -148,6 +151,7 @@ MonoBehaviour:
   evasion: 0
   crit: 0
   punish: 0
+  skillList: []
 --- !u!61 &2786800538968985609
 BoxCollider2D:
   m_ObjectHideFlags: 0
