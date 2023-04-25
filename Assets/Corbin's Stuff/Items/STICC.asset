@@ -19,3 +19,4 @@ MonoBehaviour:
   sellValue: 7
   itemType: 0
   equipable: 1
+  shopValue: 8

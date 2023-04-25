@@ -62,6 +62,7 @@ public class BattleManager : MonoBehaviour
             }
             encounterScene = encounter.encounterScene;
             battleMusic = encounter.battleMusic;
+            gameObject.GetComponent<FindEnemySprites>().findEnemySprites();
             audio.clip = battleMusic;
             audio.Play(0);
             audio.loop = true;
@@ -88,7 +89,7 @@ public class BattleManager : MonoBehaviour
             {
                 combatant.initiative += combatant.speed / baseInit * 35 * Time.deltaTime;
                 combatant.initBar.GetComponentInChildren<initiativeBar>().updateInitiativeBar(combatant.initiative);
-                if(combatant.initiative >= 100)
+                if(combatant.initiative >= 100 && tickInitiative)
                 {
                     tickInitiative = false;
                     StartTurn(combatant);
@@ -141,7 +142,8 @@ public class BattleManager : MonoBehaviour
                 storage.GetComponent<Storage>().currentStats = combatants[0];
                 Debug.Log("Current EXP gainer is " + combatants[0]);
                 Debug.Log("Current EXP (BattleManager) is " + storage.GetComponent<Storage>().currentStats.exp);
-                SceneManager.LoadScene("" + encounterScene);
+                SceneManager.LoadScene("VictoryScene");
+                //SceneManager.LoadScene("" + encounterScene);
             }
             else if (!playerLives)
             {
@@ -227,7 +229,7 @@ public class BattleManager : MonoBehaviour
                 }
             }
             currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
-            UseSkill(combatant.skillList[UnityEngine.Random.Range(0, combatant.skillList.Count)]);  
+            UseTheSkill(combatant.skillList[UnityEngine.Random.Range(0, combatant.skillList.Count)]);  
         }
     }
 
@@ -256,14 +258,14 @@ public class BattleManager : MonoBehaviour
             if (!menuDown && currentMenu != null)
             {
                 Debug.Log("Moving " + currentMenu);
-                while (currentMenu.transform.position.y > -54)
+                while (currentMenu.transform.position.y > -81)
                 {
-                    currentMenu.transform.Translate(Vector2.down * Time.deltaTime * 432);
+                    currentMenu.transform.Translate(Vector2.down * Time.deltaTime * 648);
                     yield return new WaitForEndOfFrame();
                 }
-                if (currentMenu.transform.position.y <= -54)
+                if (currentMenu.transform.position.y <= -81)
                 {
-                    currentMenu.transform.position = new Vector2(384, -54);
+                    currentMenu.transform.position = new Vector2(576, -81);
                     menuDown = true;
                 }
             }
@@ -277,14 +279,14 @@ public class BattleManager : MonoBehaviour
                 if (menu != null)
                 {
                     Debug.Log("Moving " + menu + "from " + menu.transform.position.y);
-                    while (menu.transform.position.y < 54)
+                    while (menu.transform.position.y < 81)
                     {
-                        menu.transform.Translate(Vector2.up * Time.deltaTime * 432);
+                        menu.transform.Translate(Vector2.up * Time.deltaTime * 648);
                         yield return new WaitForEndOfFrame();
                     }
-                    if (menu.transform.position.y >= 54)
+                    if (menu.transform.position.y >= 81)
                     {
-                        menu.transform.position = new Vector2(384, 54);
+                        menu.transform.position = new Vector2(576, 81);
                         currentMenu = menu;
                         menuDown = false;
                         Debug.Log("Menu movement has finished!");
@@ -315,7 +317,7 @@ public class BattleManager : MonoBehaviour
             button.transform.Find("Skill Cost").GetComponent<TextMeshProUGUI>().text = "" + skill.spCost;
             button.transform.Find("Skill Description").GetComponent<TextMeshProUGUI>().text = skill.skillDescription;
             button.transform.Find("Skill Background").GetComponent<Image>().color = skill.skillBackground;
-            button.GetComponent<Button>().onClick.AddListener(delegate { UseSkill(skill); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { UseTheSkill(skill); });
             skillCount++;
         }
     }
@@ -347,6 +349,7 @@ public class BattleManager : MonoBehaviour
                             Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
                             combatant.hp -= Mathf.Round(damageDealt);
                             combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                            currentTarget.GetComponent<Animator>().SetTrigger("hurt");
                         }
                         else if (damageType == " Magical")
                         {
@@ -361,6 +364,7 @@ public class BattleManager : MonoBehaviour
                             Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
                             combatant.hp -= Mathf.Round(damageDealt);
                             combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
+                            currentTarget.GetComponent<Animator>().SetTrigger("hurt");
                         }
                     }
                     else
@@ -390,6 +394,7 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
                     currentTarget.hp -= Mathf.Round(damageDealt);
                     currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+                    currentTarget.GetComponent<Animator>().SetTrigger("hurt");
                 }
                 else if (damageType == " Magical")
                 {
@@ -404,6 +409,7 @@ public class BattleManager : MonoBehaviour
                     Debug.Log("Dealing " + damageDealt + " Magical damage to " + currentTarget.characterName + "!");
                     currentTarget.hp -= Mathf.Round(damageDealt);
                     currentTarget.hpBar.GetComponent<HpBar>().setHealth(currentTarget.hp);
+                    currentTarget.GetComponent<Animator>().SetTrigger("hurt");
                 }
             }
             else
@@ -483,17 +489,22 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(Restore(scaleType, healType, healMod, target));
     }
 
-    public void UseSkill(Skill skill) // Uses a skill and performs its methods in order
+    public void UseTheSkill(Skill skill)
+    {
+        StartCoroutine(UseSkill(skill));
+    }
+    
+    public IEnumerator UseSkill(Skill skill) // Uses a skill and performs its methods in order
     {
         // Check to see if SP cost is met
         if (!canClickButtons)
         {
-            return;
+            yield break;
         }
         if (skill.spCost > currentCombatant.sp)
         {
             audio.PlayOneShot(no);
-            return;
+            yield break;
         }
         currentCombatant.sp -= skill.spCost;
         if (!currentCombatant.isEnemy)
@@ -537,6 +548,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Invoking " + skill.skillSequence[i]);
         }
         currentCombatant.initiative = 0;
+        yield return new WaitForSeconds(1);
         tickInitiative = true;
     }
 }

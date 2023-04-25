@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8103713510854889537
@@ -130,12 +130,14 @@ MonoBehaviour:
   exp: 0
   expCap: 100
   expYield: 0
-  strength: 15
-  dexterity: 15
-  soul: 13
-  guts: 20
+  coinYield: 0
+  statPoints: 0
+  strength: 16
+  dexterity: 16
+  soul: 15
+  guts: 21
   focus: 15
-  agility: 15
+  agility: 16
   maxHp: 0
   maxSp: 0
   hp: 0

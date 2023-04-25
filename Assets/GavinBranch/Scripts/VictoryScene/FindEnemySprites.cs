@@ -10,10 +10,19 @@ public class FindEnemySprites : MonoBehaviour
  
     public void findEnemySprites()
     {
-        GameObject[] numberOfEnemys;
-        numberOfEnemys = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> numberOfEnemys = new List<GameObject>();
 
-        foreach(GameObject enemy in numberOfEnemys)
+        foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (enemy.GetComponent<StatSheet>())
+            {
+                numberOfEnemys.Add(enemy);
+            }
+        }
+
+
+
+        foreach (GameObject enemy in numberOfEnemys)
         {
             enemySprite.Add(enemy.gameObject.GetComponent<SpriteRenderer>().sprite);
             XpYeild.Add(enemy.gameObject.GetComponent<StatSheet>().expYield);

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   skillName: Bomb
-  spCost: 25
-  skillDescription: Deals x3 Physical DMG to all enemies.
+  spCost: 40
+  skillDescription: Deals x6.66 Physical DMG to all enemies.
   skillBackground: {r: 1, g: 0.60828614, b: 0, a: 1}
   skillSequence:
   - PlaySound(0, 0, 0)
-  - DealDamage(3, Physical, true)
+  - DealDamage(6.66, Physical, true)
   sfx:
   - {fileID: 8300000, guid: 3d4074f66ec329f4f9271c3ae015fcb2, type: 3}
   effects: []

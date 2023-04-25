@@ -12,9 +12,11 @@ public class Item : ScriptableObject
     public int value;
     public Sprite icon;
     public int sellValue;
-    public int shopValue;
     public ItemType itemType;
+
+    [Header("Stuff that's set automatically.")]
     public bool equipable;
+    public int shopValue;
 
     [Serializable]
     public enum ItemType

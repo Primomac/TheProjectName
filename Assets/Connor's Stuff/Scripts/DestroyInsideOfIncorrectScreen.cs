@@ -13,10 +13,9 @@ public class DestroyInsideOfIncorrectScreen : MonoBehaviour
         sceneTheGameobjectStartsIn = SceneManager.GetActiveScene().name;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(sceneTheGameobjectStartsIn != SceneManager.GetActiveScene().name)
+        if (sceneTheGameobjectStartsIn != SceneManager.GetActiveScene().name)
         {
             Destroy(gameObject);
         }
