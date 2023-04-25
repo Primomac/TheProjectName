@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         playerInteractions = FindObjectOfType<PlayerInteractions>();
+        dialogueText = GameObject.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+        nameText = GameObject.Find("NPC Name").GetComponent<TextMeshProUGUI>();
     }
 
     public void StartDialogue(Dialogue dialogue)
