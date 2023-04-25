@@ -7,7 +7,7 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    public List<Item> Items = new List<Item>();
+    public List<Item> items = new List<Item>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
@@ -18,14 +18,20 @@ public class InventoryManager : MonoBehaviour
     public Toggle enableSell;
 
     InventoryItemController[] inventoryItemsArray;
+
+    ItemManager itemManager;
     private void Awake()
     {
         instance = this;
+        itemManager = GetComponent<ItemManager>(); // get the reference to the ItemManager script
+
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+
+        SaveItemsToItemManager();
+        if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
         {
             inventoryIsClosed = false;
             inventory.SetActive(true);
@@ -44,23 +50,24 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        LoadItemsFromItemManager();
     }
 
     public void Add(Item item)
     {
-        Items.Add(item);
+        items.Add(item);
     }
 
     public void Remove(Item item)
     {
-        Items.Remove(item);
+        items.Remove(item);
     }
 
     public void ListItems()
     {
         Clean();
 
-        foreach (var item in Items)
+        foreach (var item in itemManager.items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
             var itemName = obj.transform.Find("ItemName").GetComponent<TextMeshProUGUI>();
@@ -107,9 +114,9 @@ public class InventoryManager : MonoBehaviour
     {
         inventoryItemsArray = ItemContent.GetComponentsInChildren<InventoryItemController>();
 
-        for (int i = 0; i < Items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            inventoryItemsArray[i].AddItem(Items[i]);
+            inventoryItemsArray[i].AddItem(items[i]);
         }
     }
 
@@ -119,5 +126,26 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+    }
+
+    void LoadItemsFromItemManager()
+    {
+        ItemManager itemManager = FindObjectOfType<ItemManager>();
+        if (itemManager != null)
+        {
+            items.AddRange(itemManager.items);
+        }
+    }
+
+    void SaveItemsToItemManager()
+    {
+        if (itemManager != null)
+        {
+            itemManager.items = items;
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        //itemManager.AddItems(items);
     }
 }

@@ -8,6 +8,7 @@ public class ShopController : MonoBehaviour
 {
     public static ShopController shopInstance;
     public List<Item> Items = new List<Item>();
+    public List<Item> itemsKept = new List<Item>();
 
     public Transform shopItemContent;
     public GameObject shopItem;
@@ -16,7 +17,7 @@ public class ShopController : MonoBehaviour
 
     public bool shopIsOpen;
 
-    InventoryItemController[] shopItemsArray;
+    public InventoryItemController[] shopItemsArray;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class ShopController : MonoBehaviour
             shopIsOpen = false;
             shopMenu.SetActive(false);
             CleanShop();
+            DeleteSoldItems();
             GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventory.SetActive(false);
             GameObject.Find("InventoryManager").GetComponent<InventoryManager>().Clean();
         }
@@ -56,7 +58,6 @@ public class ShopController : MonoBehaviour
     public void ListShopItems()
     {
         CleanShop();
-
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(shopItem, shopItemContent);
@@ -72,7 +73,6 @@ public class ShopController : MonoBehaviour
                 buyButton.gameObject.SetActive(true);
             }
         }
-
         SetShopItems();
     }
 
@@ -91,6 +91,18 @@ public class ShopController : MonoBehaviour
         foreach (Transform item in shopItemContent)
         {
             Destroy(item.gameObject);
+        }
+    }
+
+    void DeleteSoldItems()
+    {
+        InventoryItemController[] soldItems = shopItemContent.GetComponentsInChildren<InventoryItemController>();
+        foreach (InventoryItemController item in soldItems)
+        {
+            if(item.tag == "SoldItem")
+            {
+                item.RemoveShopItem();
+            }    
         }
     }
 }
