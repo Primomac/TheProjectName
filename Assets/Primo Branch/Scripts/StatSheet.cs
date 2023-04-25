@@ -23,10 +23,10 @@ public class StatSheet : MonoBehaviour
     public float statPoints = 0;
 
     [Header("Primary Stats")]
-    public float strength;  // Max HP
+    public float strength;  // Physical DMG & Max HP
     public float dexterity; // Accuracy
-    public float soul;      // Magic defense
-    public float guts;      // Physical defense, & Critical damage
+    public float soul;      // Magical DMG & Magic Defense
+    public float guts;      // Physical Defense, & Critical damage
     public float focus;     // Critical chance & Max SP
     public float agility;   // Initiative & evasion
 

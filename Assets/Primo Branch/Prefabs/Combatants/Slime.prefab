@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4596780715917975829}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,12 +131,13 @@ MonoBehaviour:
   expCap: 100
   expYield: 19000
   coinYield: 2
-  strength: 5
-  dexterity: 5
-  soul: 5
-  guts: 5
-  focus: 5
-  agility: 15
+  statPoints: 0
+  strength: 13
+  dexterity: 12
+  soul: 15
+  guts: 7
+  focus: 6
+  agility: 12
   maxHp: 0
   maxSp: 0
   hp: 0
