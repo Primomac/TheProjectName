@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Variables
 
     public float moveSpeed;
+    public float runSpeed;
     public Vector2 encounterPosition;
 
     public Rigidbody2D rig;
@@ -14,8 +15,9 @@ public class PlayerController : MonoBehaviour
     public Animator ani;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        //DontDestroyOnLoad(this);
         transform.position = encounterPosition;
         
         rig = GetComponent<Rigidbody2D>();
@@ -31,6 +33,14 @@ public class PlayerController : MonoBehaviour
         ani.SetFloat("horiInput", horiInput);
         ani.SetFloat("vertInput", vertInput);
 
-        transform.Translate(new Vector2(moveSpeed * Time.deltaTime * horiInput, moveSpeed * Time.deltaTime * vertInput));   
+        transform.Translate(new Vector2(moveSpeed * Time.deltaTime * horiInput, moveSpeed * Time.deltaTime * vertInput));
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed *= runSpeed;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed /= runSpeed;
+        }
     }
 }
