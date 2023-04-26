@@ -7,7 +7,6 @@ public class Storage : MonoBehaviour
 {
 
     public StatSheet currentStats;
-    public bool willSave;
 
     void Awake()
     {
@@ -17,12 +16,10 @@ public class Storage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "VictoryScene" && willSave)
+        if (SceneManager.GetActiveScene().name == "VictoryScene")
         {
             GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
             manager.stat = currentStats;
-            manager.AutoSavePlayer();
-            willSave = false;
         }
         
         if (GameObject.FindGameObjectWithTag("Player"))
