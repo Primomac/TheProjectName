@@ -10,7 +10,6 @@ public class ActiveImages : MonoBehaviour
     void Start()
     {
         numberOfEnemys = FindEnemySprites.enemySprite.Count;
-        Debug.Log(numberOfEnemys);
 
         for(int i=0; i < numberOfEnemys; i++)
         {

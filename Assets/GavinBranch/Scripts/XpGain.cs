@@ -10,8 +10,9 @@ public class XpGain : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI xp;
     public int xpGained;
-    private int currentXpGained;
+    private float currentXpGained;
     private int AmountOfEnemysKilled;
+    private int AmountOfLoops = 0;
 
     public static int levelsGained;
     public static int Xpleft;
@@ -35,7 +36,7 @@ public class XpGain : MonoBehaviour
 
             NumberOfEnemiesKilled++;
         }
-        slider.value = Xpleft;
+        currentXpGained = Xpleft;
         Xpleft = 0;
         IncreaseXP();
     }
@@ -44,19 +45,21 @@ public class XpGain : MonoBehaviour
     void Update()
     {
         xp.text =slider.value + "/" + slider.maxValue;
+        slider.value = currentXpGained;
     }
 
     public void IncreaseXP()
     {
-        if(xpGained != currentXpGained)
+        if(AmountOfLoops != 100)
         {
-            currentXpGained++;
-            slider.value++;
-            if(slider.value >= slider.maxValue)
-            {
-                slider.value = 0;
+            float onePercentOfInt = (float)xpGained * 0.01f;
+            currentXpGained += onePercentOfInt;
 
-                levelsGained++;
+            AmountOfLoops++;
+
+            if (currentXpGained >= slider.maxValue)
+            {
+                currentXpGained -= slider.maxValue;
                 slider.maxValue += Mathf.Round(slider.maxValue * 0.45f);
                 
             }
