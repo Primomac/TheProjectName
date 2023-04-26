@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /*private void Start()
+    private void Start()
     {
         if (SceneManager.GetActiveScene().name != "VictoryScene")
         {
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
             CoinsController.coinAmount = data.coins;
         }
-    }*/
+    }
 
 
 

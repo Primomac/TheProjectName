@@ -9,12 +9,12 @@ public class InventoryItemController : MonoBehaviour
     Item item;
     public bool isEquipped;
     public bool isInShop;
+    public bool itemSold;
 
     private void Start()
     {
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
-
         sellText.text = item.sellValue.ToString();
         buyText.text = item.shopValue.ToString();
     }
@@ -58,11 +58,20 @@ public class InventoryItemController : MonoBehaviour
     public void AddItem(Item newItem)
     {
         item = newItem;
+        var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
+        var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
+        sellText.text = item.sellValue.ToString();
+        buyText.text = item.shopValue.ToString();
     }
 
     public void RemoveItem()
     {
         InventoryManager.instance.Remove(item);
+    }
+
+    public void RemoveShopItem()
+    {
+        ShopController.shopInstance.Remove(item);
     }
 
     public void SellItem()
@@ -79,6 +88,7 @@ public class InventoryItemController : MonoBehaviour
         }
         transform.SetParent(GameObject.Find("ShopContent").transform);
         isInShop = true;
+        tag = "SoldItem";
     }
 
     public void BuyItem()
@@ -96,7 +106,6 @@ public class InventoryItemController : MonoBehaviour
                 buyButton.gameObject.SetActive(false);
                 sellButton.gameObject.SetActive(true);
             }
-
             isInShop = false;
         }
     }

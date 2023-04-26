@@ -62,6 +62,7 @@ public class BattleManager : MonoBehaviour
             }
             encounterScene = encounter.encounterScene;
             battleMusic = encounter.battleMusic;
+            gameObject.GetComponent<FindEnemySprites>().findEnemySprites();
             audio.clip = battleMusic;
             audio.Play(0);
             audio.loop = true;
@@ -141,7 +142,8 @@ public class BattleManager : MonoBehaviour
                 storage.GetComponent<Storage>().currentStats = combatants[0];
                 Debug.Log("Current EXP gainer is " + combatants[0]);
                 Debug.Log("Current EXP (BattleManager) is " + storage.GetComponent<Storage>().currentStats.exp);
-                SceneManager.LoadScene("" + encounterScene);
+                SceneManager.LoadScene("VictoryScene");
+                //SceneManager.LoadScene("" + encounterScene);
             }
             else if (!playerLives)
             {

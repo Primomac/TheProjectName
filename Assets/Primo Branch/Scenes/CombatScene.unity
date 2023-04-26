@@ -4792,6 +4792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1540671574}
   - component: {fileID: 1540671575}
+  - component: {fileID: 1540671576}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -4845,6 +4846,18 @@ MonoBehaviour:
   actionMenu: {fileID: 908377809}
   targetIcon: {fileID: 848167528701770924, guid: 83372676862a35d4eae073c1cc9f76a0, type: 3}
   currentTargetIcon: {fileID: 0}
+--- !u!114 &1540671576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540671573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf8a3167eba65044b5aae7023489b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1610066134
 GameObject:
   m_ObjectHideFlags: 0

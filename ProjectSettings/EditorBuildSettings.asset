@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Connor's Stuff/Scenes/Levels/DesertLevel_1.unity
     guid: 874035aa510b40248adb47cb44b15434
-  - enabled: 0
+  - enabled: 1
     path: Assets/GavinBranch/Scenes/GavinScenes/VictoryScene.unity
     guid: 6b6325dc862e9ab4684d20ea85c4c6b8
   - enabled: 0
