@@ -41,6 +41,9 @@ public class EncounterStart : MonoBehaviour
                 }
             }
             Debug.Log("Starting newScene()!");
+            GameManager manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            manager.stat = collision.GetComponent<StatSheet>();
+            manager.AutoSavePlayer();
             newScene();
         }
     }

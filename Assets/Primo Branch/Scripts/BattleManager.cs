@@ -137,13 +137,18 @@ public class BattleManager : MonoBehaviour
             // Return player to overworld (move to another method to allow for victory results later on)
             if (enemyCount == 0)
             {
-                inBattle = false;
+                StartCoroutine(WaitForBattleEnd(1));
+                /*
+                = false;
                 GameObject storage = Instantiate(statStorage, transform.position, transform.rotation);
-                storage.GetComponent<Storage>().currentStats = combatants[0];
+                StatSheet storeStats = storage.AddComponent<StatSheet>();
+                combatants[0].UpdateStats(storeStats);
+                storage.GetComponent<Storage>().currentStats = storeStats;
                 Debug.Log("Current EXP gainer is " + combatants[0]);
                 Debug.Log("Current EXP (BattleManager) is " + storage.GetComponent<Storage>().currentStats.exp);
                 SceneManager.LoadScene("VictoryScene");
-                //SceneManager.LoadScene("" + encounterScene);
+                SceneManager.LoadScene("" + encounterScene);
+                */
             }
             else if (!playerLives)
             {
@@ -158,6 +163,17 @@ public class BattleManager : MonoBehaviour
             RemoveCombatant(enemy);
             Debug.Log("Killing " + enemy.name + "!");
         }
+    }
+
+    public IEnumerator WaitForBattleEnd(float time)
+    {
+        yield return new WaitForSeconds(time);
+        inBattle = false;
+        GameObject storage = Instantiate(statStorage, transform.position, transform.rotation);
+        StatSheet storeStats = storage.AddComponent<StatSheet>();
+        combatants[0].UpdateStats(storeStats);
+        storage.GetComponent<Storage>().currentStats = storeStats;
+        SceneManager.LoadScene("VictoryScene");
     }
 
     public void AddCombatant(StatSheet combatant) // Adds a combatant to the battle scene
