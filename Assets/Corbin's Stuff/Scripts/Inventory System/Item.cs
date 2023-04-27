@@ -7,16 +7,27 @@ using System;
 [System.Serializable]
 public class Item : ScriptableObject
 {
+    [Header("STUFF THAT YOU SHOULD PROBABLY SET")]
     public int id;
     public string itemName;
     public int value;
     public Sprite icon;
     public int sellValue;
     public ItemType itemType;
+    public bool equipable;
 
     [Header("Stuff that's set automatically.")]
-    public bool equipable;
     public int shopValue;
+
+    [Header("Stat Modifications")]
+    public float strengthModification;
+    public float dexterityModification;
+    public float soulModification;
+    public float gutsModification;
+    public float focusModification;
+    public float agilityModification;
+
+
 
     [Serializable]
     public enum ItemType
