@@ -12,6 +12,9 @@ public class EquipManager : MonoBehaviour
 
     public GameObject equipMenu;
 
+    public int itemsEquipped = 0;
+    public int weaponsEquipped = 0;
+
     private void Awake()
     {
         equipInstance = this;

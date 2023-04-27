@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public class InventoryItemController : MonoBehaviour
 {
     Item item;
-    public bool isEquipped;
+    public bool weaponIsEquipped;
+    public bool itemIsEquipped;
     public bool isInShop;
     public bool itemSold;
 
+    EquipManager equipManager;
+
     private void Start()
     {
+        equipManager = GameObject.Find("EquipManager").GetComponent<EquipManager>();
+
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
         sellText.text = item.sellValue.ToString();
@@ -112,21 +117,54 @@ public class InventoryItemController : MonoBehaviour
 
     public void EquipItem()
     {
-        if (item.equipable == true && !isEquipped && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+        if (item.itemType == Item.ItemType.Weapon && !weaponIsEquipped && item.equipable && equipManager.weaponsEquipped < 2)
         {
+            weaponIsEquipped = true;
             InventoryManager.instance.Remove(item);
             EquipManager.equipInstance.Add(item);
-            transform.SetParent(GameObject.Find("EquipContent").transform);
-            isEquipped = true;
+            transform.SetParent(GameObject.Find("WeaponContent").transform);
             Debug.Log("Item Equipped");
         }
-        else if (item.equipable == true && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+
+        else if (item.equipable && weaponIsEquipped)
         {
             EquipManager.equipInstance.Remove(item);
             InventoryManager.instance.Add(item);
             transform.SetParent(GameObject.Find("InventoryContent").transform);
-            isEquipped = false;
+            weaponIsEquipped = false;
             Debug.Log("Item Unequiped");
+            equipManager.weaponsEquipped--;
+        }
+
+        if (weaponIsEquipped)
+        {
+            equipManager.weaponsEquipped++;
+            Debug.Log("Items Equipped: " + equipManager.weaponsEquipped);
+        }
+
+        if ((item.itemType == Item.ItemType.Collectible || item.itemType == Item.ItemType.Armor) && !itemIsEquipped && item.equipable && equipManager.itemsEquipped < 3)
+        {
+            itemIsEquipped = true;
+            InventoryManager.instance.Remove(item);
+            EquipManager.equipInstance.Add(item);
+            transform.SetParent(GameObject.Find("EquipContent").transform);
+            Debug.Log("Item Equipped");
+        }
+
+        else if (item.equipable && itemIsEquipped)
+        {
+            EquipManager.equipInstance.Remove(item);
+            InventoryManager.instance.Add(item);
+            transform.SetParent(GameObject.Find("InventoryContent").transform);
+            itemIsEquipped = false;
+            Debug.Log("Item Unequiped");
+            equipManager.itemsEquipped--;
+        }
+
+        if (itemIsEquipped)
+        {
+            equipManager.itemsEquipped++;
+            Debug.Log("Items Equipped: " + equipManager.itemsEquipped);
         }
     }
 }
