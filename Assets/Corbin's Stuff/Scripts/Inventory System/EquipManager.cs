@@ -24,10 +24,12 @@ public class EquipManager : MonoBehaviour
     public void Add(Item item)
     {
         Items.Add(item);
+        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
 
     public void Remove(Item item)
     {
         Items.Remove(item);
+        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
 }
