@@ -11,6 +11,7 @@ public class EquipManager : MonoBehaviour
     public GameObject equipItem;
 
     public GameObject equipMenu;
+    public GameObject statStorage;
 
     public int itemsEquipped = 0;
     public int weaponsEquipped = 0;
