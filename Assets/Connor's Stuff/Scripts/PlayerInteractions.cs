@@ -44,7 +44,7 @@ public class PlayerInteractions : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);
             foreach(Collider2D collider in colliderArray)
