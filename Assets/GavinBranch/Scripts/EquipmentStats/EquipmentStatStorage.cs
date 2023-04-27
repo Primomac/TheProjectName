@@ -5,6 +5,7 @@ using UnityEngine;
 public class EquipmentStatStorage : MonoBehaviour
 {
     public int[] EquipmentStatsArray;
+    public int[] baseStats;
     public GameObject EM;
     // Start is called before the first frame update
     void Start()
