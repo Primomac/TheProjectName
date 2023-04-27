@@ -5,7 +5,7 @@ using System.IO;
 public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
-    public List<Skill> skills;
+    public List<Item> Equipped;
     public ItemManager instance;
 
     void awake()
@@ -17,15 +17,15 @@ public class ItemManager : MonoBehaviour
     private class ItemsWrapper
     {
         public List<Item> Items;
-        public List<Skill> Skills;
+        //public List<Item> Items;
     }
-    public void AddItems(List<Item> itemsToAdd)
+    public void AddItems (List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
     }
-    public void AddSkills(List<Skill> skillsToAdd)
+    public void AddEquipment(List<Item> skillsToAdd)
     {
-        skills.AddRange(skillsToAdd);
+        //.AddRange(skillsToAdd);
     }
 
     void SaveItems()
@@ -43,7 +43,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    void saveSkills()
+    /*void saveSkills()
     {
         string json = JsonUtility.ToJson(new ItemsWrapper { Skills =  skills});
         File.WriteAllText(Application.persistentDataPath + "/skills.json", json);
@@ -56,7 +56,7 @@ public class ItemManager : MonoBehaviour
             string json = File.ReadAllText(Application.persistentDataPath + "/skills.json");
             skills = JsonUtility.FromJson<ItemsWrapper>(json).Skills;
         }
-    }
+    }*/
 
 
 

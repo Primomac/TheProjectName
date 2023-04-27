@@ -17,6 +17,6 @@ public class EquipmentStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StatText.text = statText + " 10" + "+" + StatStorage.GetComponent<EquipmentStatStorage>().EquipmentStatsArray[Id];
+        StatText.text = statText + " " + StatStorage.GetComponent<EquipmentStatStorage>().baseStats[Id] + "+" + StatStorage.GetComponent<EquipmentStatStorage>().EquipmentStatsArray[Id];
     }
 }
