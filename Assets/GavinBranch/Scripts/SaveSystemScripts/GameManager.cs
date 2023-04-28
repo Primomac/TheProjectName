@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.SavePlayer(stat, fileName);
     }
 
-
+    /*
     private void Start()
     {
         if (SceneManager.GetActiveScene().name != "VictoryScene")
@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
             CoinsController.coinAmount = data.coins;
         }
     }
+    */
 
 
 
