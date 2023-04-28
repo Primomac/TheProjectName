@@ -19,6 +19,9 @@ public class PlayerInteractions : MonoBehaviour
 
     public Canvas canvasPrefab;
 
+    [SerializeField] float distanceFromShop;
+    public float distanceToCloseShop;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,8 @@ public class PlayerInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
+        distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
 
         if (ani == null)
             ani = gameObject.GetComponent<Animator>();
@@ -42,16 +47,24 @@ public class PlayerInteractions : MonoBehaviour
         if (player == null)
             player = gameObject.GetComponent<PlayerController>();
 
-
+        if (distanceFromShop > distanceToCloseShop)
+        {
+            GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);
             foreach(Collider2D collider in colliderArray)
             {
-                if(collider.TryGetComponent(out NPCInteractable npcInteractable))
+                if (collider.TryGetComponent(out NPCInteractable npcInteractableshop) && npcInteractableshop.tag == "Shopkeeper")
                 {
-                    if (!isTalking)
+                    GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().OpenShop();
+                }
+
+                if(collider.TryGetComponent(out NPCInteractable npcInteractable) && npcInteractable.tag != "Shopkeeper" )
+                {
+                    if (!isTalking && npcInteractable)
                     {
                         npcInteractable.InitiateDialogue();
                         isTalking = true;

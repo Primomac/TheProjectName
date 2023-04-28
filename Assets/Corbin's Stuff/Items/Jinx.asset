@@ -16,7 +16,13 @@ MonoBehaviour:
   itemName: Jinx
   value: 10
   icon: {fileID: 21300000, guid: f6b3fbf9d9ff1e8479cdbfb8ec6535b2, type: 3}
-  sellValue: 30
+  sellValue: 1000000
   itemType: 1
   equipable: 0
-  shopValue: 72
+  shopValue: 108
+  strengthModification: 0
+  dexterityModification: 0
+  soulModification: 0
+  gutsModification: 0
+  focusModification: 0
+  agilityModification: 0

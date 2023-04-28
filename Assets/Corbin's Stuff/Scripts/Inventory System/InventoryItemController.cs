@@ -31,7 +31,7 @@ public class InventoryItemController : MonoBehaviour
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
 
-        if (GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+        if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
         {
             if (gameObject.transform.IsChildOf(GameObject.Find("ShopContent").transform))
             {
@@ -51,7 +51,7 @@ public class InventoryItemController : MonoBehaviour
             sellText.gameObject.SetActive(false);
         }
 
-        if(!isInShop && GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+        if(!isInShop && GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
         {
             sellButton.gameObject.SetActive(true);
             buyButton.gameObject.SetActive(false);

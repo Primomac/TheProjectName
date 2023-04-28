@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
     {
 
         SaveItemsToItemManager();
-        if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+        if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
         {
             inventoryIsClosed = false;
             inventory.SetActive(true);
@@ -78,12 +78,12 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if (item.equipable && !GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen)
+            if (item.equipable && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
             {
                 equipButton.gameObject.SetActive(true);
             }
 
-            if (GameObject.Find("ShopManager").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
+            if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
             {
                 sellButton.gameObject.SetActive(true);
             }

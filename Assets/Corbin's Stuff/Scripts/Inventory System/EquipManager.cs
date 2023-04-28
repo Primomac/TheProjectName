@@ -6,7 +6,8 @@ public class EquipManager : MonoBehaviour
 {
     public static EquipManager equipInstance;
     public List<Item> Items = new List<Item>();
-
+    public List<Skill> skills = new List<Skill>();
+         
     public Transform itemContent;
     public GameObject equipItem;
 
@@ -32,4 +33,14 @@ public class EquipManager : MonoBehaviour
         Items.Remove(item);
         statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
+
+    public void SetSkills()
+    {
+        List<Skill> skillList = GameObject.FindGameObjectWithTag("Player").GetComponent<StatSheet>().skillList;
+        foreach (Skill skill in skillList)
+        {
+            skills.Add(skill);
+        }
+    }
+
 }
