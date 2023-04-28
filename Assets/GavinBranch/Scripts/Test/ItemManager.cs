@@ -5,7 +5,7 @@ using System.IO;
 public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
-    public List<Item> Equipped;
+    public List<Item> equipped;
     public ItemManager instance;
 
     void awake()
@@ -17,15 +17,15 @@ public class ItemManager : MonoBehaviour
     private class ItemsWrapper
     {
         public List<Item> Items;
-        //public List<Item> Items;
+        public List<Item> Equipped;
     }
     public void AddItems (List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
     }
-    public void AddEquipment(List<Item> skillsToAdd)
+    public void AddEquipment(List<Item> equipmentToAdd)
     {
-        //.AddRange(skillsToAdd);
+        equipped.AddRange(equipmentToAdd);
     }
 
     void SaveItems()
@@ -43,20 +43,20 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    /*void saveSkills()
+    void saveEquipment()
     {
-        string json = JsonUtility.ToJson(new ItemsWrapper { Skills =  skills});
+        string json = JsonUtility.ToJson(new ItemsWrapper { Equipped =  equipped});
         File.WriteAllText(Application.persistentDataPath + "/skills.json", json);
     }
 
-    void LoadSkills()
+    void LoadEquipment()
     {
         if (File.Exists(Application.persistentDataPath + "/skills.json"))
         {
             string json = File.ReadAllText(Application.persistentDataPath + "/skills.json");
-            skills = JsonUtility.FromJson<ItemsWrapper>(json).Skills;
+            equipped = JsonUtility.FromJson<ItemsWrapper>(json).Equipped;
         }
-    }*/
+    }
 
 
 
@@ -64,11 +64,13 @@ public class ItemManager : MonoBehaviour
     void OnApplicationQuit()
     {
         SaveItems();
+        saveEquipment();
     }
 
     void Awake()
     {
         LoadItems();
+        LoadEquipment();
     }
 }
 
