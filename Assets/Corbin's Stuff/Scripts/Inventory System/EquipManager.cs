@@ -11,6 +11,10 @@ public class EquipManager : MonoBehaviour
     public GameObject equipItem;
 
     public GameObject equipMenu;
+    public GameObject statStorage;
+
+    public int itemsEquipped = 0;
+    public int weaponsEquipped = 0;
 
     private void Awake()
     {
@@ -20,10 +24,12 @@ public class EquipManager : MonoBehaviour
     public void Add(Item item)
     {
         Items.Add(item);
+        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
 
     public void Remove(Item item)
     {
         Items.Remove(item);
+        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
 }

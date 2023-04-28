@@ -48,7 +48,7 @@ public class StatSheet : MonoBehaviour
     public float punish;    // The amount of bonus damage you deal on a crit. Usually +50% of the original damage.
 
     [Header("Skills")]
-    public List<Skill> skillList = new List<Skill>();
+    public List<Skill> skillList;
 
     // Update is called once per frame
     void Awake()
@@ -95,6 +95,13 @@ public class StatSheet : MonoBehaviour
         stats.guts = guts;
         stats.focus = focus;
         stats.agility = agility;
+
+        // Copy skills from the original StatSheet
+        stats.skillList = new List<Skill>();
+        foreach (Skill skill in skillList)
+        {
+            stats.skillList.Add(skill);
+        }
 
         // Level up!
 
@@ -153,11 +160,6 @@ public class StatSheet : MonoBehaviour
         stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
         stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
         stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
-        
-        stats.skillList.Clear();
-        for (int i = 0; i < skillList.Count; i++)
-        {
-            stats.skillList.Add(skillList[i]);
-        }
+        Debug.Log(string.Join(", ", skillList));
     }
 }

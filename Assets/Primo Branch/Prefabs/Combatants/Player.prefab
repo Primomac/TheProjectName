@@ -151,8 +151,7 @@ MonoBehaviour:
   evasion: 0
   crit: 0
   punish: 0
-  skillList:
-  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  skillList: []
 --- !u!61 &8007599311985120857
 BoxCollider2D:
   m_ObjectHideFlags: 0
