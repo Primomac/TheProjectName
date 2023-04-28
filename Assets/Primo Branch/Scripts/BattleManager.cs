@@ -505,6 +505,93 @@ public class BattleManager : MonoBehaviour
         StopCoroutine(Restore(scaleType, healType, healMod, target));
     }
 
+    public IEnumerator ApplyStatus(StatusEffect effect, StatSheet target)
+    {
+        yield return new WaitForSeconds(0);
+        Component effectInst = target.gameObject.AddComponent(effect.GetType());
+        foreach (StatusEffect status in target.GetComponents<StatusEffect>())
+        {
+            if (status.name == effect.name)
+            {
+                status.currentStacks++;
+                Destroy(effectInst);
+            }
+        }
+    }
+
+    public IEnumerator RemoveStatus(string removeType, int removeAmount, StatSheet target)
+    {
+        yield return new WaitForSeconds(0);
+        int removals = 0;
+        while (removals < removeAmount)
+        {
+            foreach (StatusEffect effect in target.GetComponents<StatusEffect>())
+            {
+                if (removeType == "Buff")
+                {
+                    if (!effect.isDebuff && removals < removeAmount)
+                    {
+                        if (effect.currentStacks > 1)
+                        {
+                            effect.currentStacks--;
+                        }
+                        else
+                        {
+                            Destroy(effect);
+                            removals++;
+                        }
+                        
+                    }
+                }
+                else if (removeType == "Debuff")
+                {
+                    if (effect.isDebuff && removals < removeAmount)
+                    {
+                        if (effect.currentStacks > 1)
+                        {
+                            effect.currentStacks--;
+                        }
+                        else
+                        {
+                            Destroy(effect);
+                            removals++;
+                        }
+                    }
+                }
+                else if (removeType == "All")
+                {
+                    if (removals < removeAmount)
+                    {
+                        if (effect.currentStacks > 1)
+                        {
+                            effect.currentStacks--;
+                        }
+                        else
+                        {
+                            Destroy(effect);
+                            removals++;
+                        }
+                    }
+                }
+                else
+                {
+                    if (effect.name == removeType)
+                    {
+                        if (effect.currentStacks > 1)
+                        {
+                            effect.currentStacks--;
+                        }
+                        else
+                        {
+                            Destroy(effect);
+                            removals++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public void UseTheSkill(Skill skill)
     {
         StartCoroutine(UseSkill(skill));
@@ -560,6 +647,10 @@ public class BattleManager : MonoBehaviour
                     input = currentTarget;
                 }
                 StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { args[1], args[2], float.Parse(args[3]), input }));
+            }
+            else if (args[0].Equals("ApplyStatus"))
+            {
+
             }
             Debug.Log("Invoking " + skill.skillSequence[i]);
         }

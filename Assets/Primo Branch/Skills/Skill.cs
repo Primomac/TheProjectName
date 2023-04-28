@@ -25,8 +25,8 @@ public class Skill : ScriptableObject
     to store these methods. DO NOT USE SPACES WHEN WRITING IN METHODS.
     */
 
-    // ApplyStatus(StatusEffect status, StatSheet target, int stacks) - Applies the [status] status effect to the [target] [stacks] times. StatusEffects ARE A WORK IN PROGRESS.
-    // RemoveStatus(string removeType, int removeAmount) - Removes [removeAmount] number of status effects of [removeType], which can equal "Buffs", "Debuffs", 
+    // ApplyStatus(StatusEffect status, StatSheet target) - Applies the [status] status effect to the [target]. Call this multiple times to apply multiple stacks.
+    // RemoveStatus(string removeType, int removeAmount, StatSheet target) - Removes [removeAmount] number of status effects from [target] of [removeType], which can equal "Buff", "Debuff", "All", or a specific effect name.
     // DealDamage(float damageMod, string damageType, bool isAOE) - Reduces enemy (or enemies if [isAOE] is true) health by the following formula (offense/defense for ["Physical"], magic/ward for ["Magical"], based on [damageType]): currentCombatant.offense/magic * (100 / (100 + currentTarget.defense/ward)) * damageMod
     // PlayAnimation(string animation) - Plays BattleManager.Instance.currentCombatant's [animation] animation.
     // PlayEffect(GameObject effect, StatSheet target) - Plays a certain animation effect over a specified combatant. [effect] IS ACTUALLY AN INT IN THE CONTEXT OF skillSequence, the BattleManager will get currentSkill.sfx[effect], where [effect] equals the [effect]'s index in the effects list. Also, effects should be 1 in the Combatants sorting layer.

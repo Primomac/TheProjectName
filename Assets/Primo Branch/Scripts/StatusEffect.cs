@@ -17,25 +17,25 @@ public class StatusEffect : MonoBehaviour
     public float currentStacks;  // The current amount of stacks.
     public float duration;       // This effect will last for X seconds/turns (based on countByTurn). If 0/null, will not disappear until stacks are dispelled or consumed. If everyone is tied for speed, it will take around 2.85 seconds for them to take their turns.
     public float tickTime;       // After X seconds have passed, call OnTick().
-    /*
+    
     public delegate void EffectType(StatSheet stats);
     public EffectType OnApply;   // OnApply occurs as soon as the status effect is added to the combatant.
     public EffectType OnExpire;  // OnExpire occurs when the status effect is dispelled or its duration ends.
     public EffectType OnTick;    // OnTick will occur every tickTime seconds, starting from the moment the status effect is applied.
     public EffectType OnPersist; // OnPersist will be effective for the entire duration of the status effect. MAKE SURE STAT MODS CLAMP THEIR VALUES.
-    */
+    /*
     public UnityEvent EffectApply;
     public UnityEvent EffectExpire;
     public UnityEvent EffectTick;
     public UnityEvent EffectPersist;
-
+    */
     public float timeTillTrigger;
     public float timeTillExpire;
 
     // Awake is called when the object is loaded for the first time
     void Awake()
     {
-        EffectApply.Invoke();
+        OnApply(GetComponent<StatSheet>());
         timeTillTrigger = tickTime;
         timeTillExpire = duration;
     }
@@ -43,9 +43,9 @@ public class StatusEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (EffectPersist != null)
+        if (OnPersist != null)
         {
-            EffectPersist.Invoke();
+            OnPersist(GetComponent<StatSheet>());
         }
         if (duration > 0)
         {
@@ -54,9 +54,9 @@ public class StatusEffect : MonoBehaviour
             {
                 timeTillExpire -= Time.deltaTime;
             }
-            if (timeTillTrigger <= 0 && EffectTick != null)
+            if (timeTillTrigger <= 0 && OnTick != null)
             {
-                EffectTick.Invoke();
+                OnTick(GetComponent<StatSheet>());
             }
             if (timeTillExpire <= 0)
             {
@@ -67,6 +67,6 @@ public class StatusEffect : MonoBehaviour
 
     private void OnDestroy()
     {
-        EffectExpire.Invoke();
+        OnExpire(GetComponent<StatSheet>());
     }
 }
