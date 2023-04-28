@@ -34,27 +34,6 @@ public class ShopController : MonoBehaviour
         Items.Remove(item);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R) && !shopIsOpen && GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventoryIsClosed)
-        {
-            shopIsOpen = true;
-            shopMenu.SetActive(true);
-            ListShopItems();
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventory.SetActive(true);
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().ListItems();
-        }
-        else if (Input.GetKeyDown(KeyCode.R) && shopIsOpen)
-        {
-            shopIsOpen = false;
-            shopMenu.SetActive(false);
-            CleanShop();
-            DeleteSoldItems();
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventory.SetActive(false);
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().Clean();
-        }
-    }
-
     public void ListShopItems()
     {
         CleanShop();
@@ -103,6 +82,32 @@ public class ShopController : MonoBehaviour
             {
                 item.RemoveShopItem();
             }    
+        }
+    }
+
+    public void OpenShop()
+    {
+        if (!shopIsOpen && GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventoryIsClosed)
+        {
+            shopIsOpen = true;
+            Debug.Log(shopMenu);
+            shopMenu.SetActive(true);
+            ListShopItems();
+            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventory.SetActive(true);
+            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().ListItems();
+        }
+    }
+
+    public void CloseShop()
+    {
+        if(shopIsOpen)
+        {
+            shopIsOpen = false;
+            shopMenu.SetActive(false);
+            CleanShop();
+            DeleteSoldItems();
+            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventory.SetActive(false);
+            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().Clean();
         }
     }
 }

@@ -16,6 +16,8 @@ public class Item : ScriptableObject
     public ItemType itemType;
     public bool equipable;
 
+    public List<Skill> skills = new List<Skill>();
+
     [Header("Stuff that's set automatically.")]
     public int shopValue;
 
@@ -27,8 +29,6 @@ public class Item : ScriptableObject
     public float focusModification;
     public float agilityModification;
 
-
-
     [Serializable]
     public enum ItemType
     {
@@ -37,6 +37,8 @@ public class Item : ScriptableObject
         Collectible,
         Armor
     }
+
+
     private void Awake()
     {
         float x = sellValue * .20f;
