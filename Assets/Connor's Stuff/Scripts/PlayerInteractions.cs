@@ -38,18 +38,25 @@ public class PlayerInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
-        distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
-        */
+
+        if (ShopController.shopkeeperExists)
+        {
+            Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
+            distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
+        }
+
+
         if (ani == null)
             ani = gameObject.GetComponent<Animator>();
 
         if (player == null)
             player = gameObject.GetComponent<PlayerController>();
-        /*
-        if (distanceFromShop > distanceToCloseShop)
+
+
+        if (distanceFromShop > distanceToCloseShop || Input.GetKeyDown(KeyCode.E))
+
         {
+            if(ShopController.shopkeeperExists)
             GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
         }
         */
