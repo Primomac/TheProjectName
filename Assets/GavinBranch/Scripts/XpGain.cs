@@ -24,7 +24,11 @@ public class XpGain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.maxValue = XpCap;
+        
+        for(int i = 0; i < levelsGained; i++)
+        {
+            slider.maxValue += Mathf.Round(slider.maxValue * 0.45f);
+        }
 
         AmountOfEnemysKilled = FindEnemySprites.XpYeild.Count;
         for (int i =0; i < AmountOfEnemysKilled; i++)
@@ -57,16 +61,16 @@ public class XpGain : MonoBehaviour
 
             AmountOfLoops++;
 
+            //levelUp
             if (currentXpGained >= slider.maxValue)
             {
                 currentXpGained -= slider.maxValue;
                 slider.maxValue += Mathf.Round(slider.maxValue * 0.45f);
-                
+                levelsGained++;
             }
 
             StartCoroutine(Delay());
         }
-        XpCap = slider.maxValue;
         Xpleft = (int)slider.value;
     }
     IEnumerator Delay()

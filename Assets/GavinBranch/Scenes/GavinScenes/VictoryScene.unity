@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: 
-  AutoSave: AutoSave
+  AutoSave: /AutoSave
   stat: {fileID: 0}
 --- !u!4 &1686856748
 Transform:

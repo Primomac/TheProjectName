@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         //stat.character = data.character;
         stat.characterName = data.characterName;
 
+        XpGain.levelsGained = (int)data.levelForXpGain;
         stat.level = data.level;
         stat.exp = data.exp;
         stat.expCap = data.expCap;
