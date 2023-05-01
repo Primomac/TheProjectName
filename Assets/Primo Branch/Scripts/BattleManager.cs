@@ -219,6 +219,7 @@ public class BattleManager : MonoBehaviour
 
     public void StartTurn(StatSheet combatant) // Occurs whenever a target's initiative reaches 100
     {
+        combatant.gameObject.BroadcastMessage("TurnStart");
         currentCombatant = combatant;
         if (!combatant.isEnemy)
         {
@@ -650,7 +651,12 @@ public class BattleManager : MonoBehaviour
             }
             else if (args[0].Equals("ApplyStatus"))
             {
-
+                StatSheet input = currentCombatant;
+                if (!args[2].Equals(" currentCombatant"))
+                {
+                    input = currentTarget;
+                }
+                StartCoroutine((IEnumerator)coroutineMethod.Invoke(this, new object[] { skill.statuses[int.Parse(args[1])], input }));
             }
             Debug.Log("Invoking " + skill.skillSequence[i]);
         }
