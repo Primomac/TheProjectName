@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Poison : StatusEffect
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Initialize()
     {
-        
+        base.Initialize();
+        OnApply = null;
+        OnExpire = null;
+        OnTick = PainDamage;
+        OnPersist = null;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PainDamage(StatSheet stats)
     {
-        
+        Debug.Log("Removing " + (currentStacks * 3) + "% of " + stats.name + "'s Max Health by Poison!");
+        stats.hp -= stats.maxHp * 0.03f * currentStacks;
     }
 }

@@ -43,11 +43,11 @@ public class StatusEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (OnPersist != null)
+        if (OnPersist != null)  // On persist
         {
             OnPersist(GetComponent<StatSheet>());
         }
-        if (duration > 0)
+        if (duration > 0)   // Ignored if nothing happens over time
         {
             timeTillTrigger -= Time.deltaTime;
             if (!countByTurn)
@@ -57,6 +57,7 @@ public class StatusEffect : MonoBehaviour
             if (timeTillTrigger <= 0 && OnTick != null)
             {
                 OnTick(GetComponent<StatSheet>());
+                timeTillTrigger = tickTime;
             }
             if (timeTillExpire <= 0)
             {
@@ -68,5 +69,18 @@ public class StatusEffect : MonoBehaviour
     protected void OnDestroy()
     {
         OnExpire(GetComponent<StatSheet>());
+    }
+
+    public virtual void Initialize()
+    {
+        // Set code for changing EffectTypes here
+    }
+
+    public void TurnStart()
+    {
+        if (countByTurn)
+        {
+            OnTick(GetComponent<StatSheet>());
+        }
     }
 }
