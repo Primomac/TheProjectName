@@ -154,7 +154,7 @@ public class StatSheet : MonoBehaviour
         stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
         stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
         stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
-        stats.speed = Mathf.Round(10 + (1 * (stats.agility / 10 * stats.level)));
+        stats.speed = agility;
 
         stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
         stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));

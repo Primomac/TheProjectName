@@ -65,7 +65,7 @@ public class StatusEffect : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         OnExpire(GetComponent<StatSheet>());
     }
