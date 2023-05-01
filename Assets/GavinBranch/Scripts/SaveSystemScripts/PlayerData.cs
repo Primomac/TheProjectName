@@ -13,6 +13,7 @@ public class PlayerData
 
     [Header("Level")]
     public float level = 1;
+    public float levelForXpGain = 0;
     public float exp = 0;
     public float expCap = 100;
 
@@ -40,6 +41,7 @@ public class PlayerData
 
         characterName = player.characterName;
 
+        levelForXpGain = XpGain.levelsGained;
         level = player.level;
         exp = player.exp;
         expCap = player.expCap;
