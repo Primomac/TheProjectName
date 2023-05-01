@@ -29,21 +29,24 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-
         SaveItemsToItemManager();
-        if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+
+        if (ShopController.shopkeeperExists || !ShopController.shopkeeperExists)
         {
-            inventoryIsClosed = false;
-            inventory.SetActive(true);
-            ListItems();
-            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
-        }
-        else if(Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
-        {
-            inventoryIsClosed = true;
-            inventory.SetActive(false);
-            Clean();
-            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed)
+            {
+                inventoryIsClosed = false;
+                inventory.SetActive(true);
+                ListItems();
+                GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
+            {
+                inventoryIsClosed = true;
+                inventory.SetActive(false);
+                Clean();
+                GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
+            }
         }
     }
 
@@ -78,14 +81,17 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if (item.equipable && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+            if(ShopController.shopkeeperExists)
             {
-                equipButton.gameObject.SetActive(true);
-            }
+                if (item.equipable && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+                {
+                    equipButton.gameObject.SetActive(true);
+                }
 
-            if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
-            {
-                sellButton.gameObject.SetActive(true);
+                if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen && obj.transform.IsChildOf(GameObject.Find("InventoryContent").transform))
+                {
+                    sellButton.gameObject.SetActive(true);
+                }
             }
         }
 

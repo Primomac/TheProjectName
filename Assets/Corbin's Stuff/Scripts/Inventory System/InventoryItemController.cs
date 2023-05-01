@@ -31,16 +31,19 @@ public class InventoryItemController : MonoBehaviour
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
 
-        if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+        if (ShopController.shopkeeperExists)
         {
-            if (gameObject.transform.IsChildOf(GameObject.Find("ShopContent").transform))
+            if (GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
             {
-                isInShop = true;
+                if (gameObject.transform.IsChildOf(GameObject.Find("ShopContent").transform))
+                {
+                    isInShop = true;
+                }
             }
-        }
-        else
-        {
-            isInShop = false;
+            else
+            {
+                isInShop = false;
+            }
         }
 
         if(isInShop)
@@ -51,13 +54,17 @@ public class InventoryItemController : MonoBehaviour
             sellText.gameObject.SetActive(false);
         }
 
-        if(!isInShop && GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+        if (ShopController.shopkeeperExists)
         {
-            sellButton.gameObject.SetActive(true);
-            buyButton.gameObject.SetActive(false);
-            buyText.gameObject.SetActive(false);
-            sellText.gameObject.SetActive(true);
+            if (!isInShop && GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
+            {
+                sellButton.gameObject.SetActive(true);
+                buyButton.gameObject.SetActive(false);
+                buyText.gameObject.SetActive(false);
+                sellText.gameObject.SetActive(true);
+            }
         }
+
     }
 
     public void AddItem(Item newItem)
