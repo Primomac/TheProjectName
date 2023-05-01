@@ -19,9 +19,14 @@ public class ShopController : MonoBehaviour
 
     public InventoryItemController[] shopItemsArray;
 
+    public static bool shopkeeperExists;
+
+    InventoryManager inventoryManager;
+
     private void Awake()
     {
         shopInstance = this;
+        inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
     }
 
     public void Add(Item item)
@@ -32,6 +37,20 @@ public class ShopController : MonoBehaviour
     public void Remove(Item item)
     {
         Items.Remove(item);
+    }
+
+    private void Update()
+    {
+        if (GameObject.FindGameObjectWithTag("Shopkeeper") == null)
+        {
+            shopkeeperExists = false;
+            Debug.Log("Shopkeeper is fake and untrue, literally clickbait.");
+        }
+        else
+        {
+            shopkeeperExists = true;
+            Debug.Log("Shopkeeper exists!");
+        }
     }
 
     public void ListShopItems()
@@ -90,6 +109,7 @@ public class ShopController : MonoBehaviour
         if (!shopIsOpen && GameObject.Find("InventoryManager").GetComponent<InventoryManager>().inventoryIsClosed)
         {
             shopIsOpen = true;
+            inventoryManager.inventoryIsClosed = false;
             Debug.Log(shopMenu);
             shopMenu.SetActive(true);
             ListShopItems();
@@ -103,6 +123,7 @@ public class ShopController : MonoBehaviour
         if(shopIsOpen)
         {
             shopIsOpen = false;
+            inventoryManager.inventoryIsClosed = true;
             shopMenu.SetActive(false);
             CleanShop();
             DeleteSoldItems();

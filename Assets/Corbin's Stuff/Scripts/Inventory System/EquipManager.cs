@@ -34,13 +34,13 @@ public class EquipManager : MonoBehaviour
         statStorage.GetComponent<EquipmentStatStorage>().changeStats();
     }
 
-    public void SetSkills()
+    /*public void SetSkills()
     {
         List<Skill> skillList = GameObject.FindGameObjectWithTag("Player").GetComponent<StatSheet>().skillList;
         foreach (Skill skill in skillList)
         {
             skills.Add(skill);
         }
-    }
+    }*/
 
 }
