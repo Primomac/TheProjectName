@@ -38,20 +38,21 @@ public class PlayerInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
         distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
-
+        */
         if (ani == null)
             ani = gameObject.GetComponent<Animator>();
 
         if (player == null)
             player = gameObject.GetComponent<PlayerController>();
-
+        /*
         if (distanceFromShop > distanceToCloseShop)
         {
             GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
         }
-
+        */
         if (Input.GetKeyDown(KeyCode.F))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);
