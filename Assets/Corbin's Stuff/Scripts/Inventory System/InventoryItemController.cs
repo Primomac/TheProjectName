@@ -46,7 +46,7 @@ public class InventoryItemController : MonoBehaviour
             }
         }
 
-        if(isInShop)
+        if (isInShop)
         {
             sellButton.gameObject.SetActive(false);
             buyButton.gameObject.SetActive(true);
@@ -129,16 +129,18 @@ public class InventoryItemController : MonoBehaviour
             weaponIsEquipped = true;
             InventoryManager.instance.Remove(item);
             EquipManager.equipInstance.Add(item);
+            SetSkills();
             transform.SetParent(GameObject.Find("WeaponContent").transform);
             Debug.Log("Item Equipped");
         }
 
         else if (item.equipable && weaponIsEquipped)
         {
+            weaponIsEquipped = false;
             EquipManager.equipInstance.Remove(item);
             InventoryManager.instance.Add(item);
+            RemoveSkills();
             transform.SetParent(GameObject.Find("InventoryContent").transform);
-            weaponIsEquipped = false;
             Debug.Log("Item Unequiped");
             equipManager.weaponsEquipped--;
         }
@@ -174,4 +176,22 @@ public class InventoryItemController : MonoBehaviour
             Debug.Log("Items Equipped: " + equipManager.itemsEquipped);
         }
     }
+
+    void SetSkills()
+    {
+        StatSheet statSheet = GameObject.Find("Player").GetComponent<StatSheet>();
+        foreach (Skill skill in item.skills)
+        {
+            statSheet.skillList.Add(skill);
+        }
+    }
+
+    void RemoveSkills()
+    {
+        StatSheet statSheet = GameObject.Find("Player").GetComponent<StatSheet>();
+        foreach (Skill skill in item.skills)
+        {
+            statSheet.skillList.Remove(skill);
+        }
+    }    
 }

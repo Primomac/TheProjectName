@@ -19,4 +19,12 @@ MonoBehaviour:
   sellValue: 7
   itemType: 0
   equipable: 1
-  shopValue: 8
+  skills:
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  shopValue: 16
+  strengthModification: 0
+  dexterityModification: 0
+  soulModification: 0
+  gutsModification: 0
+  focusModification: 0
+  agilityModification: 0

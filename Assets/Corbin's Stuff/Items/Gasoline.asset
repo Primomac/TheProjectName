@@ -19,4 +19,11 @@ MonoBehaviour:
   sellValue: 18
   itemType: 2
   equipable: 1
-  shopValue: 44
+  skills: []
+  shopValue: 66
+  strengthModification: 34897564
+  dexterityModification: 0
+  soulModification: 0
+  gutsModification: 0
+  focusModification: 0
+  agilityModification: 8.8888885e+10
