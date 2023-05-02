@@ -39,7 +39,7 @@ public class PlayerInteractions : MonoBehaviour
     void Update()
     {
 
-        if (ShopController.shopkeeperExists)
+        if (GameObject.FindGameObjectWithTag("Shopkeeper"))
         {
             Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
             distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
