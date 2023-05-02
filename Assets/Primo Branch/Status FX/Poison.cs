@@ -11,11 +11,19 @@ public class Poison : StatusEffect
         OnExpire = null;
         OnTick = PainDamage;
         OnPersist = null;
+
+        statusName = "Poison";
+        isDebuff = true;
+        dispellable = true;
+        countByTurn = false;
+        stackLimit = 5;
+        duration = 10;
+        tickTime = 2;
     }
 
     public void PainDamage(StatSheet stats)
     {
         Debug.Log("Removing " + (currentStacks * 3) + "% of " + stats.name + "'s Max Health by Poison!");
-        stats.hp -= stats.maxHp * 0.03f * currentStacks;
+        stats.hp -= stats.maxHp * 0.01f * currentStacks;
     }
 }

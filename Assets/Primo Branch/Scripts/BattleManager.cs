@@ -219,7 +219,10 @@ public class BattleManager : MonoBehaviour
 
     public void StartTurn(StatSheet combatant) // Occurs whenever a target's initiative reaches 100
     {
-        combatant.gameObject.BroadcastMessage("TurnStart");
+        foreach (StatusEffect effect in combatant.GetComponents<StatusEffect>())
+        {
+            effect.OnTick(combatant);
+        }
         currentCombatant = combatant;
         if (!combatant.isEnemy)
         {

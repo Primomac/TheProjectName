@@ -39,7 +39,7 @@ public class PlayerInteractions : MonoBehaviour
     void Update()
     {
 
-        if (GameObject.FindGameObjectWithTag("Shopkeeper"))
+        if (ShopController.shopkeeperExists)
         {
             Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
             distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
@@ -59,6 +59,7 @@ public class PlayerInteractions : MonoBehaviour
             if(ShopController.shopkeeperExists)
             GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
         }
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);
