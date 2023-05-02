@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
   m_Name: Poison Dart
   m_EditorClassIdentifier: 
-  skillName: 
-  spCost: 0
+  skillName: Poison Dart
+  spCost: 10
   skillDescription: 
   skillBackground: {r: 0, g: 0, b: 0, a: 255}
   skillSequence:
@@ -23,3 +23,5 @@ MonoBehaviour:
   sfx:
   - {fileID: 8300000, guid: c4e4e808861821c4fbb4087a64d26ccf, type: 3}
   effects: []
+  statuses:
+  - {fileID: 0}

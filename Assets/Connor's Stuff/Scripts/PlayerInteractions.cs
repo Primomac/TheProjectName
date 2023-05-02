@@ -59,7 +59,7 @@ public class PlayerInteractions : MonoBehaviour
             if(ShopController.shopkeeperExists)
             GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
         }
-        */
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
             Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, interactRange);

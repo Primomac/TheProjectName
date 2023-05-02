@@ -12,7 +12,6 @@ public class StatusEffect : MonoBehaviour
     public bool isDebuff;        // If false, it is considered a buff.
     public bool dispellable;     // If true, the effect can be removed by the RemoveEffect() function in a skill's skillSequence.
     public bool countByTurn;     // If false, the value of duration is the status's lifetime in seconds. If true, duration represents turns instead.
-    public int priority;         // Effects will be calculated from highest to lowest priority.
     public float stackLimit = 1; // How many times it can stack. If it can stack more than once, its effect will likely be applied more than once.
     public float currentStacks;  // The current amount of stacks.
     public float duration;       // This effect will last for X seconds/turns (based on countByTurn). If 0/null, will not disappear until stacks are dispelled or consumed. If everyone is tied for speed, it will take around 2.85 seconds for them to take their turns.
@@ -43,9 +42,9 @@ public class StatusEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (OnPersist != null)  // On persist
+        if (OnPersist != null)  // Takes effect while the StatSheet exists
         {
-            OnPersist(GetComponent<StatSheet>());
+            //OnPersist(GetComponent<StatSheet>());
         }
         if (duration > 0)   // Ignored if nothing happens over time
         {
@@ -81,6 +80,7 @@ public class StatusEffect : MonoBehaviour
         if (countByTurn)
         {
             OnTick(GetComponent<StatSheet>());
+            timeTillExpire--;
         }
     }
 }
