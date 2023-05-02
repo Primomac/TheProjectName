@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EquipmentStatStorage : MonoBehaviour
 {
@@ -12,11 +13,25 @@ public class EquipmentStatStorage : MonoBehaviour
     public StatSheet player;
     public TextMeshProUGUI pointText;
 
+    public static EquipmentStatStorage storageInstance;
+
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (storageInstance == null)
+        {
+            storageInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        player = GameObject.Find("Player").GetComponent<StatSheet>();
+    }
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<StatSheet>();
-
         SetBaseStats();
         UpdatePointText();
     }
@@ -29,6 +44,7 @@ public class EquipmentStatStorage : MonoBehaviour
         if(player == null)
         {
             player = GameObject.Find("Player").GetComponent<StatSheet>();
+            changeStats();
         }
     }
 
@@ -39,6 +55,8 @@ public class EquipmentStatStorage : MonoBehaviour
 
     public void changeStats()
     {
+        Debug.Log("Stats changed!");
+        EM = GameObject.Find("EquipManager");
         // reset stats
         player.strength = baseStats[0];
         player.dexterity = baseStats[1];
@@ -62,6 +80,7 @@ public class EquipmentStatStorage : MonoBehaviour
 
     public void SetBaseStats()
     {
+        Debug.Log("Base stats set!");
         EquipmentStatsArray[0] = 0;
         EquipmentStatsArray[1] = 0;
         EquipmentStatsArray[2] = 0;

@@ -29,17 +29,7 @@ public class ShopController : MonoBehaviour
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
     }
 
-    public void Add(Item item)
-    {
-        Items.Add(item);
-    }
-
-    public void Remove(Item item)
-    {
-        Items.Remove(item);
-    }
-
-    private void Update()
+    private void Start()
     {
         if (GameObject.FindGameObjectWithTag("Shopkeeper") == null)
         {
@@ -52,6 +42,17 @@ public class ShopController : MonoBehaviour
             Debug.Log("Shopkeeper exists!");
         }
     }
+
+    public void Add(Item item)
+    {
+        Items.Add(item);
+    }
+
+    public void Remove(Item item)
+    {
+        Items.Remove(item);
+    }
+
 
     public void ListShopItems()
     {

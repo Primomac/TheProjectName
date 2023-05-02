@@ -16,23 +16,45 @@ public class EquipManager : MonoBehaviour
     public int itemsEquipped = 0;
     public int weaponsEquipped = 0;
 
-    StatSheet statSheet;
-
     private void Awake()
     {
         equipInstance = this;
-        statSheet = GameObject.Find("Player").GetComponent<StatSheet>();
+        EquipmentStatStorage.storageInstance.changeStats();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FindStatStorage();
+        }
+    }
+
+    public void FindStatStorage()
+    {
+        statStorage = GameObject.Find("StatMenu");
+        Debug.Log("Grabbed storage!");
     }
 
     public void Add(Item item)
     {
+        if(statStorage == null)
+        {
+            Debug.Log("Storage Found");
+            FindStatStorage();
+        }
         Items.Add(item);
-        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
+        EquipmentStatStorage.storageInstance.changeStats();
     }
 
     public void Remove(Item item)
     {
+        if (statStorage == null)
+        {
+            FindStatStorage();
+            Debug.Log("Storage Found");
+        }
         Items.Remove(item);
-        statStorage.GetComponent<EquipmentStatStorage>().changeStats();
+        EquipmentStatStorage.storageInstance.changeStats();
     }
 }
