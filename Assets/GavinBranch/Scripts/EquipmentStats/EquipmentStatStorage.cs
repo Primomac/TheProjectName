@@ -16,6 +16,7 @@ public class EquipmentStatStorage : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<StatSheet>();
+
         SetBaseStats();
         UpdatePointText();
     }
@@ -24,6 +25,11 @@ public class EquipmentStatStorage : MonoBehaviour
     void Update()
     {
         UpdatePointText();
+
+        if(player == null)
+        {
+            player = GameObject.Find("Player").GetComponent<StatSheet>();
+        }
     }
 
     private void UpdatePointText()
