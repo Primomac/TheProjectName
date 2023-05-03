@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64399b2a33dc5794aaf156a1b772d5e7, type: 3}
+  m_Name: Dagger
+  m_EditorClassIdentifier: 
+  id: 69
+  itemName: Dagger
+  value: 10
+  icon: {fileID: 21300000, guid: 4fe99352083e07f4ab159610bbaebfaa, type: 3}
+  sellValue: 8
+  itemType: 0
+  equipable: 1
+  skills:
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: f97427ae2f6072741854cebf2e72bc0e, type: 2}
+  - {fileID: 11400000, guid: 70ba9569943e305499ffd692fc459541, type: 2}
+  shopValue: 0
+  strengthModification: 0
+  dexterityModification: 0
+  soulModification: 0
+  gutsModification: 0
+  focusModification: 0
+  agilityModification: 0
