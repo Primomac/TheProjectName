@@ -18,12 +18,13 @@ public class Poison : StatusEffect
         countByTurn = false;
         stackLimit = 5;
         duration = 10;
-        tickTime = 2;
+        tickTime = 1;
     }
 
     public void PainDamage(StatSheet stats)
     {
-        Debug.Log("Removing " + (currentStacks * 3) + "% of " + stats.name + "'s Max Health by Poison!");
-        stats.hp -= stats.maxHp * 0.01f * currentStacks;
+        Debug.Log("Removing " + (currentStacks * 1) + "% of " + stats.name + "'s Max Health by Poison!");
+        stats.hp -= Mathf.Ceil(stats.maxHp * 0.01f * currentStacks);
+        stats.hpBar.GetComponent<HpBar>().setHealth(stats.hp);
     }
 }

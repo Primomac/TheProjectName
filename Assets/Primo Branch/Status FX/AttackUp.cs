@@ -30,6 +30,7 @@ public class AttackUp : StatusEffect
 
     public void RemoveBuff(StatSheet stats)
     {
-        stats.offense = baseAttack;
+        //stats.offense = baseAttack;
+        stats.offense *= baseAttack / stats.offense;
     }
 }

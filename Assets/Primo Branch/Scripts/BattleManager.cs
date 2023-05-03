@@ -160,6 +160,10 @@ public class BattleManager : MonoBehaviour
         foreach (StatSheet enemy in PeopleToKill)
         {
             Destroy(enemy.initBar);
+            foreach (StatusEffect status in enemy.GetComponents<StatusEffect>())
+            {
+                Destroy(status);
+            }
             RemoveCombatant(enemy);
             Debug.Log("Killing " + enemy.name + "!");
         }
@@ -512,15 +516,32 @@ public class BattleManager : MonoBehaviour
     public IEnumerator ApplyStatus(StatusEffect effect, StatSheet target)
     {
         yield return new WaitForSeconds(0);
-        Component effectInst = target.gameObject.AddComponent(effect.GetType());
-        foreach (StatusEffect status in target.GetComponents<StatusEffect>())
+        bool alreadyApplied = false;
+        Component statusEffect = target.gameObject.AddComponent(effect.GetType());
+        StatusEffect[] effectsOnTarget = target.GetComponents<StatusEffect>();
+        foreach (StatusEffect status in effectsOnTarget)
         {
-            if (status.name == effect.name)
+            if (status.name.Equals(statusEffect.name))
             {
-                status.currentStacks++;
-                Destroy(effectInst);
+                if (alreadyApplied)
+                {
+                    Debug.Log("Adding additional stack of " + status.statusName);
+                    Debug.Log("CurrentStacks: " + status.currentStacks);
+                    if (status.currentStacks < status.stackLimit)
+                    {
+                        status.currentStacks += effectsOnTarget[0].currentStacks;
+                        Debug.Log("Added CurrentStacks: " + status.currentStacks);
+                    }
+                    Destroy(effectsOnTarget[0]);
+                }
+                alreadyApplied = true;
+            }
+            else
+            {
+                Debug.Log("Adding " + status.name);
             }
         }
+        Debug.Log("alreadyApplied equals " + alreadyApplied);
     }
 
     public IEnumerator RemoveStatus(string removeType, int removeAmount, StatSheet target)
@@ -579,7 +600,7 @@ public class BattleManager : MonoBehaviour
                 }
                 else
                 {
-                    if (effect.name == removeType)
+                    if (effect.statusName == removeType)
                     {
                         if (effect.currentStacks > 1)
                         {
