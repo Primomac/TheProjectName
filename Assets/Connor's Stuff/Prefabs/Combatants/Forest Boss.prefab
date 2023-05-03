@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 756146632770656038}
   - component: {fileID: 3082362194682946269}
   m_Layer: 0
-  m_Name: Scorpebab
+  m_Name: Forest Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1305042475
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2011878859, guid: 9247a3bbbb29bc141844a61ef3e24a08, type: 3}
+  m_Sprite: {fileID: -241559412, guid: db7ab9975ce7e8f4491b8d8595109383, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 9018922824822735927}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 082533d91d4f7b94eb3401dc2b9d1ef8, type: 2}
+  m_Controller: {fileID: 9100000, guid: d82657042883f58499673da36f292fec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   initBar: {fileID: 0}
   spMeter: {fileID: 0}
   isEnemy: 1
-  characterName: Scorpebab
+  characterName: Spirit of the Forest
   initiative: 0
   level: 1
   exp: 0
@@ -132,11 +132,11 @@ MonoBehaviour:
   expYield: 50
   coinYield: 0
   statPoints: 0
-  strength: 5
+  strength: 10
   dexterity: 4
   soul: 7
-  guts: 3
-  focus: 6
+  guts: 5
+  focus: 2
   agility: 1
   maxHp: 0
   maxSp: 0
@@ -166,16 +166,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.14432907, y: -0.25658703}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8, y: 1.6}
+    oldSize: {x: 5.6, y: 5.6}
     newSize: {x: 1.8, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 4.6790457, y: 5.12807}
   m_EdgeRadius: 0

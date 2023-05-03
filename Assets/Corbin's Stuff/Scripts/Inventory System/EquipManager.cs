@@ -16,20 +16,28 @@ public class EquipManager : MonoBehaviour
     public int itemsEquipped = 0;
     public int weaponsEquipped = 0;
 
+    ItemManager itemManager;
+
     private void Awake()
     {
         equipInstance = this;
-        EquipmentStatStorage.storageInstance.changeStats();
+        itemManager = GetComponent<ItemManager>(); // get the reference to the ItemManager script
     }
 
     private void Update()
     {
+        SaveItemsToItemManager();
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             FindStatStorage();
         }
     }
 
+    private void Start()
+    {
+        LoadItemsFromItemManager();
+    }
     public void FindStatStorage()
     {
         statStorage = GameObject.Find("StatMenu");
@@ -56,5 +64,26 @@ public class EquipManager : MonoBehaviour
         }
         Items.Remove(item);
         EquipmentStatStorage.storageInstance.changeStats();
+    }
+
+    void LoadItemsFromItemManager()
+    {
+        ItemManager itemManager = FindObjectOfType<ItemManager>();
+        if (itemManager != null)
+        {
+            Items.AddRange(itemManager.equipped);
+        }
+    }
+
+    void SaveItemsToItemManager()
+    {
+        if (itemManager != null)
+        {
+            itemManager.equipped = Items;
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        //itemManager.AddItems(items);
     }
 }

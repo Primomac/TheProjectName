@@ -12,11 +12,14 @@ public class GameManager : MonoBehaviour
     public StatSheet stat;
     public void SavePlayer()
     {
+        stat = GameObject.Find("Player").GetComponent<StatSheet>();
         SaveSystem.SavePlayer(stat,fileName);
     }
 
     public void loadPlayer()
     {
+        stat = GameObject.Find("Player").GetComponent<StatSheet>();
+
         PlayerData data = SaveSystem.LoadPlayer(fileName);
 
         //stat.character = data.character;
@@ -41,6 +44,8 @@ public class GameManager : MonoBehaviour
         stat.transform.position = position;
 
         CoinsController.coinAmount = data.coins;
+        Debug.Log("Coins: " + CoinsController.coinAmount);
+
         XpGain.NumberOfEnemiesKilled = data.numbOfEnemyKilled;
 
         XpGain.Xpleft = (int)data.exp;
@@ -60,13 +65,14 @@ public class GameManager : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer(AutoSave);
         SceneManager.LoadScene(data.scene);
     }
-
-
-
-
     private void OnApplicationQuit()
     {
-        SaveSystem.SavePlayer(stat, fileName);
+        if(stat == null)
+        {
+            stat = GameObject.Find("Player").AddComponent<StatSheet>();
+            SaveSystem.SavePlayer(stat, fileName);
+        }
+
     }
 
 
