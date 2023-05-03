@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4e543a7fe71920846a33ad69f653f371
+guid: 1c238e7619302e44eac1f9a25cbf0a38
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,12 +128,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: red scorpebab attac (1)_0
+      name: scorpebab_red_idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 160
-        width: 190
+        width: 180
         height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -142,40 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be9f0965fb6088b4fba67ab6e0e3be8e
-      internalID: 2025790957
+      spriteID: 0d9624f67d774f04e8d3f41310dbe823
+      internalID: -542801136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: red scorpebab attac (1)_1
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 160
-        width: 190
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10777c95bbb8d704b916277f25a30743
-      internalID: 1736541747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: red scorpebab attac (1)_2
+      name: scorpebab_red_idle_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 190
+        width: 180
         height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39b26ef110a12c3459e84ffb14de0d87
-      internalID: 1968191022
+      spriteID: 38b69ad192bf1fd42881119b3b26468c
+      internalID: -2102697961
       vertices: []
       indices: 
       edges: []
@@ -201,9 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      red scorpebab attac (1)_0: 2025790957
-      red scorpebab attac (1)_1: 1736541747
-      red scorpebab attac (1)_2: 1968191022
+      scorpebab_red_idle_1: -2102697961
+      scorpebab_red_idle_0: -542801136
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
