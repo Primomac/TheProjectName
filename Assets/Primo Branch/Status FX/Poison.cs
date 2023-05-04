@@ -8,7 +8,7 @@ public class Poison : StatusEffect
     {
         base.Initialize();
         OnApply = null;
-        OnExpire = null;
+        OnExpire = RemoveDebuff;
         OnTick = PainDamage;
         OnPersist = null;
 
@@ -26,5 +26,10 @@ public class Poison : StatusEffect
         Debug.Log("Removing " + (currentStacks * 1) + "% of " + stats.name + "'s Max Health by Poison!");
         stats.hp -= Mathf.Ceil(stats.maxHp * 0.01f * currentStacks);
         stats.hpBar.GetComponent<HpBar>().setHealth(stats.hp);
+    }
+
+    public void RemoveDebuff(StatSheet stats)
+    {
+        Destroy(this);
     }
 }

@@ -19,7 +19,7 @@ public class StatusEffect : MonoBehaviour
     
     public delegate void EffectType(StatSheet stats);
     public EffectType OnApply;   // OnApply occurs as soon as the status effect is added to the combatant.
-    public EffectType OnExpire;  // OnExpire occurs when the status effect is dispelled or its duration ends.
+    public EffectType OnExpire;  // OnExpire occurs when the status effect is dispelled or its duration ends. MAKE SURE TO DESTROY THE STATUS IN THIS METHOD, IT IS REQUIRED TO END THE EFFECT.
     public EffectType OnTick;    // OnTick will occur every tickTime seconds, starting from the moment the status effect is applied.
     public EffectType OnPersist; // OnPersist will be effective for the entire duration of the status effect. MAKE SURE STAT MODS CLAMP THEIR VALUES.
     /*
@@ -38,7 +38,7 @@ public class StatusEffect : MonoBehaviour
         currentStacks++;
         if (OnApply != null)
         {
-            OnApply(gameObject.GetComponent<StatSheet>());
+            //OnApply(gameObject.GetComponent<StatSheet>());
         }
         timeTillTrigger = tickTime;
         timeTillExpire = duration;
@@ -49,9 +49,9 @@ public class StatusEffect : MonoBehaviour
     {   
         if (OnPersist != null)  // Takes effect while the StatSheet exists
         {
-            //OnPersist(GetComponent<StatSheet>());
+            OnPersist(GetComponent<StatSheet>());
         }
-        if (duration > 0 && GameObject.Find("Battle Manager").GetComponent<BattleManager>().tickInitiative == true)   // Ignored if nothing happens over time
+        if (OnTick != null && GameObject.Find("Battle Manager").GetComponent<BattleManager>().tickInitiative == true)   // Ignored if nothing happens over time
         {
             timeTillTrigger -= Time.deltaTime;
             if (!countByTurn)
@@ -65,30 +65,13 @@ public class StatusEffect : MonoBehaviour
             }
             if (timeTillExpire <= 0)
             {
-                Destroy(this);
+                OnExpire(gameObject.GetComponent<StatSheet>());
             }
-        }
-    }
-
-    protected void OnDestroy()
-    {
-        if (OnExpire != null)
-        {
-            OnExpire(gameObject.GetComponent<StatSheet>());
         }
     }
 
     public virtual void Initialize()
     {
         // Set code for changing EffectTypes here
-    }
-
-    public void TurnStart()
-    {
-        if (countByTurn)
-        {
-            OnTick(gameObject.GetComponent<StatSheet>());
-            timeTillExpire--;
-        }
     }
 }

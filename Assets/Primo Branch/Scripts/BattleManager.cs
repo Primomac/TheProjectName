@@ -225,7 +225,18 @@ public class BattleManager : MonoBehaviour
     {
         foreach (StatusEffect effect in combatant.GetComponents<StatusEffect>())
         {
-            effect.OnTick(combatant);
+            if (effect.countByTurn)
+            {
+                if (effect.OnTick != null)
+                {
+                    effect.OnTick(combatant);
+                }
+                effect.timeTillExpire--;
+                if (effect.timeTillExpire <= 0)
+                {
+                    effect.OnExpire(effect.GetComponent<StatSheet>());
+                }
+            }
         }
         currentCombatant = combatant;
         if (!combatant.isEnemy)
@@ -253,7 +264,12 @@ public class BattleManager : MonoBehaviour
                 }
             }
             currentTarget = players[UnityEngine.Random.Range(0, players.Count)];
-            UseTheSkill(combatant.skillList[UnityEngine.Random.Range(0, combatant.skillList.Count)]);  
+            Skill usedSkill = combatant.skillList[UnityEngine.Random.Range(0, combatant.skillList.Count)];
+            if (usedSkill.spCost > combatant.sp)
+            {
+                usedSkill = combatant.skillList[0];
+            }
+            UseTheSkill(usedSkill);  
         }
     }
 
@@ -355,7 +371,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (StatSheet combatant in combatants)
             {
-                if (combatant.isEnemy)
+                if (!combatant.isEnemy.Equals(currentCombatant))
                 {
                     float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
                     if (accCheck > currentTarget.evasion)
@@ -518,11 +534,13 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(0);
         bool alreadyApplied = false;
         Component statusEffect = target.gameObject.AddComponent(effect.GetType());
+        StatusEffect statoos = (StatusEffect)statusEffect;
         StatusEffect[] effectsOnTarget = target.GetComponents<StatusEffect>();
         foreach (StatusEffect status in effectsOnTarget)
         {
-            if (status.name.Equals(statusEffect.name))
+            if (status.statusName.Equals(statoos.statusName))
             {
+                Debug.Log("Applying " + statoos.statusName + ", but " + status.statusName + " is already applied!");
                 if (alreadyApplied)
                 {
                     Debug.Log("Adding additional stack of " + status.statusName);
@@ -541,7 +559,11 @@ public class BattleManager : MonoBehaviour
                 Debug.Log("Adding " + status.name);
             }
         }
-        Debug.Log("alreadyApplied equals " + alreadyApplied);
+        if (statoos.OnApply != null)
+        {
+            statoos.OnApply(target);
+            Debug.Log("Using apply effect!");
+        }
     }
 
     public IEnumerator RemoveStatus(string removeType, int removeAmount, StatSheet target)

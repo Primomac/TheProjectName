@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Bomb
+  m_Name: Bump
   m_EditorClassIdentifier: 
-  skillName: Bomb
-  spCost: 20
-  skillDescription: Deals x1.5 Physical DMG to all enemies.
-  skillBackground: {r: 1, g: 0.60828614, b: 0, a: 1}
+  skillName: Bump
+  spCost: 0
+  skillDescription: Deals x0.9 Physical DMG.
+  skillBackground: {r: 0, g: 0, b: 0, a: 255}
   skillSequence:
-  - PlaySound(0, 0, 0)
-  - DealDamage(1.5, Physical, true)
+  - PlaySound(0, 0, 0.03)
+  - DealDamage(0.9, Physical, false)
   sfx:
-  - {fileID: 8300000, guid: 3d4074f66ec329f4f9271c3ae015fcb2, type: 3}
+  - {fileID: 8300000, guid: c4e4e808861821c4fbb4087a64d26ccf, type: 3}
   effects: []
   statuses: []

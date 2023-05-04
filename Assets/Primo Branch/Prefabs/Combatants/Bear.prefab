@@ -138,21 +138,21 @@ MonoBehaviour:
   guts: 10
   focus: 10
   agility: 10
-  maxHp: 0
-  maxSp: 0
-  hp: 0
-  sp: 0
-  offense: 0
-  magic: 0
-  armor: 0
+  maxHp: 200
+  maxSp: 50
+  hp: 200
+  sp: 50
+  offense: 30
+  magic: 20
+  armor: 25
   ward: 0
-  speed: 0
-  accuracy: 0
-  evasion: 0
-  crit: 0
-  punish: 0
+  speed: 20
+  accuracy: 120
+  evasion: 5
+  crit: 15
+  punish: 100
   skillList:
-  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: f97427ae2f6072741854cebf2e72bc0e, type: 2}
 --- !u!61 &2786800538968985609
 BoxCollider2D:
   m_ObjectHideFlags: 0

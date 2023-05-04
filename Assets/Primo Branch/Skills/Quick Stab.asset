@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Quick Stab
   spCost: 5
-  skillDescription: Deals x0.7 Physical DMG and temporarily increases Speed.
+  skillDescription: Deals x0.8 Physical DMG and temporarily increases Speed.
   skillBackground: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 255}
   skillSequence:
   - PlayAnimation(slash)
   - PlaySound(0, 0, 0.03)
   - DealDamage(0.7, Physical, false)
-  - ApplyStatus(0, currentTarget)
-  sfx: []
+  - ApplyStatus(0, currentCombatant)
+  sfx:
+  - {fileID: 8300000, guid: 35ac712f31aa9f84bbe591234eb8073e, type: 3}
   effects: []
   statuses:
-  - {fileID: 2215380829869910875, guid: 77e5846890f716b4594932b2682eb944, type: 3}
+  - {fileID: 4821115552343487724, guid: 8f684a8f12aabd34a9304c1a712ad173, type: 3}
