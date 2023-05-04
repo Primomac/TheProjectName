@@ -153,6 +153,9 @@ MonoBehaviour:
   punish: 50
   skillList:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8354445f3951a7f45878a0176fa471b3, type: 2}
 --- !u!61 &4596780715917975829
 BoxCollider2D:
   m_ObjectHideFlags: 0

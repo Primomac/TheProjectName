@@ -371,7 +371,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (StatSheet combatant in combatants)
             {
-                if (!combatant.isEnemy.Equals(currentCombatant))
+                if (combatant.isEnemy != currentCombatant.isEnemy)
                 {
                     float accCheck = UnityEngine.Random.Range(0, currentCombatant.accuracy + 1);
                     if (accCheck > currentTarget.evasion)
