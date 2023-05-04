@@ -23,10 +23,13 @@ public class ShopController : MonoBehaviour
 
     InventoryManager inventoryManager;
 
+    public ShopVariables shopVariables;
+
     private void Awake()
     {
         shopInstance = this;
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+        shopVariables = GameObject.Find("StoreShopStuff").GetComponent<ShopVariables>();
     }
 
     private void Start()
@@ -40,6 +43,12 @@ public class ShopController : MonoBehaviour
         {
             shopkeeperExists = true;
             Debug.Log("Shopkeeper exists!");
+        }
+
+        if(shopkeeperExists)
+        {
+            shopItemContent = shopVariables.shopContent;
+            shopMenu = shopVariables.shopMenu;
         }
     }
 

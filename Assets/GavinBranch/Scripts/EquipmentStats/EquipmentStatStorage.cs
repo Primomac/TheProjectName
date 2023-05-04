@@ -34,6 +34,7 @@ public class EquipmentStatStorage : MonoBehaviour
     {
         SetBaseStats();
         UpdatePointText();
+        changeStats();
     }
 
     // Update is called once per frame

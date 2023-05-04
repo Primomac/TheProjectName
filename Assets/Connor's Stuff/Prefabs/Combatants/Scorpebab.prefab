@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3082362194682946269}
   m_Layer: 0
   m_Name: Scorpebab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   expCap: 100
   expYield: 50
   coinYield: 0
+  statPoints: 0
   strength: 5
   dexterity: 4
   soul: 7

@@ -58,9 +58,6 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-
-
-
     void OnApplicationQuit()
     {
         SaveItems();
