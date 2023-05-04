@@ -19,17 +19,16 @@ public class EquipManager : MonoBehaviour
     private void Awake()
     {
         equipInstance = this;
-        EquipmentStatStorage.storageInstance.changeStats();
     }
 
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             FindStatStorage();
         }
     }
-
     public void FindStatStorage()
     {
         statStorage = GameObject.Find("StatMenu");
@@ -45,6 +44,7 @@ public class EquipManager : MonoBehaviour
         }
         Items.Add(item);
         EquipmentStatStorage.storageInstance.changeStats();
+        ItemManager.instance.equippedItems.Add(item);
     }
 
     public void Remove(Item item)
@@ -56,5 +56,11 @@ public class EquipManager : MonoBehaviour
         }
         Items.Remove(item);
         EquipmentStatStorage.storageInstance.changeStats();
+        ItemManager.instance.equippedItems.Remove(item);
     }
+    private void OnApplicationQuit()
+    {
+        //itemManager.AddItems(items);
+    }
+
 }

@@ -39,7 +39,7 @@ public class PlayerInteractions : MonoBehaviour
     void Update()
     {
 
-        if (ShopController.shopkeeperExists)
+        if (ShopVariables.shopkeeperExists)
         {
             Transform shop = GameObject.FindGameObjectWithTag("Shopkeeper").transform;
             distanceFromShop = Vector2.Distance(shop.position, player.transform.position);
@@ -56,7 +56,7 @@ public class PlayerInteractions : MonoBehaviour
         if (distanceFromShop > distanceToCloseShop || Input.GetKeyDown(KeyCode.E))
 
         {
-            if(ShopController.shopkeeperExists)
+            if(ShopVariables.shopkeeperExists)
             GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().CloseShop();
         }
         

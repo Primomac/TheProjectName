@@ -19,28 +19,20 @@ public class ShopController : MonoBehaviour
 
     public InventoryItemController[] shopItemsArray;
 
-    public static bool shopkeeperExists;
-
     InventoryManager inventoryManager;
+
+    public ShopVariables shopVariables;
 
     private void Awake()
     {
         shopInstance = this;
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+        shopVariables = GameObject.Find("StoreShopStuff").GetComponent<ShopVariables>();
     }
 
     private void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Shopkeeper") == null)
-        {
-            shopkeeperExists = false;
-            Debug.Log("Shopkeeper is fake and untrue, literally clickbait.");
-        }
-        else
-        {
-            shopkeeperExists = true;
-            Debug.Log("Shopkeeper exists!");
-        }
+
     }
 
     public void Add(Item item)

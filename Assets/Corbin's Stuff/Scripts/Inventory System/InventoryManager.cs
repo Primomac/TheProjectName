@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -31,9 +32,9 @@ public class InventoryManager : MonoBehaviour
     {
         SaveItemsToItemManager();
 
-        if (ShopController.shopkeeperExists || !ShopController.shopkeeperExists)
+        if (ShopVariables.shopkeeperExists || !ShopVariables.shopkeeperExists)
         {
-            if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed)
+            if (Input.GetKeyDown(KeyCode.E) && inventoryIsClosed && SceneManager.GetActiveScene().name != "Title Scene")
             {
                 inventoryIsClosed = false;
                 inventory.SetActive(true);
@@ -81,7 +82,7 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.itemName;
             itemIcon.sprite = item.icon;
 
-            if(ShopController.shopkeeperExists)
+            if(ShopVariables.shopkeeperExists)
             {
                 if (item.equipable && !GameObject.FindGameObjectWithTag("Shopkeeper").GetComponent<ShopController>().shopIsOpen)
                 {
@@ -93,27 +94,14 @@ public class InventoryManager : MonoBehaviour
                     sellButton.gameObject.SetActive(true);
                 }
             }
+
+            if(!ShopVariables.shopkeeperExists && item.equipable)
+            {
+                equipButton.gameObject.SetActive(true);
+            }
         }
 
         SetInventoryItems();
-    }
-
-    public void EnableItemsSell()
-    { 
-        if (enableSell.isOn)
-        {
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("SellButton").gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("SellButton").gameObject.SetActive(false);
-            }
-        }
     }
 
     public void SetInventoryItems()

@@ -1,14 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
-    public List<Item> equipped;
-    public ItemManager instance;
+    public List<Item> equippedItems;
+    public static ItemManager instance;
 
-    void awake()
+    void Awake()
     {
         instance = this;
     }
@@ -17,61 +18,73 @@ public class ItemManager : MonoBehaviour
     private class ItemsWrapper
     {
         public List<Item> Items;
-        public List<Item> Equipped;
+        public List<Item> EquippedItems;
     }
-    public void AddItems (List<Item> itemsToAdd)
+    public void AddItems(List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
     }
     public void AddEquipment(List<Item> equipmentToAdd)
     {
-        equipped.AddRange(equipmentToAdd);
+        equippedItems.AddRange(equipmentToAdd);
     }
 
-    void SaveItems()
+    public void SaveItems()
     {
-        string json = JsonUtility.ToJson(new ItemsWrapper { Items = items });
+        string json = JsonUtility.ToJson(new ItemsWrapper { Items = items, EquippedItems = equippedItems });
         File.WriteAllText(Application.persistentDataPath + "/items.json", json);
     }
 
-    void LoadItems()
+    public void LoadItems()
     {
         if (File.Exists(Application.persistentDataPath + "/items.json"))
         {
             string json = File.ReadAllText(Application.persistentDataPath + "/items.json");
-            items = JsonUtility.FromJson<ItemsWrapper>(json).Items;
+            ItemsWrapper wrapper = JsonUtility.FromJson<ItemsWrapper>(json);
+            items = wrapper.Items;
+            equippedItems = wrapper.EquippedItems;
+
+            if (SceneManager.GetActiveScene().name != "Title Scene" && SceneManager.GetActiveScene().name != "ManagerScene")
+            {
+                foreach (Item item in equippedItems)
+                {
+                    EquipManager.equipInstance.Items.Add(item);
+                }
+            }
         }
     }
-
-    void saveEquipment()
-    {
-        string json = JsonUtility.ToJson(new ItemsWrapper { Equipped =  equipped});
-        File.WriteAllText(Application.persistentDataPath + "/skills.json", json);
-    }
-
-    void LoadEquipment()
-    {
-        if (File.Exists(Application.persistentDataPath + "/skills.json"))
-        {
-            string json = File.ReadAllText(Application.persistentDataPath + "/skills.json");
-            equipped = JsonUtility.FromJson<ItemsWrapper>(json).Equipped;
-        }
-    }
-
-
-
 
     void OnApplicationQuit()
     {
         SaveItems();
-        saveEquipment();
     }
 
-    void Awake()
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         LoadItems();
         LoadEquipment();
     }
-}
+    void LoadEquipment()
+    {
+        if (File.Exists(Application.persistentDataPath + "/skills.json"))
+        {
+            string json = File.ReadAllText(Application.persistentDataPath + "/skills.json"); equippedItems = JsonUtility.FromJson<ItemsWrapper>(json).EquippedItems;          
+            // Add loaded equipped items to EquipManager
+            foreach (Item item in equippedItems)   
+            {           
+                EquipManager.equipInstance.Add(item);      
+            }     } 
+    }
+        }
 
 
