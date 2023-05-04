@@ -18,6 +18,7 @@ public class XpGain : MonoBehaviour
     public static int Xpleft;
     public static float XpCap = 100;
     public static int NumberOfEnemiesKilled;
+    public static int NumberOfCoinsClaimed;
 
     public StatSheet player;
 
@@ -37,6 +38,7 @@ public class XpGain : MonoBehaviour
 
             //add coins
             CoinsController.coinAmount = CoinsController.coinAmount + (int)FindEnemySprites.coinYeild[i];
+            NumberOfCoinsClaimed += (int)FindEnemySprites.coinYeild[i];
 
             NumberOfEnemiesKilled++;
         }

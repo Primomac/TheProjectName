@@ -1,36 +1,39 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
-    public List<Item> equipped;
-    public ItemManager instance;
+    public List<Item> equippedItems;
+    public static ItemManager instance;
 
-    void awake()
+    void Awake()
     {
         instance = this;
+        LoadItems();
     }
 
     [System.Serializable]
     private class ItemsWrapper
     {
         public List<Item> Items;
-        public List<Item> Equipped;
+        public List<Item> EquippedItems;
     }
-    public void AddItems (List<Item> itemsToAdd)
+
+    public void AddItems(List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
     }
-    public void AddEquipment(List<Item> equipmentToAdd)
+
+    public void AddEquippedItems(List<Item> equippedItemsToAdd)
     {
-        equipped.AddRange(equipmentToAdd);
+        equippedItems.AddRange(equippedItemsToAdd);
     }
 
     void SaveItems()
     {
-        string json = JsonUtility.ToJson(new ItemsWrapper { Items = items });
+        string json = JsonUtility.ToJson(new ItemsWrapper { Items = items, EquippedItems = equippedItems });
         File.WriteAllText(Application.persistentDataPath + "/items.json", json);
     }
 
@@ -39,39 +42,19 @@ public class ItemManager : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/items.json"))
         {
             string json = File.ReadAllText(Application.persistentDataPath + "/items.json");
-            items = JsonUtility.FromJson<ItemsWrapper>(json).Items;
+            ItemsWrapper wrapper = JsonUtility.FromJson<ItemsWrapper>(json);
+            items = wrapper.Items;
+            equippedItems = wrapper.EquippedItems;
         }
     }
-
-    void saveEquipment()
-    {
-        string json = JsonUtility.ToJson(new ItemsWrapper { Equipped =  equipped});
-        File.WriteAllText(Application.persistentDataPath + "/skills.json", json);
-    }
-
-    void LoadEquipment()
-    {
-        if (File.Exists(Application.persistentDataPath + "/skills.json"))
-        {
-            string json = File.ReadAllText(Application.persistentDataPath + "/skills.json");
-            equipped = JsonUtility.FromJson<ItemsWrapper>(json).Equipped;
-        }
-    }
-
-
-
 
     void OnApplicationQuit()
     {
         SaveItems();
-        saveEquipment();
     }
 
-    void Awake()
+     void start()
     {
         LoadItems();
-        LoadEquipment();
     }
 }
-
-
