@@ -129,8 +129,8 @@ MonoBehaviour:
   level: 3
   exp: 0
   expCap: 100
-  expYield: 19000
-  coinYield: 2
+  expYield: 25
+  coinYield: 5
   statPoints: 0
   strength: 13
   dexterity: 12
@@ -138,19 +138,19 @@ MonoBehaviour:
   guts: 7
   focus: 6
   agility: 12
-  maxHp: 0
-  maxSp: 0
-  hp: 0
-  sp: 0
-  offense: 0
-  magic: 0
+  maxHp: 50
+  maxSp: 20
+  hp: 50
+  sp: 20
+  offense: 15
+  magic: 10
   armor: 0
-  ward: 0
-  speed: 0
-  accuracy: 0
-  evasion: 0
-  crit: 0
-  punish: 0
+  ward: 50
+  speed: 10
+  accuracy: 100
+  evasion: 5
+  crit: 5
+  punish: 50
   skillList:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
 --- !u!61 &4596780715917975829

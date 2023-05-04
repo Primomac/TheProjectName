@@ -57,21 +57,23 @@ public class StatSheet : MonoBehaviour
         {
             expCap += Mathf.Round(expCap * 0.45f);
         }
+        if (!isEnemy)
+        {
+            maxHp = Mathf.Round(60 * (1 + (strength / 100 * level)));
+            hp = maxHp;
+            maxSp = Mathf.Round(30 * (1 + (focus / 100 * level)));
+            sp = maxSp;
+            offense = Mathf.Round(10 + (0.5f * strength * (level / 3)));
+            magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
+            armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
+            ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
+            speed = Mathf.Round(10 + (1 * (agility / 10 * level)));
 
-        maxHp = Mathf.Round(60 * (1 + (strength / 100 * level)));
-        hp = maxHp;
-        maxSp = Mathf.Round(30 * (1 + (focus / 100 * level)));
-        sp = maxSp;
-        offense = Mathf.Round(10 + (0.5f * strength * (level / 3)));
-        magic = Mathf.Round(10 + (0.5f * soul * (level / 3)));
-        armor = Mathf.Round(5 + (0.5f * guts * (level / 3)));
-        ward = Mathf.Round(5 + (0.5f * soul * (level / 3)));
-        speed = Mathf.Round(10 + (1 * (agility / 10 * level)));
-
-        accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
-        evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
-        crit = Mathf.Round(10 * (1 + (agility / 1000 * level)));
-        punish = Mathf.Round(50 * (1 + (focus / 1000 * level)));
+            accuracy = Mathf.Round(100 * (1 + (dexterity / 1000 * level)));
+            evasion = Mathf.Round(10 * (1 + (agility / 100 * level)));
+            crit = Mathf.Round(10 * (1 + (agility / 1000 * level)));
+            punish = Mathf.Round(50 * (1 + (focus / 1000 * level)));
+        }   
     }
 
     private void OnMouseDown()
@@ -145,21 +147,23 @@ public class StatSheet : MonoBehaviour
                 stats.expCap += Mathf.Round(stats.expCap * 0.45f);
             }
         }
+        if (!isEnemy)
+        {
+            stats.maxHp = Mathf.Round(60 * (1 + (stats.strength / 100 * stats.level)));
+            stats.hp = maxHp;
+            stats.maxSp = Mathf.Round(30 * (1 + (stats.focus / 100 * stats.level)));
+            stats.sp = maxSp;
+            stats.offense = Mathf.Round(10 + (0.5f * stats.strength * (stats.level / 3)));
+            stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
+            stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
+            stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
+            stats.speed = agility;
 
-        stats.maxHp = Mathf.Round(60 * (1 + (stats.strength / 100 * stats.level)));
-        stats.hp = maxHp;
-        stats.maxSp = Mathf.Round(30 * (1 + (stats.focus / 100 * stats.level)));
-        stats.sp = maxSp;
-        stats.offense = Mathf.Round(10 + (0.5f * stats.strength * (stats.level / 3)));
-        stats.magic = Mathf.Round(10 + (0.5f * stats.soul * (stats.level / 3)));
-        stats.armor = Mathf.Round(5 + (0.5f * stats.guts * (stats.level / 3)));
-        stats.ward = Mathf.Round(5 + (0.5f * stats.soul * (stats.level / 3)));
-        stats.speed = agility;
-
-        stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
-        stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
-        stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
-        stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
-        Debug.Log(string.Join(", ", skillList));
+            stats.accuracy = Mathf.Round(100 * (1 + (stats.dexterity / 1000 * stats.level)));
+            stats.evasion = Mathf.Round(10 * (1 + (stats.agility / 100 * stats.level)));
+            stats.crit = Mathf.Round(10 * (1 + (stats.agility / 1000 * stats.level)));
+            stats.punish = Mathf.Round(50 * (1 + (stats.focus / 1000 * stats.level)));
+            Debug.Log(string.Join(", ", skillList));
+        }
     }
 }
