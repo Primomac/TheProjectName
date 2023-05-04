@@ -1021,8 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  equipped: []
-  instance: {fileID: 0}
+  equippedItems: []
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0
@@ -5402,7 +5401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopContent: {fileID: 280958114}
-  shopMenu: {fileID: 1698401201}
+  shopItemMenu: {fileID: 1698401201}
 --- !u!1 &1979922553
 GameObject:
   m_ObjectHideFlags: 0

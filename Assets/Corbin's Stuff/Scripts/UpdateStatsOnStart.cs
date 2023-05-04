@@ -36,8 +36,6 @@ public class UpdateStatsOnStart : MonoBehaviour
             {
                 est.player = GameObject.Find("Player").GetComponent<StatSheet>();
                 est.changeStats();
-                gm.SavePlayer();
-                gm.loadPlayer();
             }
         }
     }

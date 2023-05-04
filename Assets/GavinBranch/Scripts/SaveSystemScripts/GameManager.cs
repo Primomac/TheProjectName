@@ -10,6 +10,15 @@ public class GameManager : MonoBehaviour
     public string fileName;
     public string AutoSave;
     public StatSheet stat;
+
+    private void Awake()
+    {
+        if(GameObject.Find("player") != null)
+        {
+            loadPlayer();
+        }
+    }
+
     public void SavePlayer()
     {
         stat = GameObject.Find("Player").GetComponent<StatSheet>();
@@ -72,6 +81,11 @@ public class GameManager : MonoBehaviour
         {
             stat = GameObject.Find("Player").AddComponent<StatSheet>();
             SaveSystem.SavePlayer(stat, fileName);
+        }
+
+        if(stat != null)
+        {
+            SavePlayer();
         }
 
     }
