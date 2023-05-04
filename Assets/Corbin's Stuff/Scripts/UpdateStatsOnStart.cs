@@ -39,7 +39,6 @@ public class UpdateStatsOnStart : MonoBehaviour
                 gm.SavePlayer();
                 gm.loadPlayer();
             }
-
         }
     }
 }

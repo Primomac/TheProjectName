@@ -967,7 +967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415379339}
   - component: {fileID: 415379341}
-  - component: {fileID: 415379340}
+  - component: {fileID: 415379342}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -990,21 +990,6 @@ Transform:
   m_Father: {fileID: 2000219843}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &415379340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415379338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 690522025ac637941a1b3dde78c8a00e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  equipped: []
-  instance: {fileID: 0}
 --- !u!114 &415379341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,6 +1008,21 @@ MonoBehaviour:
   inventoryIsClosed: 1
   inventory: {fileID: 85441078}
   enableSell: {fileID: 0}
+--- !u!114 &415379342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415379338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8017f4cb052b1a943a2d874e93fa2079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  equipped: []
+  instance: {fileID: 0}
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0

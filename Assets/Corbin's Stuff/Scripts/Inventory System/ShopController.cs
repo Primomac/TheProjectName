@@ -19,8 +19,6 @@ public class ShopController : MonoBehaviour
 
     public InventoryItemController[] shopItemsArray;
 
-    public static bool shopkeeperExists;
-
     InventoryManager inventoryManager;
 
     public ShopVariables shopVariables;
@@ -34,22 +32,7 @@ public class ShopController : MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Shopkeeper") == null)
-        {
-            shopkeeperExists = false;
-            Debug.Log("Shopkeeper is fake and untrue, literally clickbait.");
-        }
-        else
-        {
-            shopkeeperExists = true;
-            Debug.Log("Shopkeeper exists!");
-        }
 
-        if(shopkeeperExists)
-        {
-            shopItemContent = shopVariables.shopContent;
-            shopMenu = shopVariables.shopMenu;
-        }
     }
 
     public void Add(Item item)

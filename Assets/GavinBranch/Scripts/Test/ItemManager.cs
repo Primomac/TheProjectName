@@ -8,7 +8,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> equipped;
     public ItemManager instance;
 
-    void awake()
+    void Awake()
     {
         instance = this;
     }
@@ -62,12 +62,6 @@ public class ItemManager : MonoBehaviour
     {
         SaveItems();
         saveEquipment();
-    }
-
-    void Awake()
-    {
-        LoadItems();
-        LoadEquipment();
     }
 }
 
