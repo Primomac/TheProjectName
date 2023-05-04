@@ -33,6 +33,7 @@ public class PlayerData
     public int coins;
 
     public int numbOfEnemyKilled;
+    public int numbOfCoinsClaimed;
 
     public PlayerData (StatSheet player)
     {
@@ -60,6 +61,7 @@ public class PlayerData
         scene = SceneManager.GetActiveScene().buildIndex;
 
         numbOfEnemyKilled = XpGain.NumberOfEnemiesKilled;
+        numbOfCoinsClaimed = XpGain.NumberOfCoinsClaimed;
 
     }
 }
