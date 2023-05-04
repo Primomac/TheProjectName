@@ -94,27 +94,14 @@ public class InventoryManager : MonoBehaviour
                     sellButton.gameObject.SetActive(true);
                 }
             }
+
+            if(!ShopVariables.shopkeeperExists && item.equipable)
+            {
+                equipButton.gameObject.SetActive(true);
+            }
         }
 
         SetInventoryItems();
-    }
-
-    public void EnableItemsSell()
-    { 
-        if (enableSell.isOn)
-        {
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("SellButton").gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            foreach (Transform item in ItemContent)
-            {
-                item.Find("SellButton").gameObject.SetActive(false);
-            }
-        }
     }
 
     public void SetInventoryItems()
