@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
+  m_Name: Sharpen
+  m_EditorClassIdentifier: 
+  skillName: Sharpen
+  spCost: 15
+  skillDescription: You sharpen your blade. Physical attack is increased
+  skillBackground: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 255}
+  skillSequence:
+  - PlaySound(0, 0, 0.03)
+  - ApplyStatus(1, currentTarget)
+  sfx:
+  - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
+  effects: []
+  statuses:
+  - {fileID: 2215380829869910875, guid: 77e5846890f716b4594932b2682eb944, type: 3}
