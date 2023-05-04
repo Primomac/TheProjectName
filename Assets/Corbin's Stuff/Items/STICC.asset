@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: STICC
   m_EditorClassIdentifier: 
   id: 4
-  itemName: Weird Stick
+  itemName: Stick
   value: 4
   icon: {fileID: 21300000, guid: f35a6f8aef8db694fb2f58bdc39f393d, type: 3}
   sellValue: 7
@@ -21,10 +21,11 @@ MonoBehaviour:
   equipable: 1
   skills:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
-  shopValue: 16
-  strengthModification: 0
-  dexterityModification: 0
-  soulModification: 0
-  gutsModification: 0
-  focusModification: 0
-  agilityModification: 0
+  - {fileID: 11400000, guid: 40ecffe495e861c46966d6cb7c5f60e1, type: 2}
+  shopValue: 24
+  strengthModification: 2
+  dexterityModification: 3
+  soulModification: 1
+  gutsModification: 2
+  focusModification: 2
+  agilityModification: 3
