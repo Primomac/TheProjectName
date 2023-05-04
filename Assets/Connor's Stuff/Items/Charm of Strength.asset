@@ -10,22 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64399b2a33dc5794aaf156a1b772d5e7, type: 3}
-  m_Name: Bow
+  m_Name: Charm of Strength
   m_EditorClassIdentifier: 
-  id: 8
-  itemName: Bow
+  id: 9
+  itemName: Charm of Strength
   value: 30
-  icon: {fileID: 21300000, guid: fdc3fe88d1714b446b5ca2a46a88d0d3, type: 3}
-  sellValue: 25
-  itemType: 0
+  icon: {fileID: 21300000, guid: 43ad1b403b682a84c9d582e4aa04b296, type: 3}
+  sellValue: 60
+  itemType: 2
   equipable: 1
-  skills:
-  - {fileID: 11400000, guid: fd6b919beb6636f40baae206aa3cc926, type: 2}
-  - {fileID: 11400000, guid: 866c5190c44291b489a7d8b9ef5fffb4, type: 2}
-  shopValue: 35
-  strengthModification: 0
+  skills: []
+  shopValue: 85
+  strengthModification: 15
   dexterityModification: 0
   soulModification: 0
   gutsModification: 0
   focusModification: 0
-  agilityModification: 3
+  agilityModification: 0
