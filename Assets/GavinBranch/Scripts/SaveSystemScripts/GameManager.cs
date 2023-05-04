@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Coins: " + CoinsController.coinAmount);
 
         XpGain.NumberOfEnemiesKilled = data.numbOfEnemyKilled;
+        XpGain.NumberOfCoinsClaimed = data.numbOfCoinsClaimed;
 
         XpGain.Xpleft = (int)data.exp;
         XpGain.XpCap = data.expCap;

@@ -5,11 +5,19 @@ using TMPro;
 public class EndSceneStats : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    private int stat;
+    public int stat;
+
     // Start is called before the first frame update
     void Start()
     {
-        stat = XpGain.NumberOfEnemiesKilled;
+        if(stat == 1)
+        {
+            stat = XpGain.NumberOfEnemiesKilled;
+        }
+        if(stat == 2)
+        {
+            stat = XpGain.NumberOfCoinsClaimed;
+        }
     }
 
     // Update is called once per frame
