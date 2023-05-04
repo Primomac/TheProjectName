@@ -152,7 +152,9 @@ MonoBehaviour:
   crit: 15
   punish: 100
   skillList:
-  - {fileID: 11400000, guid: f97427ae2f6072741854cebf2e72bc0e, type: 2}
+  - {fileID: 11400000, guid: aa6f50ec4963e4847af0c25f50386852, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8354445f3951a7f45878a0176fa471b3, type: 2}
 --- !u!61 &2786800538968985609
 BoxCollider2D:
   m_ObjectHideFlags: 0
