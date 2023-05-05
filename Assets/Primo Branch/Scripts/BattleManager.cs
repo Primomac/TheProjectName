@@ -153,7 +153,7 @@ public class BattleManager : MonoBehaviour
             else if (!playerLives)
             {
                 Debug.Log("YOU DIED");
-                Application.Quit();
+                SceneManager.LoadScene("EndScene");
             }
         }
         
