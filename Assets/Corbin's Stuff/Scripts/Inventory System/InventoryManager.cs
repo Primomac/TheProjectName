@@ -20,6 +20,8 @@ public class InventoryManager : MonoBehaviour
 
     InventoryItemController[] inventoryItemsArray;
 
+    InventoryItemController iic;
+
     ItemManager itemManager;
     private void Awake()
     {
@@ -142,4 +144,5 @@ public class InventoryManager : MonoBehaviour
     {
         //itemManager.AddItems(items);
     }
+
 }

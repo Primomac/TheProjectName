@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   equippedItems: []
+  equipManager: {fileID: 1525249748}
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,11 +4340,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items: []
   itemContent: {fileID: 799010247}
+  weaponContent: {fileID: 19051549}
   equipItem: {fileID: 7405269782138134776, guid: 446d953dfee6d5a4789acd51ae91ce38, type: 3}
   equipMenu: {fileID: 2142997753}
   statStorage: {fileID: 0}
   itemsEquipped: 0
   weaponsEquipped: 0
+  equipArray: []
 --- !u!4 &1525249749
 Transform:
   m_ObjectHideFlags: 0
