@@ -4342,8 +4342,9 @@ MonoBehaviour:
   itemContent: {fileID: 799010247}
   weaponContent: {fileID: 19051549}
   equipItem: {fileID: 7405269782138134776, guid: 446d953dfee6d5a4789acd51ae91ce38, type: 3}
+  inventoryMenu: {fileID: 85441078}
   equipMenu: {fileID: 2142997753}
-  statStorage: {fileID: 0}
+  statStorage: {fileID: 555594891}
   itemsEquipped: 0
   weaponsEquipped: 0
   equipArray: []
@@ -5717,7 +5718,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41adb0679c1f182479599245ab0862c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19ad2cbe3b5843e4691c83ad61f1679b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
