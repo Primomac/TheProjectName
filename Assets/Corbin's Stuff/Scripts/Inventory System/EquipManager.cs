@@ -36,6 +36,12 @@ public class EquipManager : MonoBehaviour
         {
             FindStatStorage();
         }
+        if (SceneManager.GetActiveScene().name == "CombatScene" || SceneManager.GetActiveScene().name == "Desert_CombatScene" ||
+            SceneManager.GetActiveScene().name == "Desert_CombatScene_Boss" || SceneManager.GetActiveScene().name == "CombatScene_ForestBoss")
+        {
+            inventoryMenu.SetActive(false);
+            equipMenu.SetActive(false);
+        }
     }
     public void FindStatStorage()
     {

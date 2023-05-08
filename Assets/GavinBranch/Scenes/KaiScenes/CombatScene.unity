@@ -3889,11 +3889,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1540671575}
         m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
-        m_MethodName: BasicAttack
-        m_Mode: 1
+        m_MethodName: MenuSwap
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4809,17 +4809,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 1937159930}
-  tempAttackFX: {fileID: 8300000, guid: 35ac712f31aa9f84bbe591234eb8073e, type: 3}
+  no: {fileID: 0}
   enemyCount: 0
   combatants: []
   initBar: {fileID: 5204352185870994865, guid: ed685243c9ed0494b8dd0943fbb1d9ce, type: 3}
+  statStorage: {fileID: 0}
   encounterScene: 
   battleMusic: {fileID: 0}
   tickInitiative: 0
   inBattle: 0
+  menuDown: 0
+  canClickButtons: 1
+  currentMenu: {fileID: 0}
+  skillButton: {fileID: 0}
   currentCombatant: {fileID: 0}
   currentTarget: {fileID: 0}
-  actionMenu: {fileID: 908377811}
+  actionMenu: {fileID: 0}
   targetIcon: {fileID: 848167528701770924, guid: 83372676862a35d4eae073c1cc9f76a0, type: 3}
   currentTargetIcon: {fileID: 0}
 --- !u!114 &1540671576

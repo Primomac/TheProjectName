@@ -22,10 +22,10 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: fd6b919beb6636f40baae206aa3cc926, type: 2}
   - {fileID: 11400000, guid: 866c5190c44291b489a7d8b9ef5fffb4, type: 2}
-  shopValue: 35
+  shopValue: 95
   strengthModification: 0
-  dexterityModification: 0
+  dexterityModification: 5
   soulModification: 0
-  gutsModification: 0
-  focusModification: 0
+  gutsModification: -1
+  focusModification: 3
   agilityModification: 3

@@ -4342,6 +4342,7 @@ MonoBehaviour:
   itemContent: {fileID: 799010247}
   weaponContent: {fileID: 19051549}
   equipItem: {fileID: 7405269782138134776, guid: 446d953dfee6d5a4789acd51ae91ce38, type: 3}
+  inventoryMenu: {fileID: 85441078}
   equipMenu: {fileID: 2142997753}
   statStorage: {fileID: 0}
   itemsEquipped: 0

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Connor's Stuff/Scenes/ManagerScene.unity
+    guid: 8c39b8058f6cf1841afdd0e17a678da2
+  - enabled: 1
     path: Assets/Connor's Stuff/Scenes/Title Scene.unity
     guid: 757baf99503c613468d856aeb70e17bf
   - enabled: 0
@@ -15,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Corbin's Stuff/Prefabs/Scenes/meow.unity
     guid: 57d8b9feca0183b46b920c8fb7e939d0
   - enabled: 0
-    path: Assets/Connor's Stuff/Scenes/Battle Scenes/Desert_CombatScene.unity
-    guid: 483b3a148e4ab154ebf3fbb831228745
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Connor's Stuff/Scenes/Levels/DesertLevel_1.unity
     guid: 874035aa510b40248adb47cb44b15434
@@ -44,4 +47,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Connor's Stuff/Scenes/Battle Scenes/CombatScene_ForestBoss.unity
     guid: cfc32b3465b460843aa8efb53b7c0ef1
+  - enabled: 1
+    path: Assets/Connor's Stuff/Scenes/Battle Scenes/Desert_CombatScene_Boss.unity
+    guid: fe4a3926e9df7644e96fe1dc1ed8ab00
+  - enabled: 1
+    path: Assets/Connor's Stuff/Scenes/Battle Scenes/Desert_CombatScene.unity
+    guid: 037e1be0ad4e30840a296fff036d7ffa
+  - enabled: 1
+    path: Assets/GavinBranch/Scenes/GavinScenes/EndScene.unity
+    guid: 6847100c6396dee4e9bae0b410cc7325
   m_configObjects: {}
