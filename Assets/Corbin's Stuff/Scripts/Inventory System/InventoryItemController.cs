@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class InventoryItemController : MonoBehaviour
 {
-    Item item;
+    public Item item;
     public bool weaponIsEquipped;
     public bool itemIsEquipped;
     public bool isInShop;
@@ -27,6 +27,16 @@ public class InventoryItemController : MonoBehaviour
         {
             sellText.text = item.sellValue.ToString();
             buyText.text = item.shopValue.ToString();
+        }
+
+        if(!weaponIsEquipped && transform.IsChildOf(GameObject.Find("WeaponContent").transform))
+        {
+            weaponIsEquipped = true;
+        }
+
+        if(!itemIsEquipped && transform.IsChildOf(GameObject.Find("EquipContent").transform))
+        {
+            itemIsEquipped = true;
         }
     }
 
