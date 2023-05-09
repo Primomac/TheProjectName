@@ -202,6 +202,8 @@ public class BattleManager : MonoBehaviour
             combatant.UpdateStats(characterStats);
             combatants.Add(characterStats);
             Debug.Log("Player's level is " + combatant.level + ", which should be equivalent to " + characterStats.level);
+            combatant.hp = combatant.maxHp;
+            combatant.sp = combatant.maxSp;
             characterStats.hpBar = GameObject.Find("PlayerHP");
             characterStats.hpBar.GetComponent<HpBar>().setMaxHealth(characterStats.maxHp);
             characterStats.hpBar.GetComponent<HpBar>().setHealth(characterStats.hp);
@@ -305,7 +307,7 @@ public class BattleManager : MonoBehaviour
                 }
                 if (currentMenu.transform.position.y <= -81)
                 {
-                    currentMenu.transform.position = new Vector2(576, -81);
+                    //currentMenu.transform.position = new Vector2(576, -81);
                     menuDown = true;
                 }
             }
@@ -326,7 +328,7 @@ public class BattleManager : MonoBehaviour
                     }
                     if (menu.transform.position.y >= 81)
                     {
-                        menu.transform.position = new Vector2(576, 81);
+                        //menu.transform.position = new Vector2(576, 81);
                         currentMenu = menu;
                         menuDown = false;
                         Debug.Log("Menu movement has finished!");
@@ -351,8 +353,8 @@ public class BattleManager : MonoBehaviour
         foreach (Skill skill in character.skillList)
         {
             GameObject button = Instantiate(skillButton, GameObject.Find("Skill Spawn " + skillCount).transform.position, transform.rotation);
-            //button.transform.parent = GameObject.Find("Skill Spawn " + skillCount).transform;
             button.transform.SetParent(GameObject.Find("Skill Spawn " + skillCount).transform);
+            for (int i = 0; i < button.transform.parent.childCount - 1; i++) { Destroy(button.transform.parent.GetChild(i)); }
             button.transform.Find("Skill Name").GetComponent<TextMeshProUGUI>().text = skill.skillName;
             button.transform.Find("Skill Cost").GetComponent<TextMeshProUGUI>().text = "" + skill.spCost;
             button.transform.Find("Skill Description").GetComponent<TextMeshProUGUI>().text = skill.skillDescription;

@@ -36,8 +36,7 @@ public class DefenseDown : StatusEffect
         Debug.Log("Current stack is " + stacks);
         for (float i = 0; i < stacks; i++)
         {
-            stats.armor += baseDefense * 0.1f * (1 + i);
-            baseDefense /= 0.9f;
+            stats.armor *= 100 / (100 - ((i + 1) * 10));
         }
         Destroy(this);
     }

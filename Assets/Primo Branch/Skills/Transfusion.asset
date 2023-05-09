@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Transfusion
   spCost: 0
-  skillDescription: Cuts HP by 25% to restore SP by 25%.
+  skillDescription: Cuts HP by 25% to restore SP by 50%.
   skillBackground: {r: 0, g: 0.92264897, b: 0.9716981, a: 1}
   skillSequence:
   - PlaySound(0, 0, 0)
   - Restore(HP, Health, -0.25, currentCombatant)
-  - Restore(SP, Spirit, 0.25, currentCombatant)
+  - Restore(SP, Spirit, 0.50, currentCombatant)
   sfx:
   - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
   effects: []
+  statuses: []
