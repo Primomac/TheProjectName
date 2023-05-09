@@ -20,10 +20,10 @@ MonoBehaviour:
   itemType: 3
   equipable: 1
   skills: []
-  shopValue: 30
-  strengthModification: 0
-  dexterityModification: 0
-  soulModification: 0
+  shopValue: 60
+  strengthModification: 3
+  dexterityModification: 1
+  soulModification: 3
   gutsModification: 5
-  focusModification: 0
+  focusModification: 1
   agilityModification: -2

@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     public List<Item> items;
     public List<Item> equippedItems;
     public static ItemManager instance;
+    public EquipManager equipManager;
 
     void Awake()
     {
@@ -73,7 +74,8 @@ public class ItemManager : MonoBehaviour
     {
         LoadItems();
         LoadEquipment();
-    }
+        //equipManager.SetEquippeditems();
+    }   
     void LoadEquipment()
     {
         if (File.Exists(Application.persistentDataPath + "/skills.json"))

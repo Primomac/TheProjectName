@@ -21,11 +21,12 @@ public class InventoryManager : MonoBehaviour
     InventoryItemController[] inventoryItemsArray;
 
     ItemManager itemManager;
+    EquipManager equipManager;
     private void Awake()
     {
         instance = this;
         itemManager = GetComponent<ItemManager>(); // get the reference to the ItemManager script
-
+        equipManager = GameObject.Find("EquipManager").GetComponent<EquipManager>();
     }
 
     private void Update()
@@ -39,6 +40,7 @@ public class InventoryManager : MonoBehaviour
                 inventoryIsClosed = false;
                 inventory.SetActive(true);
                 ListItems();
+                equipManager.ListEquipItems();
                 GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
             }
             else if (Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
@@ -46,6 +48,7 @@ public class InventoryManager : MonoBehaviour
                 inventoryIsClosed = true;
                 inventory.SetActive(false);
                 Clean();
+                equipManager.Clean();
                 GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
             }
         }
@@ -142,4 +145,5 @@ public class InventoryManager : MonoBehaviour
     {
         //itemManager.AddItems(items);
     }
+
 }

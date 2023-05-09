@@ -126,11 +126,11 @@ MonoBehaviour:
   isEnemy: 1
   characterName: Spirit of the Forest
   initiative: 0
-  level: 1
+  level: 3
   exp: 0
   expCap: 100
-  expYield: 50
-  coinYield: 0
+  expYield: 200
+  coinYield: 40
   statPoints: 0
   strength: 10
   dexterity: 4
@@ -138,21 +138,25 @@ MonoBehaviour:
   guts: 5
   focus: 2
   agility: 1
-  maxHp: 0
-  maxSp: 0
-  hp: 0
-  sp: 0
-  offense: 0
-  magic: 0
-  armor: 0
-  ward: 0
-  speed: 0
-  accuracy: 0
-  evasion: 0
-  crit: 0
-  punish: 0
+  maxHp: 225
+  maxSp: 100
+  hp: 225
+  sp: 100
+  offense: 30
+  magic: 15
+  armor: 10
+  ward: 55
+  speed: 14
+  accuracy: 100
+  evasion: 1
+  crit: 5
+  punish: 50
   skillList:
   - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: 8354445f3951a7f45878a0176fa471b3, type: 2}
 --- !u!61 &3082362194682946269
 BoxCollider2D:
   m_ObjectHideFlags: 0

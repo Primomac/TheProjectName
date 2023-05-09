@@ -3,25 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryItemController : MonoBehaviour
 {
-    Item item;
+    public Item item;
     public bool weaponIsEquipped;
     public bool itemIsEquipped;
     public bool isInShop;
     public bool itemSold;
 
     EquipManager equipManager;
+    InventoryManager inventoryManager;
 
     private void Start()
     {
         equipManager = GameObject.Find("EquipManager").GetComponent<EquipManager>();
+        inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
 
         var sellText = transform.Find("SellPriceText").GetComponent<TextMeshProUGUI>();
         var buyText = transform.Find("BuyPriceText").GetComponent<TextMeshProUGUI>();
-        sellText.text = item.sellValue.ToString();
-        buyText.text = item.shopValue.ToString();
+        foreach(Item item in inventoryManager.items)
+        {
+            sellText.text = item.sellValue.ToString();
+            buyText.text = item.shopValue.ToString();
+        }
+
+        if(!weaponIsEquipped && transform.IsChildOf(GameObject.Find("WeaponContent").transform))
+        {
+            weaponIsEquipped = true;
+        }
+
+        if(!itemIsEquipped && transform.IsChildOf(GameObject.Find("EquipContent").transform))
+        {
+            itemIsEquipped = true;
+        }
     }
 
     private void Update()
@@ -124,6 +140,8 @@ public class InventoryItemController : MonoBehaviour
 
     public void EquipItem()
     {
+        //equipping weapons
+        
         if (item.itemType == Item.ItemType.Weapon && !weaponIsEquipped && item.equipable && equipManager.weaponsEquipped < 2)
         {
             weaponIsEquipped = true;
@@ -151,6 +169,8 @@ public class InventoryItemController : MonoBehaviour
             Debug.Log("Items Equipped: " + equipManager.weaponsEquipped);
         }
 
+        //equipping not weapons
+
         if ((item.itemType == Item.ItemType.Collectible || item.itemType == Item.ItemType.Armor) && !itemIsEquipped && item.equipable && equipManager.itemsEquipped < 3)
         {
             itemIsEquipped = true;
@@ -177,12 +197,13 @@ public class InventoryItemController : MonoBehaviour
         }
     }
 
-    void SetSkills()
+    public void SetSkills()
     {
         StatSheet statSheet = GameObject.Find("Player").GetComponent<StatSheet>();
         foreach (Skill skill in item.skills)
         {
             statSheet.skillList.Add(skill);
+            Debug.Log("Skills Set!");
         }
     }
 
@@ -193,5 +214,5 @@ public class InventoryItemController : MonoBehaviour
         {
             statSheet.skillList.Remove(skill);
         }
-    }    
+    }
 }

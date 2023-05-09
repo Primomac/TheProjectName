@@ -119,40 +119,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe59faa810ed2143bad4ab15d61c3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 9018922824822735927}
+  character: {fileID: 7504242894714914815, guid: 20b33dbfd5457874e97c7fa7bfbdc55e, type: 3}
   hpBar: {fileID: 0}
   initBar: {fileID: 0}
   spMeter: {fileID: 0}
   isEnemy: 1
   characterName: Scorpebab
   initiative: 0
-  level: 1
+  level: 5
   exp: 0
   expCap: 100
-  expYield: 50
-  coinYield: 0
+  expYield: 65
+  coinYield: 4
   statPoints: 0
-  strength: 5
-  dexterity: 4
-  soul: 7
-  guts: 3
-  focus: 6
-  agility: 1
-  maxHp: 0
-  maxSp: 0
-  hp: 0
-  sp: 0
-  offense: 0
-  magic: 0
-  armor: 0
+  strength: 6
+  dexterity: 8
+  soul: 3
+  guts: 7
+  focus: 5
+  agility: 8
+  maxHp: 125
+  maxSp: 40
+  hp: 125
+  sp: 40
+  offense: 20
+  magic: 15
+  armor: 20
   ward: 0
-  speed: 0
-  accuracy: 0
-  evasion: 0
-  crit: 0
-  punish: 0
+  speed: 25
+  accuracy: 115
+  evasion: 15
+  crit: 10
+  punish: 65
   skillList:
-  - {fileID: 11400000, guid: 8c4b0f025be109c4b990206335089e5b, type: 2}
+  - {fileID: 11400000, guid: f97427ae2f6072741854cebf2e72bc0e, type: 2}
+  - {fileID: 11400000, guid: 70ba9569943e305499ffd692fc459541, type: 2}
 --- !u!61 &3082362194682946269
 BoxCollider2D:
   m_ObjectHideFlags: 0
