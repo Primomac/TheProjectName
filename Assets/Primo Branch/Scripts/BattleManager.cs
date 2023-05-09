@@ -184,6 +184,7 @@ public class BattleManager : MonoBehaviour
     {
         if (combatant.isEnemy)
         {
+            Debug.Log("Adding " + combatant.name);
             GameObject character = Instantiate(combatant.character, GameObject.Find("Enemy Spawn " + (enemyCount + 1)).transform.position, transform.rotation);
             StatSheet characterStats = character.GetComponent<StatSheet>();
             enemyCount++;
@@ -391,7 +392,7 @@ public class BattleManager : MonoBehaviour
                             Debug.Log("Dealing " + damageDealt + " Physical damage to " + currentTarget.characterName + "!");
                             combatant.hp -= Mathf.Round(damageDealt);
                             combatant.hpBar.GetComponent<HpBar>().setHealth(combatant.hp);
-                            currentTarget.GetComponent<Animator>().SetTrigger("hurt");
+                            combatant.GetComponent<Animator>().SetTrigger("hurt");
                         }
                         else if (damageType == " Magical")
                         {
