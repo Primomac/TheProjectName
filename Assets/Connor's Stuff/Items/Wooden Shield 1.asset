@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64399b2a33dc5794aaf156a1b772d5e7, type: 3}
-  m_Name: Wooden Shield
+  m_Name: Wooden Shield 1
   m_EditorClassIdentifier: 
   id: 7
   itemName: Wooden Shield
