@@ -355,12 +355,13 @@ public class BattleManager : MonoBehaviour
         {
             GameObject button = Instantiate(skillButton, GameObject.Find("Skill Spawn " + skillCount).transform.position, transform.rotation);
             button.transform.SetParent(GameObject.Find("Skill Spawn " + skillCount).transform);
-            for (int i = 0; i < button.transform.parent.childCount - 1; i++) { Destroy(button.transform.parent.GetChild(i)); }
+            for (int i = 0; i < button.transform.parent.childCount - 1; i++) { Destroy(button.transform.parent.GetChild(i).gameObject); }
             button.transform.Find("Skill Name").GetComponent<TextMeshProUGUI>().text = skill.skillName;
             button.transform.Find("Skill Cost").GetComponent<TextMeshProUGUI>().text = "" + skill.spCost;
             button.transform.Find("Skill Description").GetComponent<TextMeshProUGUI>().text = skill.skillDescription;
             button.transform.Find("Skill Background").GetComponent<Image>().color = skill.skillBackground;
             button.GetComponent<Button>().onClick.AddListener(delegate { UseTheSkill(skill); });
+            button.transform.localScale = new Vector3(button.transform.localScale.x * Screen.width / 1920, button.transform.localScale.y * Screen.height / 1080, 1);
             skillCount++;
         }
     }
