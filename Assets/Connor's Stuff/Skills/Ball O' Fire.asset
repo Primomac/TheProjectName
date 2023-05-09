@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Starfall
+  m_Name: Ball O' Fire
   m_EditorClassIdentifier: 
-  skillName: Starfall
-  spCost: 25
-  skillDescription: Drops star remains on all enemies
-  skillBackground: {r: 0.7264151, g: 0.38033998, b: 0.69340616, a: 255}
+  skillName: Ball O' Fire
+  spCost: 10
+  skillDescription: Hurl a ball o' fire at your enemies. Deals 2x magic damage
+  skillBackground: {r: 0.9716981, g: 0.7137216, b: 0.31626022, a: 255}
   skillSequence:
   - PlaySound(0, 0, 0.03)
-  - DealDamage(4, Magical, true)
+  - DealDamage(2, Magical, false)
   - ApplyStatus(0, currentTarget)
   sfx:
-  - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
+  - {fileID: 8300000, guid: 0a73c55bbdfbd78488a928216c8aea2a, type: 3}
   effects: []
   statuses:
-  - {fileID: 5506903788262190960, guid: 4386d712cdf5d934e80d098fd7cb8bed, type: 3}
+  - {fileID: 5153813676845492312, guid: c6d8c681fb407ae4b9891eb798dbf402, type: 3}
