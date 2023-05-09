@@ -56,7 +56,6 @@ public class EquipmentStatStorage : MonoBehaviour
 
     public void changeStats()
     {
-        Debug.Log("Stats changed!");
         EM = GameObject.Find("EquipManager");
         // reset stats
         player.strength = baseStats[0];
@@ -81,7 +80,6 @@ public class EquipmentStatStorage : MonoBehaviour
 
     public void SetBaseStats()
     {
-        Debug.Log("Base stats set!");
         EquipmentStatsArray[0] = 0;
         EquipmentStatsArray[1] = 0;
         EquipmentStatsArray[2] = 0;
@@ -98,8 +96,6 @@ public class EquipmentStatStorage : MonoBehaviour
             EquipmentStatsArray[4] = EquipmentStatsArray[4] + item.focusModification;
             EquipmentStatsArray[5] = EquipmentStatsArray[5] + item.agilityModification;
             StatsForText[0] =item.strengthModification;
-            Debug.Log(item.strengthModification);
-            Debug.Log(StatsForText[0]);
             StatsForText[1] =item.dexterityModification;
             StatsForText[2] =item.soulModification;
             StatsForText[3] =item.gutsModification;
