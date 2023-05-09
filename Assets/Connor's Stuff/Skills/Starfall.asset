@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Poke
+  m_Name: Starfall
   m_EditorClassIdentifier: 
-  skillName: Poke
-  spCost: 0
-  skillDescription: the enemy gets poked
-  skillBackground: {r: 0, g: 0.754717, b: 0.5789145, a: 255}
+  skillName: Starfall
+  spCost: 45
+  skillDescription: Drops star pieces on all enemies
+  skillBackground: {r: 0.7264151, g: 0.38033998, b: 0.69340616, a: 255}
   skillSequence:
-  - PlaySound(0,0, 0.03)
-  - DealDamage(0.5, Physical, false)
-  sfx: []
+  - PlaySound(0, 0, 0.03)
+  - DealDamage(1.2, Magical, false)
+  sfx:
+  - {fileID: 8300000, guid: c4e4e808861821c4fbb4087a64d26ccf, type: 3}
   effects: []
   statuses: []
