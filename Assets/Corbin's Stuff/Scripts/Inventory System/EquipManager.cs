@@ -9,8 +9,8 @@ public class EquipManager : MonoBehaviour
 {
     public static EquipManager equipInstance;
     public List<Item> Items = new List<Item>();
-    InventoryItemController[] equipItemsArray;
-    InventoryItemController[] equipWeaponsArray;
+    public InventoryItemController[] equipItemsArray;
+    public InventoryItemController[] equipWeaponsArray;
          
     public Transform itemContent;
     public Transform weaponContent;
@@ -26,7 +26,7 @@ public class EquipManager : MonoBehaviour
     InventoryItemController iic;
     InventoryItemController[] iicArray;
 
-    public InventoryItemController[] equipArray;
+    ItemManager itemManager;
 
     private void OnEnable()
     {
@@ -42,6 +42,7 @@ public class EquipManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "Title Scene" && SceneManager.GetActiveScene().name != "ManagerScene" && SceneManager.GetActiveScene().name != "CombatScene" && SceneManager.GetActiveScene().name != "Desert_CombatScene")
         {
+
             inventoryMenu.SetActive(true);
             equipMenu.SetActive(true);
             iicArray = FindObjectsOfType<InventoryItemController>();
@@ -74,6 +75,11 @@ public class EquipManager : MonoBehaviour
     private void Awake()
     {
         equipInstance = this;
+    }
+
+    private void Start()
+    {
+        itemManager = GameObject.Find("InventoryManager").GetComponent<ItemManager>();
     }
 
     private void Update()
@@ -118,7 +124,7 @@ public class EquipManager : MonoBehaviour
     {
         Clean();
 
-        foreach(Item item in Items)
+        foreach(var item in itemManager.equippedItems)
         {
             if(item.itemType == Item.ItemType.Weapon)
             {
@@ -152,9 +158,16 @@ public class EquipManager : MonoBehaviour
     public void SetEquippedItems()
     {
         equipWeaponsArray = weaponContent.GetComponentsInChildren<InventoryItemController>();
-        for (int i = 0; i < Items.Count; i++)
+        if(equipWeaponsArray.Length > 0)
         {
-            equipWeaponsArray[i].AddItem(Items[i]);
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if(iic != null && iic.item.itemType == Item.ItemType.Weapon)
+                {
+                    equipWeaponsArray[i].AddItem(Items[i]);
+                    weaponsEquipped = equipWeaponsArray.Length;
+                }
+            }
         }
 
         equipItemsArray = itemContent.GetComponentsInChildren<InventoryItemController>();
@@ -162,7 +175,11 @@ public class EquipManager : MonoBehaviour
         {
             for (int i = 0; i < Items.Count; i++)
             {
-                equipItemsArray[i].AddItem(Items[i]);
+                if(iic != null && iic.item.itemType != Item.ItemType.Weapon)
+                {
+                    equipItemsArray[i].AddItem(Items[i]);
+                    itemsEquipped = equipItemsArray.Length;
+                }
             }
         }
     }

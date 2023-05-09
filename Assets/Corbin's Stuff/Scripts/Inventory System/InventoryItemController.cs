@@ -29,14 +29,32 @@ public class InventoryItemController : MonoBehaviour
             buyText.text = item.shopValue.ToString();
         }
 
-        if(!weaponIsEquipped && transform.IsChildOf(GameObject.Find("WeaponContent").transform))
+        GameObject weaponContentGO = GameObject.Find("WeaponContent");
+        GameObject equipContentGO = GameObject.Find("EquipContent");
+        if(weaponContentGO != null)
         {
-            weaponIsEquipped = true;
+            if (transform.IsChildOf(weaponContentGO.transform))
+            {
+                Debug.Log("Weapon: " + item);
+                weaponIsEquipped = true;
+            }
+            else
+            {
+                weaponIsEquipped = false;
+            }
         }
 
-        if(!itemIsEquipped && transform.IsChildOf(GameObject.Find("EquipContent").transform))
+        if(equipContentGO != null)
         {
-            itemIsEquipped = true;
+            if(transform.IsChildOf(equipContentGO.transform))
+            {
+                Debug.Log("Item: " + item);
+                itemIsEquipped = true;
+            }
+            else
+            {
+                itemIsEquipped = false;
+            }
         }
     }
 
@@ -142,7 +160,7 @@ public class InventoryItemController : MonoBehaviour
     {
         //equipping weapons
         
-        if (item.itemType == Item.ItemType.Weapon && !weaponIsEquipped && item.equipable && equipManager.weaponsEquipped < 2)
+        if (item != null && item.itemType == Item.ItemType.Weapon && !weaponIsEquipped && item.equipable && equipManager.weaponsEquipped < 2)
         {
             weaponIsEquipped = true;
             InventoryManager.instance.Remove(item);
@@ -152,7 +170,7 @@ public class InventoryItemController : MonoBehaviour
             Debug.Log("Item Equipped");
         }
 
-        else if (item.equipable && weaponIsEquipped)
+        else if (item != null && item.equipable && weaponIsEquipped)
         {
             weaponIsEquipped = false;
             EquipManager.equipInstance.Remove(item);
@@ -171,7 +189,7 @@ public class InventoryItemController : MonoBehaviour
 
         //equipping not weapons
 
-        if ((item.itemType == Item.ItemType.Collectible || item.itemType == Item.ItemType.Armor) && !itemIsEquipped && item.equipable && equipManager.itemsEquipped < 3)
+        if (item != null && item.itemType != Item.ItemType.Weapon  && !itemIsEquipped && item.equipable && equipManager.itemsEquipped < 3)
         {
             itemIsEquipped = true;
             InventoryManager.instance.Remove(item);
@@ -180,7 +198,7 @@ public class InventoryItemController : MonoBehaviour
             Debug.Log("Item Equipped");
         }
 
-        else if (item.equipable && itemIsEquipped)
+        else if (item != null && item.equipable && itemIsEquipped)
         {
             EquipManager.equipInstance.Remove(item);
             InventoryManager.instance.Add(item);
