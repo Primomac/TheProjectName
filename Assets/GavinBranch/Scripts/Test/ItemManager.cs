@@ -7,6 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
     public List<Item> equippedItems;
+    public List<int> itemIDs;
     public static ItemManager instance;
     public EquipManager equipManager;
 
