@@ -74,20 +74,7 @@ public class ItemManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         LoadItems();
-        LoadEquipment();
-        //equipManager.SetEquippeditems();
-    }   
-    void LoadEquipment()
-    {
-        if (File.Exists(Application.persistentDataPath + "/skills.json"))
-        {
-            string json = File.ReadAllText(Application.persistentDataPath + "/skills.json"); equippedItems = JsonUtility.FromJson<ItemsWrapper>(json).EquippedItems;          
-            // Add loaded equipped items to EquipManager
-            foreach (Item item in equippedItems)   
-            {           
-                EquipManager.equipInstance.Add(item);      
-            }     } 
     }
-        }
+}
 
 
