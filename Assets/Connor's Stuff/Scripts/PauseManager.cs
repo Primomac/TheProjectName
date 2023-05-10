@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    public GameObject pauseControlDisplay;
     public GameObject controlsMenu;
     public GameObject pauseMenu;
     public bool isPaused;
@@ -35,8 +36,8 @@ public class PauseManager : MonoBehaviour
     void Update()
     {
         if(SceneManager.GetActiveScene().name != "Title Scene" && SceneManager.GetActiveScene().name != "Desert_CombatScene"
-            && SceneManager.GetActiveScene().name != "CombatScene" && SceneManager.GetActiveScene().name != "Desert_CombatScene_Boss"
-            && SceneManager.GetActiveScene().name != "CombatScene_ForestBoss")
+            && SceneManager.GetActiveScene().name != "CombatScene 1" && SceneManager.GetActiveScene().name != "Desert_CombatScene_Boss"
+            && SceneManager.GetActiveScene().name != "CombatScene_ForestBoss" && SceneManager.GetActiveScene().name != "VictoryScene")
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -57,6 +58,20 @@ public class PauseManager : MonoBehaviour
 
                 isPaused = !isPaused;
             }
+
+            if(!isPaused && InventoryManager.instance.inventoryIsClosed)
+            {
+                pauseControlDisplay.SetActive(true);
+            }
+            else
+            {
+                pauseControlDisplay.SetActive(false);
+            }
+            
+        }
+        else
+        {
+            pauseControlDisplay.SetActive(false);
         }
     }
 
