@@ -26574,7 +26574,7 @@ PrefabInstance:
     - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
       propertyPath: skillList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a1562879a9591ff4ca9843d769e4fd2b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 6566293573052981436, guid: 5638cca9e529e58438b8498686528cb6, type: 3}
       propertyPath: skillList.Array.data[1]
       value: 

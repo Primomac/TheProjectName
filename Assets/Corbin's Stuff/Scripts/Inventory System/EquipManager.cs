@@ -130,7 +130,7 @@ public class EquipManager : MonoBehaviour
     {
         Clean();
 
-        foreach(var item in itemManager.equippedItems)
+        foreach(Item item in ItemManager.instance.equippedItems)
         {
             if(item.itemType == Item.ItemType.Weapon)
             {
@@ -164,15 +164,13 @@ public class EquipManager : MonoBehaviour
     public void SetEquippedItems()
     {
         equipWeaponsArray = weaponContent.GetComponentsInChildren<InventoryItemController>();
-        if(equipWeaponsArray.Length > 0)
+
+        if (equipWeaponsArray.Length > 0)
         {
             for (int i = 0; i < Items.Count; i++)
             {
-                if(iic != null && iic.item.itemType == Item.ItemType.Weapon)
-                {
-                    equipWeaponsArray[i].AddItem(Items[i]);
-                    weaponsEquipped = equipWeaponsArray.Length;
-                }
+                equipWeaponsArray[i].AddItem(Items[i]);
+
             }
         }
 
