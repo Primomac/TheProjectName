@@ -42,7 +42,7 @@ public class EquipmentStatStorage : MonoBehaviour
     {
         UpdatePointText();
 
-        if(player == null)
+        if(player == null && SceneManager.GetActiveScene().name != "VictoryScene")
         {
             player = GameObject.Find("Player").GetComponent<StatSheet>();
             changeStats();

@@ -40,16 +40,16 @@ public class InventoryManager : MonoBehaviour
                 inventoryIsClosed = false;
                 inventory.SetActive(true);
                 ListItems();
-                equipManager.ListEquipItems();
-                GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
+                //equipManager.ListEquipItems();
+                equipManager.equipMenu.SetActive(true);
             }
             else if (Input.GetKeyDown(KeyCode.E) && !inventoryIsClosed)
             {
                 inventoryIsClosed = true;
                 inventory.SetActive(false);
                 Clean();
-                equipManager.Clean();
-                GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
+                //equipManager.Clean();
+                equipManager.equipMenu.SetActive(false);
             }
         }
     }

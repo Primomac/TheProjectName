@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10
   itemName: Standard Wand
-  value: 5
   icon: {fileID: 21300000, guid: 54835e9db27bed34aa7c01223515e256, type: 3}
   sellValue: 25
   itemType: 0
@@ -23,7 +22,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed6b507d0ad18f34a8f149a6a2966de7, type: 2}
   - {fileID: 11400000, guid: d42905f027e458f40bee864d8d895cd9, type: 2}
   - {fileID: 11400000, guid: a63dab6d1196e0141b8b5e271b9651ad, type: 2}
-  shopValue: 720
+  shopValue: 0
   strengthModification: 0
   dexterityModification: 0
   soulModification: 0

@@ -1027,9 +1027,9 @@ MonoBehaviour:
   itemIDs: 
   itemToAdd: {fileID: 0}
   myArrayOfScriptableItems:
-  - {fileID: 11400000, guid: 7e727e7fc6108604b8f14b59ee11b074, type: 2}
+  - {fileID: 11400000, guid: 2a8b008b2b1c4b8498d6099efe551b8e, type: 2}
   - {fileID: 11400000, guid: 93295a57b7cf4f34282ddbd1fe539b1f, type: 2}
-  - {fileID: 11400000, guid: 7e727e7fc6108604b8f14b59ee11b074, type: 2}
+  - {fileID: 11400000, guid: e6171041601f08c4e9bc34b87e33d3eb, type: 2}
   - {fileID: 11400000, guid: a862a68ea87ce0647a13492eeaf5e15b, type: 2}
   - {fileID: 11400000, guid: 916e2633f7e3eeb469e22cf43731ce73, type: 2}
   - {fileID: 11400000, guid: ea64682ed92541640aa498e7b2ce7e51, type: 2}
@@ -1040,6 +1040,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea18f166feafd094092ac352d37b729d, type: 2}
   - {fileID: 11400000, guid: 21d63c0e4648d224b926b91c40eec5ad, type: 2}
   - {fileID: 11400000, guid: cd5770ba9aef5f245bb2841fe19a643e, type: 2}
+  - {fileID: 11400000, guid: 8b105bc5e34cb08488906e7783ecc04e, type: 2}
+  - {fileID: 11400000, guid: 3d073ebf68a128942b79c46d5427e030, type: 2}
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4366,6 +4368,8 @@ MonoBehaviour:
   statStorage: {fileID: 555594891}
   itemsEquipped: 0
   weaponsEquipped: 0
+  iic: {fileID: 0}
+  iicArray: []
 --- !u!4 &1525249749
 Transform:
   m_ObjectHideFlags: 0

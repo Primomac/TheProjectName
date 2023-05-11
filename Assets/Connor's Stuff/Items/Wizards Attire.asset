@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13
   itemName: Wizards Attire
-  value: 30
   icon: {fileID: 21300000, guid: 7d1560dde8c318b439552b240af8ff73, type: 3}
   sellValue: 45
   itemType: 3
   equipable: 1
   skills: []
-  shopValue: 54
+  shopValue: 0
   strengthModification: 0
   dexterityModification: 0
   soulModification: 5

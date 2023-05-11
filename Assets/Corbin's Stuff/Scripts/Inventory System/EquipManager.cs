@@ -44,15 +44,13 @@ public class EquipManager : MonoBehaviour
         {
             InventoryManager.instance.inventoryIsClosed = false;
             inventoryMenu.SetActive(true);
+            equipMenu.SetActive(true);
             InventoryManager.instance.ListItems();
-            ListEquipItems();
-            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
             iicArray = FindObjectsOfType<InventoryItemController>();
             foreach (InventoryItemController iic in iicArray)
             {
                 if (iic.transform.parent == weaponContent)
                 {
-                    Debug.Log("ITS NOT NULL, DIE");
                     if (iic != null)
                     {
                         iic.SetSkills();
@@ -67,7 +65,6 @@ public class EquipManager : MonoBehaviour
             InventoryManager.instance.inventoryIsClosed = true;
             inventoryMenu.SetActive(false);
             InventoryManager.instance.Clean();
-            Clean();
             GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
         }
     }
@@ -105,12 +102,12 @@ public class EquipManager : MonoBehaviour
     {
         if(statStorage == null)
         {
-            Debug.Log("Storage Found");
             FindStatStorage();
+            Debug.Log("Storage Found");
         }
         Items.Add(item);
         EquipmentStatStorage.storageInstance.changeStats();
-        ItemManager.instance.equippedItems.Add(item);
+        itemManager.equippedItems.Add(item);
         iic = FindObjectOfType<InventoryItemController>();
     }
 
@@ -123,14 +120,14 @@ public class EquipManager : MonoBehaviour
         }
         Items.Remove(item);
         EquipmentStatStorage.storageInstance.changeStats();
-        ItemManager.instance.equippedItems.Remove(item);
+        itemManager.equippedItems.Remove(item);
     }
 
-    public void ListEquipItems()
+    /*public void ListEquipItems()
     {
         Clean();
 
-        foreach(Item item in ItemManager.instance.equippedItems)
+        foreach(Item item in itemManager.equippedItems)
         {
             if(item.itemType == Item.ItemType.Weapon)
             {
@@ -190,9 +187,9 @@ public class EquipManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
-    public void Clean()
+    /*public void Clean()
     {
         foreach (Transform item in itemContent)
         {
@@ -202,7 +199,7 @@ public class EquipManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-    }
+    }*/
 
     private void OnApplicationQuit()
     {

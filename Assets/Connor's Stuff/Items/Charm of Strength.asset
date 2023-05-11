@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 9
   itemName: Charm of Strength
-  value: 30
   icon: {fileID: 21300000, guid: 43ad1b403b682a84c9d582e4aa04b296, type: 3}
   sellValue: 60
   itemType: 2
   equipable: 1
   skills: []
-  shopValue: 72
+  shopValue: 0
   strengthModification: 15
   dexterityModification: 0
   soulModification: 0

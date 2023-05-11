@@ -114,10 +114,6 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-
-
-
-
     public void SaveItemIDs()
     {
         Debug.Log("ID saved");

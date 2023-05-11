@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 12
   itemName: Wand of The Stars
-  value: 5
   icon: {fileID: 21300000, guid: c4b0b6a66c11c4741bf916c56d196c6f, type: 3}
   sellValue: 500
   itemType: 0
@@ -22,7 +21,7 @@ MonoBehaviour:
   skills:
   - {fileID: 11400000, guid: 401811c5883f1c4479f4d32574c4cce8, type: 2}
   - {fileID: 11400000, guid: 7946666fc2152f8469a8ad7205bb7cbb, type: 2}
-  shopValue: 0
+  shopValue: 600
   strengthModification: 0
   dexterityModification: 0
   soulModification: 0
