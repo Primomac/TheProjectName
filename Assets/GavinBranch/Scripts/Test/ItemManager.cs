@@ -7,9 +7,16 @@ public class ItemManager : MonoBehaviour
 {
     public List<Item> items;
     public List<Item> equippedItems;
-    public List<int> itemIDs;
     public static ItemManager instance;
     public EquipManager equipManager;
+
+    public List<int> itemIDsEquipped = new List<int>();
+    public List<int> itemIDs = new List<int>();
+    public Item itemToAdd;
+    public Item[] myArrayOfScriptableItems;
+
+
+
 
     void Awake()
     {
@@ -21,7 +28,10 @@ public class ItemManager : MonoBehaviour
     {
         public List<Item> Items;
         public List<Item> EquippedItems;
+        public List<int> ItemIDs;
     }
+
+
     public void AddItems(List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
@@ -31,13 +41,13 @@ public class ItemManager : MonoBehaviour
         equippedItems.AddRange(equipmentToAdd);
     }
 
-    public void SaveItems()
+    /*public void SaveItems()
     {
         string json = JsonUtility.ToJson(new ItemsWrapper { Items = items, EquippedItems = equippedItems });
         File.WriteAllText(Application.persistentDataPath + "/items.json", json);
     }
 
-    public void LoadItems()
+    //public void LoadItems()
     {
         if (File.Exists(Application.persistentDataPath + "/items.json"))
         {
@@ -54,11 +64,13 @@ public class ItemManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     void OnApplicationQuit()
     {
-        SaveItems();
+        getId();
+        SaveItemIDs();
+        SaveItemIDsEquipped();
     }
 
     private void OnEnable()
@@ -73,21 +85,148 @@ public class ItemManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        LoadItems();
-        LoadEquipment();
-        //equipManager.SetEquippeditems();
-    }   
-    void LoadEquipment()
-    {
-        if (File.Exists(Application.persistentDataPath + "/skills.json"))
-        {
-            string json = File.ReadAllText(Application.persistentDataPath + "/skills.json"); equippedItems = JsonUtility.FromJson<ItemsWrapper>(json).EquippedItems;          
-            // Add loaded equipped items to EquipManager
-            foreach (Item item in equippedItems)   
-            {           
-                EquipManager.equipInstance.Add(item);      
-            }     } 
+        LoadItemIDs();
+        LoadItemIDsEquipped();
+        addItems();
     }
+    public void getId()
+    {
+        itemIDs.Clear();
+        itemIDsEquipped.Clear();
+        foreach (Item item in items)
+        {
+            int itemID = item.id;
+            itemIDs.Add(itemID);
         }
+
+        foreach (Item item in equippedItems)
+        {
+            int itemID = item.id;
+            itemIDsEquipped.Add(itemID);
+        }
+    }
+
+
+
+
+
+    public void SaveItemIDs()
+    {
+        Debug.Log("ID saved");
+        FileStream fileStream = new FileStream(Application.persistentDataPath + "/itemIDs.bin", FileMode.Create);
+        BinaryWriter writer = new BinaryWriter(fileStream);
+
+        foreach (int id in itemIDs)
+        {
+            writer.Write(id);
+        }
+
+        writer.Close();
+        fileStream.Close();
+    }
+
+    public void LoadItemIDs()
+    {
+        if (File.Exists(Application.persistentDataPath + "/itemIDs.bin"))
+        {
+            FileStream fileStream = new FileStream(Application.persistentDataPath + "/itemIDs.bin", FileMode.Open);
+            BinaryReader reader = new BinaryReader(fileStream);
+
+            List<int> loadedItemIDs = new List<int>();
+            while (reader.BaseStream.Position < reader.BaseStream.Length)
+            {
+                int id = reader.ReadInt32();
+                loadedItemIDs.Add(id);
+            }
+
+            reader.Close();
+            fileStream.Close();
+
+            itemIDs = loadedItemIDs;
+            Debug.Log(itemIDs);
+        }
+    }
+
+    public void SaveItemIDsEquipped()
+    {
+        Debug.Log("Equipped IDs saved");
+        FileStream fileStream = new FileStream(Application.persistentDataPath + "/itemIDsEquipped.bin", FileMode.Create);
+        BinaryWriter writer = new BinaryWriter(fileStream);
+
+        foreach (int id in itemIDsEquipped)
+        {
+            writer.Write(id);
+        }
+
+        writer.Close();
+        fileStream.Close();
+    }
+
+    public void LoadItemIDsEquipped()
+    {
+        if (File.Exists(Application.persistentDataPath + "/itemIDsEquipped.bin"))
+        {
+            FileStream fileStream = new FileStream(Application.persistentDataPath + "/itemIDsEquipped.bin", FileMode.Open);
+            BinaryReader reader = new BinaryReader(fileStream);
+
+            List<int> loadedItemIDsEquipped = new List<int>();
+            while (reader.BaseStream.Position < reader.BaseStream.Length)
+            {
+                int id = reader.ReadInt32();
+                loadedItemIDsEquipped.Add(id);
+            }
+
+            reader.Close();
+            fileStream.Close();
+
+            itemIDsEquipped = loadedItemIDsEquipped;
+            Debug.Log("Equipped IDs loaded");
+        }
+    }
+
+
+    public void addItems()
+    {
+        items.Clear();
+        equippedItems.Clear();
+        foreach (int itemID in itemIDs)
+        {
+            // Find the ScriptableObject item with the matching ID
+            itemToAdd = myArrayOfScriptableItems[itemID];
+
+            if (itemToAdd != null)
+            {
+                // Add the item to the itemList
+                items.Add(itemToAdd);
+            }
+            else
+            {
+                Debug.LogWarning("No item found with ID " + itemID);
+            }
+        }
+
+        foreach (int itemID in itemIDsEquipped)
+        {
+            // Find the ScriptableObject item with the matching ID
+            itemToAdd = myArrayOfScriptableItems[itemID];
+
+            if (itemToAdd != null)
+            {
+                // Add the item to the itemList
+                items.Add(itemToAdd);
+            }
+            else
+            {
+                Debug.LogWarning("No item found with ID " + itemID);
+            }
+        }
+    }
+
+
+
+
+
+
+}
 
 

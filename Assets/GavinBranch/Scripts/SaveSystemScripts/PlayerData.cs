@@ -35,6 +35,9 @@ public class PlayerData
     public int numbOfEnemyKilled;
     public int numbOfCoinsClaimed;
 
+    public List<Item> equippedItems;
+    public List<Item> inventoryItems;
+
     public PlayerData (StatSheet player)
     {
 

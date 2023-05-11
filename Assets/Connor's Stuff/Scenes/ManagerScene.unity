@@ -1022,8 +1022,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items: []
   equippedItems: []
-  itemIDs: 
   equipManager: {fileID: 1525249748}
+  itemIDsEquipped: 
+  itemIDs: 
+  itemToAdd: {fileID: 0}
+  myArrayOfScriptableItems:
+  - {fileID: 11400000, guid: 7e727e7fc6108604b8f14b59ee11b074, type: 2}
+  - {fileID: 11400000, guid: 93295a57b7cf4f34282ddbd1fe539b1f, type: 2}
+  - {fileID: 11400000, guid: 7e727e7fc6108604b8f14b59ee11b074, type: 2}
+  - {fileID: 11400000, guid: a862a68ea87ce0647a13492eeaf5e15b, type: 2}
+  - {fileID: 11400000, guid: 916e2633f7e3eeb469e22cf43731ce73, type: 2}
+  - {fileID: 11400000, guid: ea64682ed92541640aa498e7b2ce7e51, type: 2}
+  - {fileID: 11400000, guid: 802bdd084ba5e964c9149b1ba49c62ed, type: 2}
+  - {fileID: 11400000, guid: a22991ac29020bb468b3a6417c19392e, type: 2}
+  - {fileID: 11400000, guid: 1faecff047fe4dd40b633f71949dafbd, type: 2}
+  - {fileID: 11400000, guid: 9994baf9603dc254d9c8fb04cebcd4ff, type: 2}
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0

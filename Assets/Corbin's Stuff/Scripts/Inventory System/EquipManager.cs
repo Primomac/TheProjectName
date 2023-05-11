@@ -124,7 +124,7 @@ public class EquipManager : MonoBehaviour
     {
         Clean();
 
-        foreach(Item item in Items)
+        foreach(Item item in ItemManager.instance.equippedItems)
         {
             if(item.itemType == Item.ItemType.Weapon)
             {
@@ -158,9 +158,12 @@ public class EquipManager : MonoBehaviour
     public void SetEquippedItems()
     {
         equipWeaponsArray = weaponContent.GetComponentsInChildren<InventoryItemController>();
-        for (int i = 0; i < Items.Count; i++)
+        if (equipWeaponsArray.Length > 0)
         {
-            equipWeaponsArray[i].AddItem(Items[i]);
+            for (int i = 0; i < Items.Count; i++)
+            {
+                equipWeaponsArray[i].AddItem(Items[i]);
+            }
         }
 
         equipItemsArray = itemContent.GetComponentsInChildren<InventoryItemController>();
