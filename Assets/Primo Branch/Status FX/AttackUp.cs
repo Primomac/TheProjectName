@@ -7,6 +7,7 @@ public class AttackUp : StatusEffect
     public override void Initialize()
     {
         base.Initialize();
+        statusIcon = Resources.Load<Sprite>("Status Icons/attackUp");
         OnApply = BuffAttack;
         OnExpire = RemoveBuff;
         OnTick = null;

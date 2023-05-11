@@ -7,6 +7,7 @@ public class SpeedUp : StatusEffect
     public override void Initialize()
     {
         base.Initialize();
+        statusIcon = Resources.Load<Sprite>("Status Icons/speedUp");
         OnApply = BuffSpeed;
         OnExpire = RemoveBuff;
         OnTick = null;
