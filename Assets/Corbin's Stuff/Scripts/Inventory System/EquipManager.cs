@@ -22,9 +22,9 @@ public class EquipManager : MonoBehaviour
 
     public int itemsEquipped = 0;
     public int weaponsEquipped = 0;
-
-    InventoryItemController iic;
-    InventoryItemController[] iicArray;
+    
+    public InventoryItemController iic;
+    public InventoryItemController[] iicArray;
 
     ItemManager itemManager;
 
@@ -40,35 +40,35 @@ public class EquipManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name != "Title Scene" && SceneManager.GetActiveScene().name != "ManagerScene" && SceneManager.GetActiveScene().name != "CombatScene" && SceneManager.GetActiveScene().name != "Desert_CombatScene")
+        if (SceneManager.GetActiveScene().name != "Title Scene" && SceneManager.GetActiveScene().name != "ManagerScene" && SceneManager.GetActiveScene().name != "CombatScene 1" && SceneManager.GetActiveScene().name != "Desert_CombatScene")
         {
-
+            InventoryManager.instance.inventoryIsClosed = false;
             inventoryMenu.SetActive(true);
-            equipMenu.SetActive(true);
+            InventoryManager.instance.ListItems();
+            ListEquipItems();
+            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(true);
             iicArray = FindObjectsOfType<InventoryItemController>();
-            Debug.Log("iic Length: " + iicArray.Length);
             foreach (InventoryItemController iic in iicArray)
             {
-                Debug.Log("iic Length part 2 electric boogaloo: " + iicArray.Length);
-                Debug.Log("iic found on: " + iic.gameObject.name);
-                if (iic != null)
+                if (iic.transform.parent == weaponContent)
                 {
-                    iic.SetSkills();
-                    Debug.Log("Skills set! ...Finally...");
-
-                    Item item = iic.item;
-                    if (item != null && Items.Contains(item))
+                    Debug.Log("ITS NOT NULL, DIE");
+                    if (iic != null)
                     {
-                        iic.itemIsEquipped = true;
+                        iic.SetSkills();
+                        Debug.Log("Skills set! ...Finally...");
+                    }
+                    else
+                    {
+                        Debug.Log("WHYYYYYYYYY");
                     }
                 }
-                else
-                {
-                    Debug.Log("WHYYYYYYYYY");
-                }
             }
+            InventoryManager.instance.inventoryIsClosed = true;
             inventoryMenu.SetActive(false);
-            equipMenu.SetActive(false);
+            InventoryManager.instance.Clean();
+            Clean();
+            GameObject.Find("EquipManager").GetComponent<EquipManager>().equipMenu.SetActive(false);
         }
     }
 

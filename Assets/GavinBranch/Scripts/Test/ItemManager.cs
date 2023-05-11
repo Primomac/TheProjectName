@@ -31,7 +31,6 @@ public class ItemManager : MonoBehaviour
         public List<int> ItemIDs;
     }
 
-
     public void AddItems(List<Item> itemsToAdd)
     {
         items.AddRange(itemsToAdd);
@@ -85,9 +84,18 @@ public class ItemManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        LoadItemIDs();
-        LoadItemIDsEquipped();
-        addItems();
+        if(SceneManager.GetActiveScene().name != "ManagerScene")
+        {
+            getId();
+            SaveItemIDs();
+            SaveItemIDsEquipped();
+        }
+        if (SceneManager.GetActiveScene().name == "ManagerScene")
+        {
+            LoadItemIDs();
+            LoadItemIDsEquipped();
+            addItems();
+        }
     }
     public void getId()
     {
