@@ -10,7 +10,6 @@ public class Item : ScriptableObject
     [Header("STUFF THAT YOU SHOULD PROBABLY SET")]
     public int id;
     public string itemName;
-    public int value;
     public Sprite icon;
     public int sellValue;
     public ItemType itemType;
