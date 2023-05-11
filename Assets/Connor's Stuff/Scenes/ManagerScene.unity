@@ -1037,6 +1037,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a22991ac29020bb468b3a6417c19392e, type: 2}
   - {fileID: 11400000, guid: 1faecff047fe4dd40b633f71949dafbd, type: 2}
   - {fileID: 11400000, guid: 9994baf9603dc254d9c8fb04cebcd4ff, type: 2}
+  - {fileID: 11400000, guid: ea18f166feafd094092ac352d37b729d, type: 2}
+  - {fileID: 11400000, guid: 21d63c0e4648d224b926b91c40eec5ad, type: 2}
+  - {fileID: 11400000, guid: cd5770ba9aef5f245bb2841fe19a643e, type: 2}
 --- !u!1 &423098168
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,6 +4356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
+  equipItemsArray: []
+  equipWeaponsArray: []
   itemContent: {fileID: 799010247}
   weaponContent: {fileID: 19051549}
   equipItem: {fileID: 7405269782138134776, guid: 446d953dfee6d5a4789acd51ae91ce38, type: 3}
@@ -4361,7 +4366,6 @@ MonoBehaviour:
   statStorage: {fileID: 555594891}
   itemsEquipped: 0
   weaponsEquipped: 0
-  equipArray: []
 --- !u!4 &1525249749
 Transform:
   m_ObjectHideFlags: 0

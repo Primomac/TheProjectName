@@ -220,8 +220,8 @@ public class InventoryItemController : MonoBehaviour
         StatSheet statSheet = GameObject.Find("Player").GetComponent<StatSheet>();
         foreach (Skill skill in item.skills)
         {
-            statSheet.skillList.Add(skill);
-            Debug.Log("Skills Set!");
+             statSheet.skillList.Add(skill);
+             Debug.Log("Skills Set!");
         }
     }
 
