@@ -169,7 +169,11 @@ public class EquipManager : MonoBehaviour
         {
             for (int i = 0; i < Items.Count; i++)
             {
-                equipWeaponsArray[i].AddItem(Items[i]);
+                if (iic != null && iic.item.itemType != Item.ItemType.Weapon)
+                {
+                    equipWeaponsArray[i].AddItem(Items[i]);
+                    weaponsEquipped = equipWeaponsArray.Length;
+                }
 
             }
         }
