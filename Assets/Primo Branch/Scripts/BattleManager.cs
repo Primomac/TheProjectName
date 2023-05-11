@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     public int enemyCount;
     public List<StatSheet> combatants = new List<StatSheet>();
     public GameObject initBar;
+    public GameObject statusBar;
     public GameObject statStorage;
     public string encounterScene;
     public AudioClip battleMusic;
@@ -195,6 +196,8 @@ public class BattleManager : MonoBehaviour
             characterStats.hpBar.transform.Find("Name Text").GetComponent<TextMeshProUGUI>().text = characterStats.characterName;
             characterStats.initBar = Instantiate(initBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 0.5f), transform.rotation);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
+            GameObject statusView = Instantiate(statusBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 1f), transform.rotation);
+            statusView.GetComponent<StatusWindow>().combatant = characterStats;
         }
         else
         {
@@ -215,6 +218,8 @@ public class BattleManager : MonoBehaviour
             characterStats.spMeter.GetComponent<SpBar>().updateSpBar(characterStats.sp);
             Debug.Log(characterStats.name + "'s HP bar is " + characterStats.hpBar.name + "!");
             Debug.Log(characterStats.name + "'s SP bar is " + characterStats.spMeter.name + "!");
+            GameObject statusView = Instantiate(statusBar, new Vector2(character.transform.position.x, character.transform.position.y + character.GetComponent<SpriteRenderer>().bounds.size.y / 2 + 1f), transform.rotation);
+            statusView.GetComponent<StatusWindow>().combatant = characterStats;
         }
     }
 

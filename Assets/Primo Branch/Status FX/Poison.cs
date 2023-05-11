@@ -7,6 +7,7 @@ public class Poison : StatusEffect
     public override void Initialize()
     {
         base.Initialize();
+        statusIcon = Resources.Load<Sprite>("Status Icons/poison");
         OnApply = null;
         OnExpire = RemoveDebuff;
         OnTick = PainDamage;

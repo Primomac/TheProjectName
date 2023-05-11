@@ -7,6 +7,7 @@ public class DefenseDown : StatusEffect
     public override void Initialize()
     {
         base.Initialize();
+        statusIcon = Resources.Load<Sprite>("Status Icons/armorDown");
         OnApply = DebuffDefense;
         OnExpire = RemoveDebuff;
         OnTick = null;

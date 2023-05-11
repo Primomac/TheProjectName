@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusName: 
-  statusIcon: {fileID: 0}
+  statusIcon: {fileID: 21300000, guid: 52889cf907c4f8b4585e9d25ca3a2237, type: 3}
   isDebuff: 0
   dispellable: 0
   countByTurn: 0
