@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Starfall
+  m_Name: Hex
   m_EditorClassIdentifier: 
-  skillName: Starfall
-  spCost: 25
-  skillDescription: Drops star remains on all enemies
-  skillBackground: {r: 0.7264151, g: 0.38033998, b: 0.69340616, a: 255}
+  skillName: Hex
+  spCost: 5
+  skillDescription: Cast a hex on your enemies. Deals 1.5x magic damage
+  skillBackground: {r: 0.6603774, g: 0, b: 0.5479211, a: 255}
   skillSequence:
   - PlaySound(0, 0, 0.03)
-  - DealDamage(4, Magical, true)
-  - ApplyStatus(0, currentTarget)
+  - DealDamage(1.5, Magical, false)
   sfx:
-  - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
+  - {fileID: 8300000, guid: 3c42a15874951bb40906ba2c23ff5282, type: 3}
   effects: []
-  statuses:
-  - {fileID: 5506903788262190960, guid: 4386d712cdf5d934e80d098fd7cb8bed, type: 3}
+  statuses: []

@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Poison Dart
+  m_Name: Curse
   m_EditorClassIdentifier: 
-  skillName: Poison Stab
-  spCost: 10
-  skillDescription: Deals a target x0.1 Physical DMG and applies a stack of Poison.
-  skillBackground: {r: 0.6284122, g: 0, b: 0.6698113, a: 255}
+  skillName: Curse
+  spCost: 5
+  skillDescription: Cast a curse upon your target. Decreases enemy ward
+  skillBackground: {r: 0.8490566, g: 0.3882104, b: 0.35644355, a: 255}
   skillSequence:
   - PlaySound(0, 0, 0.03)
-  - DealDamage(0.1, Physical, false)
   - ApplyStatus(0, currentTarget)
   sfx:
-  - {fileID: 8300000, guid: c4e4e808861821c4fbb4087a64d26ccf, type: 3}
+  - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
   effects: []
   statuses:
-  - {fileID: 5153813676845492312, guid: c6d8c681fb407ae4b9891eb798dbf402, type: 3}
+  - {fileID: 5506903788262190960, guid: 4386d712cdf5d934e80d098fd7cb8bed, type: 3}

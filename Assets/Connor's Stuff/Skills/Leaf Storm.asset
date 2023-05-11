@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0c3f9655b3ee8a4185c02ae76512cb1, type: 3}
-  m_Name: Starfall
+  m_Name: Leaf Storm
   m_EditorClassIdentifier: 
-  skillName: Starfall
-  spCost: 25
-  skillDescription: Drops star remains on all enemies
-  skillBackground: {r: 0.7264151, g: 0.38033998, b: 0.69340616, a: 255}
+  skillName: Leaf Storm
+  spCost: 10
+  skillDescription: Hits every enemy with a storm of leaves
+  skillBackground: {r: 0.394015, g: 0.764151, b: 0.3135903, a: 255}
   skillSequence:
+  - DealDamage(1.25, Magical, true)
   - PlaySound(0, 0, 0.03)
-  - DealDamage(4, Magical, true)
-  - ApplyStatus(0, currentTarget)
   sfx:
-  - {fileID: 8300000, guid: cca78e6a13c23ad4faf90dc71bdcaeea, type: 3}
+  - {fileID: 8300000, guid: 3d4074f66ec329f4f9271c3ae015fcb2, type: 3}
   effects: []
-  statuses:
-  - {fileID: 5506903788262190960, guid: 4386d712cdf5d934e80d098fd7cb8bed, type: 3}
+  statuses: []

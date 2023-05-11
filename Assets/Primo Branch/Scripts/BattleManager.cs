@@ -301,12 +301,12 @@ public class BattleManager : MonoBehaviour
             if (!menuDown && currentMenu != null)
             {
                 Debug.Log("Moving " + currentMenu);
-                while (currentMenu.transform.position.y > -81)
+                while (currentMenu.transform.position.y > -Screen.height * 0.075f) // 81 (7.5% of screen size)
                 {
-                    currentMenu.transform.Translate(Vector2.down * Time.deltaTime * 648);
+                    currentMenu.transform.Translate(Vector2.down * Time.deltaTime * Screen.height * 0.6f); // 648 (60% of screen size)
                     yield return new WaitForEndOfFrame();
                 }
-                if (currentMenu.transform.position.y <= -81)
+                if (currentMenu.transform.position.y <= -Screen.height * 0.075f)
                 {
                     //currentMenu.transform.position = new Vector2(576, -81);
                     menuDown = true;
@@ -322,12 +322,12 @@ public class BattleManager : MonoBehaviour
                 if (menu != null)
                 {
                     Debug.Log("Moving " + menu + "from " + menu.transform.position.y);
-                    while (menu.transform.position.y < 81)
+                    while (menu.transform.position.y < Screen.height * 0.075f)
                     {
-                        menu.transform.Translate(Vector2.up * Time.deltaTime * 648);
+                        menu.transform.Translate(Vector2.up * Time.deltaTime * Screen.height * 0.6f);
                         yield return new WaitForEndOfFrame();
                     }
-                    if (menu.transform.position.y >= 81)
+                    if (menu.transform.position.y >= Screen.height * 0.075f)
                     {
                         //menu.transform.position = new Vector2(576, 81);
                         currentMenu = menu;
@@ -355,12 +355,13 @@ public class BattleManager : MonoBehaviour
         {
             GameObject button = Instantiate(skillButton, GameObject.Find("Skill Spawn " + skillCount).transform.position, transform.rotation);
             button.transform.SetParent(GameObject.Find("Skill Spawn " + skillCount).transform);
-            for (int i = 0; i < button.transform.parent.childCount - 1; i++) { Destroy(button.transform.parent.GetChild(i)); }
+            for (int i = 0; i < button.transform.parent.childCount - 1; i++) { Destroy(button.transform.parent.GetChild(i).gameObject); }
             button.transform.Find("Skill Name").GetComponent<TextMeshProUGUI>().text = skill.skillName;
             button.transform.Find("Skill Cost").GetComponent<TextMeshProUGUI>().text = "" + skill.spCost;
             button.transform.Find("Skill Description").GetComponent<TextMeshProUGUI>().text = skill.skillDescription;
             button.transform.Find("Skill Background").GetComponent<Image>().color = skill.skillBackground;
             button.GetComponent<Button>().onClick.AddListener(delegate { UseTheSkill(skill); });
+            button.transform.localScale = new Vector3(button.transform.localScale.x * Screen.width / 1920, button.transform.localScale.y * Screen.height / 1080, 1);
             skillCount++;
         }
     }

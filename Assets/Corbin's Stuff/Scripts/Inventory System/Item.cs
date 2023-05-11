@@ -37,9 +37,7 @@ public class Item : ScriptableObject
         Collectible,
         Armor
     }
-
-
-    private void Awake()
+    void Awake()
     {
         float x = sellValue * .20f;
         shopValue += Mathf.RoundToInt(x) + sellValue;
