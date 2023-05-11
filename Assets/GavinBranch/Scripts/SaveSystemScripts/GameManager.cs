@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         XpGain.Xpleft = (int)data.exp;
         XpGain.XpCap = data.expCap;
+
     }
 
 
@@ -90,39 +91,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
-    /*
-    private void Start()
-    {
-        if (SceneManager.GetActiveScene().name != "VictoryScene")
-        {
-            PlayerData data = SaveSystem.LoadPlayer(fileName);
-
-            //stat.character = data.character;
-            stat.characterName = data.characterName;
-
-            stat.level = data.level;
-            stat.exp = data.exp;
-            stat.expCap = data.expCap;
-
-            stat.strength = data.strength;
-            stat.dexterity = data.dexterity;
-            stat.soul = data.soul;
-            stat.guts = data.guts;
-            stat.focus = data.focus;
-            stat.agility = data.agility;
-
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-
-            stat.transform.position = position;
-
-            CoinsController.coinAmount = data.coins;
-        }
-    }
-    */
 
 
 
