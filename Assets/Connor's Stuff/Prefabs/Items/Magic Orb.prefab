@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2184578313580004545}
   - component: {fileID: 2184578313580004546}
   m_Layer: 0
-  m_Name: Charm of Strength
+  m_Name: Magic Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 43ad1b403b682a84c9d582e4aa04b296, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b16c9420ecc641848849980ade07edec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc44b5c9c2b0514aa061e99a3a6d5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 9994baf9603dc254d9c8fb04cebcd4ff, type: 2}
+  item: {fileID: 11400000, guid: 2a8b008b2b1c4b8498d6099efe551b8e, type: 2}
 --- !u!114 &2184578313580004551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cced7a86d1c764db62ae6612539d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 9994baf9603dc254d9c8fb04cebcd4ff, type: 2}
+  item: {fileID: 11400000, guid: 2a8b008b2b1c4b8498d6099efe551b8e, type: 2}
 --- !u!61 &2184578313580004545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
+    oldSize: {x: 2.3, y: 2.3}
     newSize: {x: 1.6, y: 1.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
