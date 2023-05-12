@@ -15,9 +15,6 @@ public class ItemManager : MonoBehaviour
     public Item itemToAdd;
     public Item[] myArrayOfScriptableItems;
 
-
-
-
     void Awake()
     {
         instance = this;
@@ -225,13 +222,6 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
-
-
-
-
-
-
-
 }
 
 

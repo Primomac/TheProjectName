@@ -28,12 +28,10 @@ public class ShopVariables : MonoBehaviour
         {
             shopkeeperExists = false;
             Debug.Log("Shopkeeper is fake and untrue, literally clickbait.");
-
         }
         else
         {
             shopkeeperExists = true;
-
             Debug.Log("Shopkeeper exists!");
         }
 

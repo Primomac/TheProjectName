@@ -15,7 +15,6 @@ public class UpdateStatsOnStart : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
