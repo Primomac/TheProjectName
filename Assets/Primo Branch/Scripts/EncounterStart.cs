@@ -27,9 +27,6 @@ public class EncounterStart : MonoBehaviour
             // Play encounterSound
             // Cool battle transition
 
-            InventoryItemController iic = GameObject.Find("EquipManager").GetComponent<EquipManager>().iic;
-            iic.SetSkills();
-
             encounterPosition = collision.transform.position;
             collision.gameObject.GetComponent<PlayerController>().encounterPosition = encounterPosition;
             enemyStats.Add(collision.GetComponent<StatSheet>());
